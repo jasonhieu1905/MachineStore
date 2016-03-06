@@ -16,12 +16,14 @@
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
-			<value>/WEB-INF/admin/</value>
+			<value>/WEB-INF/</value>
 		</property>
 		<property name="suffix">
 			<value>.jsp</value>
 		</property>
 	</bean>
+	
+	
 	
 	<mvc:resources mapping="/resources/**" location="/resources/"  cache-period="31556926"/>
  
