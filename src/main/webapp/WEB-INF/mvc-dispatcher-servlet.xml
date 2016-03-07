@@ -1,32 +1,82 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc 
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context 
-        http://www.springframework.org/schema/context/spring-context.xsd">
-        
-        
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+
 	<context:component-scan base-package="com.machine.controller" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
-			<value>/WEB-INF/</value>
+			<value>/WEB-INF/admin/</value>
 		</property>
 		<property name="suffix">
 			<value>.jsp</value>
 		</property>
 	</bean>
+
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		id="dataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/MachineStore"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value=""></property>
+	</bean>
+
+	<bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+		id="hibernate4AnnotatedSessionFactory">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="annotatedClasses">
+			<list>
+				<value>com.machine.model.User</value>
+				<value>com.machine.model.Product</value>
+				<value>com.machine.model.Category</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+
+    <bean id="userService" class="com.machine.serviceImpl.UserServiceImpl">
+        <property name="userDAO" ref="userDAO"></property>
+    </bean>
 	
+	<bean id="userDAO" class="com.machine.daoImpl.UserDAOImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    
+    <bean id="categoryService" class="com.machine.serviceImpl.CategoryServiceImpl">
+        <property name="categoryDAO" ref="categoryDAO"></property>
+    </bean>
 	
-	
-	<mvc:resources mapping="/resources/**" location="/resources/"  cache-period="31556926"/>
- 
+	<bean id="categoryDAO" class="com.machine.daoImpl.CategoryDAOImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    
+    <tx:annotation-driven transaction-manager="hibernateTransactionManager"/>  
+     
+    <bean id="hibernateTransactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    
+	<mvc:resources mapping="/resources/**" location="/resources/"
+		cache-period="31556926" />
+
 	<mvc:annotation-driven />
 
 </beans>
