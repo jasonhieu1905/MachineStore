@@ -25,7 +25,7 @@ public class AdminHomePage {
 	
 	@RequestMapping(value="/login",method = RequestMethod.GET)
 	public String doLogin(ModelMap model) {
-		return "loginPage";
+		return "login";
 
 	}
 	

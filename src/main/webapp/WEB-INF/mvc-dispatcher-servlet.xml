@@ -15,16 +15,6 @@
 
 	<context:component-scan base-package="com.machine.controller" />
 
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix">
-			<value>/WEB-INF/admin/</value>
-		</property>
-		<property name="suffix">
-			<value>.jsp</value>
-		</property>
-	</bean>
-
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		id="dataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
@@ -78,5 +68,16 @@
 		cache-period="31556926" />
 
 	<mvc:annotation-driven />
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>
+
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/layout/layout.xml</value>
+				<value>/WEB-INF/layout/view.xml</value>
+			</list>
+		</property>
+	</bean>
 
 </beans>

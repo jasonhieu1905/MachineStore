@@ -20,4 +20,8 @@
 		<put-attribute name="footer" 	value="" />
 	</definition>
 	
+	<definition name="login" template="/WEB-INF/admin/loginPage.jsp">
+		
+	</definition>
+	
 </tiles-definitions>

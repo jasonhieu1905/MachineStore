@@ -11,7 +11,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				/WEB-INF/tiles-dispatcher-servlet.xml
+				/WEB-INF/mvc-dispatcher-servlet.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
