@@ -1,15 +1,9 @@
-<%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<ul style="list-style:none;line-height:28px;">
 
-	<li><spring:url value="/index" var="homeUrl" htmlEscape="true" />
-		<a href="${homeUrl}">Home</a>
-	</li>
+<div id="left-menu" class="row">
+	<div class="first-level">First line</div>
+	<div class="second-level">Child one</div>
+	<div class="second-level">Child two</div>
+	<div class="first-level">Second line</div>
+	<div class="second-level">Mini one</div>
 
-	<li><spring:url value="/viewPeson" var="personListUrl" htmlEscape="true" />
-		<a href="${personListUrl}">Person List</a>
-	</li>
-
-</ul> --%>
-<div>
-	Menu...
 </div>

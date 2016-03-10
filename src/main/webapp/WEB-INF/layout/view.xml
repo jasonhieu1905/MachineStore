@@ -9,6 +9,10 @@
 	    <put-attribute name="body"	value="/WEB-INF/user/home.jsp" />
 	</definition>
 	
+	<definition name="product" extends="UserTemplate">
+	    <put-attribute name="body"	value="/WEB-INF/user/product.jsp" />
+	</definition>
+	
 	<definition name="adminHomePage" extends="AdminTemplate">
 	    <put-attribute name="body"	value="/WEB-INF/admin/adminHomePage.jsp" />
 	</definition>

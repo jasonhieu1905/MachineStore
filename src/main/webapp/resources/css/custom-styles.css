@@ -9,9 +9,10 @@ http://creativecommons.org/licenses/by/3.0/
     COMMON  STYLES    
 ------------------------------------------------*/
 body {
-    font-family: 'Open Sans', sans-serif;
-  background: #32C2CD url(../img/bg-img.jpg) !important;
-  
+    font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color:white;
+  background-image: url("../img/bg.png");
+	background-repeat: repeat;
 }
 
  #wrapper {
