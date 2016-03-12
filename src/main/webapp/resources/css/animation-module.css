@@ -1,0 +1,10 @@
+%header-animation{
+		-webkit-transition: all 600ms cubic-bezier(.25, .1, .25, 1) 0s
+		!important;
+	-moz-transition: all 600ms cubic-bezier(.25, .1, .25, 1) 0s !important;
+	-o-transition: all 600ms cubic-bezier(.25, .1, .25, 1) 0s !important;
+	transition: all 600ms cubic-bezier(.25, .1, .25, 1) 0s !important;
+	-webkit-transition: all 600ms cubic-bezier(.25, .1, .25, 1) 0s
+		!important;
+}
+

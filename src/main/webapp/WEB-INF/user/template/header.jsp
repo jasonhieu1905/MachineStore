@@ -25,13 +25,25 @@
 				<i class="fa fa-barcode " style="width: 100%;height: 25px;"></i>Main Product</a>
 					<div class="dropdown-menu animated">
 						<div class="header-menu-container">
-							A reader sent me in a<br> GIF showing off a cool effect they
-							saw on Google on mobile. (Presumably the homepage you see when
-							you launch Chrome on Android?) <br> There is a search input
-							in the middle of the page that scrolls with the page, <br>
-							but as it's about to scroll off the page, it becomes<br>
-							affixed to the header. Let's cover that, <br> because, you
-							know...
+							<div class="item">
+								A reader sent me in a GIF showing off a cool effect they
+							</div>
+							<div class="item">
+								A reader sent me in a GIF showing off a cool effect they
+							</div>
+							<div class="item">
+								A reader sent me in a GIF showing off a cool effect they
+							</div>
+							<div class="item">
+								A reader sent me in a GIF showing off a cool effect they
+							</div>
+							<div class="item">
+								A reader sent me in a GIF showing off a cool effect they
+							</div>
+							<div class="item">
+								A reader sent me in a GIF showing off a cool effect they
+							</div>
+							
 						</div>
 					</div></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle">

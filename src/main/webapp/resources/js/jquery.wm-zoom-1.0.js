@@ -43,7 +43,9 @@
                     $hightBox = $('<div />').addClass('wm-zoom-hight'),
                     $loader = $('<img />').addClass('wm-zoom-loader').attr('src', srcLoader),
                     $hightImg;
-
+                	$box.find('.wm-zoom-hight').remove();
+                	$box.find('.wm-zoom-lens').remove();
+                	
                     $box.append($lens);
                     $hightBox.html($loader);
                     $box.prepend($hightBox);
@@ -271,8 +273,8 @@
 
                         if(xPosition>boxWidth||xPosition<0||yPosition>boxHeight||yPosition<0)
                         {
-                            $lens.hide();
-                            $hightBox.hide();
+                            //$lens.hide();
+                            //$hightBox.hide();
                         }
                         
                         /* -----------------------------
@@ -349,7 +351,8 @@
                     },25);
                 });
                 
-            });
+            })
+        
         }
     });
 })(jQuery);

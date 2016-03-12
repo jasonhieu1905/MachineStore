@@ -1,39 +1,45 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="row product">
+	<c:if test="${name == 'nam'}">
+		NAM
+	</c:if>
 	<div class="product-left">
 		<div class="slide">
-			<div class="controller top">
+			<div class="controller top" onclick="topClick()">
 				<i class="fa fa-angle-up fa-2x"></i>
 			</div>
-			<div class="capture">
-				<img alt="ABC"
-					src="http://xemtinvl.com/wp-content/uploads/2015/09/Hot-girl-sao-Viet-xinh-dep-nhung-chua-tot-nghiep-cap-3-3-1380611565212.jpg">
+			<div class="scroll">
+				<div class="capture" onclick="showImage(this)">
+					<img  alt="ABC"
+						src="http://waptai.com/wp-content/uploads/beautiful-girl-hd-wallpaper-3.jpg">
+				</div>
+				<div class="capture" onclick="showImage(this)">
+					<img alt="ABC"
+						src="http://hdwallpaperbackgrounds.net/wp-content/uploads/2015/08/Most-Beautiful-Girls-Desktop-Wallpapers.jpg">
+				</div>
+				<div class="capture" onclick="showImage(this)">
+					<img alt="ABC"
+						src="https://static.pexels.com/photos/6403/people-woman-girl-technology.jpg">
+				</div>
+				<div class="capture" onclick="showImage(this)">
+					<img alt="ABC"
+						src="http://xemtinvl.com/wp-content/uploads/2015/09/Hot-girl-sao-Viet-xinh-dep-nhung-chua-tot-nghiep-cap-3-3-1380611565212.jpg">
+				</div>
+				<div class="capture" onclick="showImage(this)">
+					<img alt="ABC"
+						src="http://images-cdn.9gag.com/photo/anB8WVV_700b.jpg">
+				</div>
 			</div>
-			<div class="capture">
-				<img alt="ABC"
-					src="http://xemtinvl.com/wp-content/uploads/2015/09/Hot-girl-sao-Viet-xinh-dep-nhung-chua-tot-nghiep-cap-3-3-1380611565212.jpg">
-			</div>
-			<div class="capture">
-				<img alt="ABC"
-					src="http://xemtinvl.com/wp-content/uploads/2015/09/Hot-girl-sao-Viet-xinh-dep-nhung-chua-tot-nghiep-cap-3-3-1380611565212.jpg">
-			</div>
-			<div class="capture">
-				<img alt="ABC"
-					src="http://xemtinvl.com/wp-content/uploads/2015/09/Hot-girl-sao-Viet-xinh-dep-nhung-chua-tot-nghiep-cap-3-3-1380611565212.jpg">
-			</div>
-			<div class="capture">
-				<img alt="ABC"
-					src="http://xemtinvl.com/wp-content/uploads/2015/09/Hot-girl-sao-Viet-xinh-dep-nhung-chua-tot-nghiep-cap-3-3-1380611565212.jpg">
-			</div>
-			<div class="controller bottom">
+			<div class="controller bottom" onclick="bottomClick()">
 				<i class="fa fa-angle-down  fa-2x"></i>
 			</div>
 		</div>
 		<div class="title">Product Tile</div>
 		<div class="wm-zoom-container main-product-photo">
 			<div class="wm-zoom-box">
-				<img width="300px" class="wm-zoom-default-img"
+				<img width="300px" class="photo wm-zoom-default-img"
 					data-hight-src="http://xemtinvl.com/wp-content/uploads/2015/09/Hot-girl-sao-Viet-xinh-dep-nhung-chua-tot-nghiep-cap-3-3-1380611565212.jpg"
-					data-loader-src="../img/loader"
+					data-loader-src="resources/img/loader.gif"
 					src="http://xemtinvl.com/wp-content/uploads/2015/09/Hot-girl-sao-Viet-xinh-dep-nhung-chua-tot-nghiep-cap-3-3-1380611565212.jpg">
 
 			</div>
@@ -47,131 +53,8 @@
 	</div>
 </div>
 <div class="row product-section">
-	<div class="title-container">
-		<div class="title">Product one</div>
-	</div>
-	<div class="product col-xs-12">
-		<div class="col-xs-3 detail-container">
-			<div class="detail">
-				<div class="scroll-detail">
-					<div class="info">
-						<img alt="product"
-							src="http://www.printwand.com/blog/media/2012/01/ultimate-guide-to-your-product-launch.jpg"
-							width="185px">
-					</div>
-					<div class="info cover">
-						<span class="more-detail">More detail</span>
-					</div>
-				</div>
-			</div>
-			<span class="name">Product name</span>
-		</div>
-		<div class="col-xs-3 detail-container">
-			<div class="detail">
-				<div class="scroll-detail">
-					<div class="info">
-						<img alt="product"
-							src="http://www.printwand.com/blog/media/2012/01/ultimate-guide-to-your-product-launch.jpg"
-							width="185px">
-					</div>
-					<div class="info cover">
-						<span class="more-detail">More detail</span>
-					</div>
-				</div>
-			</div>
-			<span class="name">Product name</span>
-		</div>
-		<div class="col-xs-3 detail-container">
-			<div class="detail">
-				<div class="scroll-detail">
-					<div class="info">
-						<img alt="product"
-							src="http://www.printwand.com/blog/media/2012/01/ultimate-guide-to-your-product-launch.jpg"
-							width="185px">
-					</div>
-					<div class="info cover">
-						<span class="more-detail">More detail</span>
-					</div>
-				</div>
-			</div>
-			<span class="name">Product name</span>
-		</div>
-		<div class="col-xs-3 detail-container">
-			<div class="detail">
-				<div class="scroll-detail">
-					<div class="info">
-						<img alt="product"
-							src="http://www.printwand.com/blog/media/2012/01/ultimate-guide-to-your-product-launch.jpg"
-							width="185px">
-					</div>
-					<div class="info cover">
-						<span class="more-detail">More detail</span>
-					</div>
-				</div>
-			</div>
-			<span class="name">Product name</span>
-		</div>
-		<div class="col-xs-3 detail-container">
-			<div class="detail">
-				<div class="scroll-detail">
-					<div class="info">
-						<img alt="product"
-							src="http://www.printwand.com/blog/media/2012/01/ultimate-guide-to-your-product-launch.jpg"
-							width="185px">
-					</div>
-					<div class="info cover">
-						<span class="more-detail">More detail</span>
-					</div>
-				</div>
-			</div>
-			<span class="name">Product name</span>
-		</div>
-		<div class="col-xs-3 detail-container">
-			<div class="detail">
-				<div class="scroll-detail">
-					<div class="info">
-						<img alt="product"
-							src="http://www.printwand.com/blog/media/2012/01/ultimate-guide-to-your-product-launch.jpg"
-							width="185px">
-					</div>
-					<div class="info cover">
-						<span class="more-detail">More detail</span>
-					</div>
-				</div>
-			</div>
-			<span class="name">Product name</span>
-		</div>
-		<div class="col-xs-3 detail-container">
-			<div class="detail">
-				<div class="scroll-detail">
-					<div class="info">
-						<img alt="product"
-							src="http://www.printwand.com/blog/media/2012/01/ultimate-guide-to-your-product-launch.jpg"
-							width="185px">
-					</div>
-					<div class="info cover">
-						<span class="more-detail">More detail</span>
-					</div>
-				</div>
-			</div>
-			<span class="name">Product name</span>
-		</div>
-		<div class="col-xs-3 detail-container">
-			<div class="detail">
-				<div class="scroll-detail">
-					<div class="info">
-						<img alt="product"
-							src="http://www.printwand.com/blog/media/2012/01/ultimate-guide-to-your-product-launch.jpg"
-							width="185px">
-					</div>
-					<div class="info cover">
-						<span class="more-detail">More detail</span>
-					</div>
-				</div>
-			</div>
-			<span class="name">Product name</span>
-		</div>
-	</div>
+	<jsp:include page="product-list.jsp"></jsp:include>
+	<jsp:include page="product-list.jsp"></jsp:include>
 </div>
 
 
