@@ -15,15 +15,15 @@
 
 	<context:component-scan base-package="com.machine.controller" />
 
-	<!-- <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		id="dataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/MachineStore"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value=""></property>
-	</bean> -->
+	</bean>
 
-	<!-- <bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+	 <bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
 		id="hibernate4AnnotatedSessionFactory">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="annotatedClasses">
@@ -58,11 +58,19 @@
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     
+    <bean id="productService" class="com.machine.serviceImpl.ProductServiceImpl">
+        <property name="productDAO" ref="productDAO"></property>
+    </bean>
+	
+	<bean id="productDAO" class="com.machine.daoImpl.ProductDAOImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    
     <tx:annotation-driven transaction-manager="hibernateTransactionManager"/>  
      
     <bean id="hibernateTransactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-    </bean> -->
+    </bean>
     
 	<mvc:resources mapping="/resources/**" location="/resources/"
 		cache-period="31556926" />

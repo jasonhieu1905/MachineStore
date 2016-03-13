@@ -14,7 +14,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "product")
@@ -25,6 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Product.findByCreateddate", query = "SELECT p FROM Product p WHERE p.createddate = :createddate"),
     @NamedQuery(name = "Product.findByImage", query = "SELECT p FROM Product p WHERE p.image = :image"),
     @NamedQuery(name = "Product.findByZoomImage", query = "SELECT p FROM Product p WHERE p.zoomImage = :zoomImage"),
+    @NamedQuery(name = "Product.findByCategoryId", query = "SELECT p FROM Product p WHERE p.categoryId.id = :cateId"),
     @NamedQuery(name = "Product.findByPriorityOrder", query = "SELECT p FROM Product p WHERE p.priorityOrder = :priorityOrder")})
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -36,7 +36,7 @@ public class Product implements Serializable {
     
     @Basic(optional = false)
     @Column(name = "name")
-    private int name;
+    private String name;
     
     @Basic(optional = false)
     @Column(name = "createddate")
@@ -66,7 +66,7 @@ public class Product implements Serializable {
         this.id = id;
     }
 
-    public Product(Integer id, int name, Date createddate, String image, String zoomImage, int priorityOrder) {
+    public Product(Integer id, String name, Date createddate, String image, String zoomImage, int priorityOrder) {
         this.id = id;
         this.name = name;
         this.createddate = createddate;
@@ -83,11 +83,11 @@ public class Product implements Serializable {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 

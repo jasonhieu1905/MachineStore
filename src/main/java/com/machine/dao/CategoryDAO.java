@@ -11,6 +11,8 @@ public interface CategoryDAO {
 	Category getCategoryById(int id);
 
 	List<Category> getCategoriesMainProduct();
+	
+	List<Category> getCategoriesAccessories();
 
 	void addNewCategory(Category category);
 }

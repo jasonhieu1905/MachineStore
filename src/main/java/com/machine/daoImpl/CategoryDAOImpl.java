@@ -42,6 +42,12 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public void addNewCategory(Category category) {
 		 getSession().persist(category);;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Category> getCategoriesAccessories() {
+		return (List<Category>) getSession().getNamedQuery("Category.findByMainProduct").setParameter("id", 2).list();
+	}
 	
 	
 	

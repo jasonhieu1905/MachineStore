@@ -10,5 +10,5 @@ public interface CategoryService {
 	Category getCategoryById(int id);
 	List<Category> getCategoriesMainProduct();
 	void addNewCategory(Category category);
-	
+	List<Category> getCategoriesAccessories();
 }

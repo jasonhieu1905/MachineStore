@@ -40,6 +40,12 @@ public class CategoryServiceImpl implements CategoryService {
 	public void addNewCategory(Category category) {
 		categoryDAO.addNewCategory(category);
 	}
+
+
+	@Override
+	public List<Category> getCategoriesAccessories() {
+		return categoryDAO.getCategoriesAccessories();
+	}
 	
 	
 
