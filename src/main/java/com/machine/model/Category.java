@@ -7,6 +7,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,13 +24,14 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
     @NamedQuery(name = "Category.findById", query = "SELECT c FROM Category c WHERE c.id = :id"),
     @NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name"),
-    @NamedQuery(name = "Category.findByPriorityId", query = "SELECT c FROM Category c WHERE c.priorityId = :priorityId")})
+    @NamedQuery(name = "Category.findByPriorityId", query = "SELECT c FROM Category c WHERE c.priorityId = :priorityId"),
+    @NamedQuery(name = "Category.findByMainProduct", query = "SELECT c FROM Category c WHERE c.type = :id")})
 public class Category implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @Basic(optional = false)
     @Column(name = "id")
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
     
     @Basic(optional = false)
@@ -48,6 +51,8 @@ public class Category implements Serializable {
     @JoinColumn(name = "parentId", referencedColumnName = "id")
     @ManyToOne
     private Category parentId;
+    
+    private int type;
 
     public Category() {
     }
@@ -111,8 +116,17 @@ public class Category implements Serializable {
     public void setParentId(Category parentId) {
         this.parentId = parentId;
     }
+    
 
-    @Override
+    public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

@@ -15,7 +15,6 @@ import com.machine.service.CategoryService;
 public class CategoryServiceImpl implements CategoryService {
 	private CategoryDAO categoryDAO;
 	
-	
 	public void setCategoryDAO(CategoryDAO categoryDAO) {
 		this.categoryDAO = categoryDAO;
 	}
@@ -25,5 +24,23 @@ public class CategoryServiceImpl implements CategoryService {
 	public List<Category> getAllCategories() {
 		return categoryDAO.getAllCategories();
 	}
+
+	@Override
+	public Category getCategoryById(int id) {
+		return categoryDAO.getCategoryById(id);
+	}
+
+	@Override
+	public List<Category> getCategoriesMainProduct() {
+		return categoryDAO.getCategoriesMainProduct();
+	}
+
+
+	@Override
+	public void addNewCategory(Category category) {
+		categoryDAO.addNewCategory(category);
+	}
+	
+	
 
 }

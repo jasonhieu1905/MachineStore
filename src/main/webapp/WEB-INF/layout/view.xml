@@ -14,7 +14,17 @@
 	</definition>
 	
 	<definition name="adminHomePage" extends="AdminTemplate">
-	    <put-attribute name="body"	value="/WEB-INF/admin/adminHomePage.jsp" />
+	</definition>
+	
+	<definition name="login" template="/WEB-INF/admin/loginPage.jsp">
+	</definition>
+	
+	<definition name="categoryPage" extends="AdminTemplate">
+		<put-attribute name="body" value="/WEB-INF/admin/categoryPage.jsp" />
+	</definition>
+	
+	<definition name="addNewCategoryPage" extends="AdminTemplate">
+		<put-attribute name="body" value="/WEB-INF/admin/addNewCategoryPage.jsp" />
 	</definition>
 	
 </tiles-definitions>

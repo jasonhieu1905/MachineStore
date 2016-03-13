@@ -15,14 +15,10 @@
 	
 	<definition name="AdminTemplate" template="/WEB-INF/admin/template/adminTemplate.jsp">
 		<put-attribute name="title" 	value="AdminHomePage" />
-		<put-attribute name="header" 	value="" />
-		<put-attribute name="menu" 		value="" />
-		<put-attribute name="body" 		value="" />
-		<put-attribute name="footer" 	value="" />
+		<put-attribute name="header" 	value="/WEB-INF/admin/template/header.jsp" />
+		<put-attribute name="menuLeft" 		value="/WEB-INF/admin/template/menuLeft.jsp" />
+		<put-attribute name="body" 		value="/WEB-INF/admin/adminHomePage.jsp" />
 	</definition>
 	
-	<definition name="login" template="/WEB-INF/admin/loginPage.jsp">
-		
-	</definition>
 	
 </tiles-definitions>

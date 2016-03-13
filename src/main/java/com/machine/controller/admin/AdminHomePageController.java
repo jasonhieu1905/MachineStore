@@ -15,28 +15,27 @@ import com.machine.service.CategoryService;
 import com.machine.service.UserService;
 
 @Controller
-public class AdminHomePage {
+public class AdminHomePageController {
 
-	/*@Autowired
+	@Autowired
 	private UserService userService;
 	
 	@Autowired
 	private CategoryService categoryService;
-	*/
+	
 	@RequestMapping(value="/login",method = RequestMethod.GET)
 	public String doLogin(ModelMap model) {
 		return "login";
 
 	}
 	
-	/*@RequestMapping(value="/login",method = RequestMethod.POST)
-	public String proceedLogin(@ModelAttribute("username")String username,@ModelAttribute("password")String password) {
+	@RequestMapping(value="/login",method = RequestMethod.POST)
+	public String proceedLogin(@ModelAttribute("username")String username,@ModelAttribute("password")String password,ModelMap model) {
 		User userLogin = userService.getUserByUsernameAndPassword(username, password);
-		System.out.println(userLogin.getUsername());
 		List<Category> categories = categoryService.getAllCategories();
-		System.out.println(categories.get(0).getName());
+		model.addAttribute("categories",categories);
 		return "adminHomePage";
-	}*/
+	}
 	
 	
 }

@@ -21,8 +21,28 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return sessionFactory.getCurrentSession();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Category> getAllCategories() {
 		return getSession().createQuery("from Category").list();
 	}
+
+	@Override
+	public Category getCategoryById(int id) {
+		return (Category) getSession().getNamedQuery("Category.findById").setParameter("id", id).uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Category> getCategoriesMainProduct() {
+		return (List<Category>) getSession().getNamedQuery("Category.findByMainProduct").setParameter("id", 1).list();
+	}
+
+	@Override
+	public void addNewCategory(Category category) {
+		 getSession().persist(category);;
+	}
+	
+	
+	
 }
