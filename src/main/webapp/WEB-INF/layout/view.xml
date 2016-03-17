@@ -27,8 +27,11 @@
 		<put-attribute name="body" value="/WEB-INF/admin/addNewCategoryPage.jsp" />
 	</definition>
 	
+	<definition name="productPage" extends="AdminTemplate">
+		<put-attribute name="body" value="/WEB-INF/admin/productPage.jsp" />
+	</definition>
+
 	<definition name="contactPage" extends="AdminTemplate">
 		<put-attribute name="body" value="/WEB-INF/admin/contactPage.jsp" />
 	</definition>
-	
 </tiles-definitions>
