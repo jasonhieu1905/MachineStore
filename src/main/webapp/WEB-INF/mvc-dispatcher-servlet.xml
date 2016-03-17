@@ -20,7 +20,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/MachineStore"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value=""></property>
+		<property name="password" value="root"></property>
 	</bean>
 
 	 <bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
@@ -31,6 +31,7 @@
 				<value>com.machine.model.User</value>
 				<value>com.machine.model.Product</value>
 				<value>com.machine.model.Category</value>
+				<value>com.machine.model.Contact</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -63,6 +64,14 @@
     </bean>
 	
 	<bean id="productDAO" class="com.machine.daoImpl.ProductDAOImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    
+    <bean id="contactService" class="com.machine.serviceImpl.ContactServiceImpl">
+        <property name="contactDAO" ref="contactDAO"></property>
+    </bean>
+	
+	<bean id="contactDAO" class="com.machine.daoImpl.ContactDAOImpl">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     
