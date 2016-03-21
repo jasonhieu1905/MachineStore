@@ -25,4 +25,9 @@ public class ContactDAOImpl implements ContactDAO{
 		return (Contact) getSession().getNamedQuery("Contact.findAll").list().get(0);
 	}
 
+	@Override
+	public void updateContact(Contact contact) {
+		getSession().merge(contact);
+	}
+
 }

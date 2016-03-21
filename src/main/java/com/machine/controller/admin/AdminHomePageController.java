@@ -32,6 +32,10 @@ public class AdminHomePageController {
 	@RequestMapping(value="/login",method = RequestMethod.POST)
 	public String proceedLogin(@ModelAttribute("username")String username,@ModelAttribute("password")String password,ModelMap model) {
 		User userLogin = userService.getUserByUsernameAndPassword(username, password);
+		if(userLogin == null){
+			return "redirect:/login" ;
+		}
+		
 		List<Category> categories = categoryService.getAllCategories();
 		model.addAttribute("categories",categories);
 		return "adminHomePage";

@@ -1,7 +1,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -18,12 +17,13 @@
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		id="dataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/MachineStore"></property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/MachineStore?characterEncoding=UTF-8"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="root"></property>
+		<property name="password" value=""></property>
 	</bean>
 
-	 <bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+	<bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
 		id="hibernate4AnnotatedSessionFactory">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="annotatedClasses">
@@ -43,58 +43,68 @@
 		</property>
 	</bean>
 
-    <bean id="userService" class="com.machine.serviceImpl.UserServiceImpl">
-        <property name="userDAO" ref="userDAO"></property>
-    </bean>
-	
+	<bean id="userService" class="com.machine.serviceImpl.UserServiceImpl">
+		<property name="userDAO" ref="userDAO"></property>
+	</bean>
+
 	<bean id="userDAO" class="com.machine.daoImpl.UserDAOImpl">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-    </bean>
-    
-    <bean id="categoryService" class="com.machine.serviceImpl.CategoryServiceImpl">
-        <property name="categoryDAO" ref="categoryDAO"></property>
-    </bean>
-	
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+
+	<bean id="categoryService" class="com.machine.serviceImpl.CategoryServiceImpl">
+		<property name="categoryDAO" ref="categoryDAO"></property>
+	</bean>
+
 	<bean id="categoryDAO" class="com.machine.daoImpl.CategoryDAOImpl">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-    </bean>
-    
-    <bean id="productService" class="com.machine.serviceImpl.ProductServiceImpl">
-        <property name="productDAO" ref="productDAO"></property>
-    </bean>
-	
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+
+	<bean id="productService" class="com.machine.serviceImpl.ProductServiceImpl">
+		<property name="productDAO" ref="productDAO"></property>
+	</bean>
+
 	<bean id="productDAO" class="com.machine.daoImpl.ProductDAOImpl">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-    </bean>
-    
-    <bean id="contactService" class="com.machine.serviceImpl.ContactServiceImpl">
-        <property name="contactDAO" ref="contactDAO"></property>
-    </bean>
-	
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+
+	<bean id="contactService" class="com.machine.serviceImpl.ContactServiceImpl">
+		<property name="contactDAO" ref="contactDAO"></property>
+	</bean>
+
 	<bean id="contactDAO" class="com.machine.daoImpl.ContactDAOImpl">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-    </bean>
-    
-    <tx:annotation-driven transaction-manager="hibernateTransactionManager"/>  
-     
-    <bean id="hibernateTransactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-    </bean>
-    
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="hibernateTransactionManager" />
+
+	<bean id="hibernateTransactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+
 	<mvc:resources mapping="/resources/**" location="/resources/"
 		cache-period="31556926" />
 
 	<mvc:annotation-driven />
-	
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>
 
-	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
+
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>
 				<value>/WEB-INF/layout/layout.xml</value>
 				<value>/WEB-INF/layout/view.xml</value>
 			</list>
 		</property>
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+		<property name="maxUploadSize" value="100000" />
+
 	</bean>
 
 </beans>

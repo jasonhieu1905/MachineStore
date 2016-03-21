@@ -2,9 +2,10 @@ package com.machine.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -27,39 +28,31 @@ public class Contact implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @Basic(optional = false)
     @Column(name = "id")
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
     
-    @Basic(optional = false)
     @Column(name = "name")
     private String name;
     
-    @Basic(optional = false)
     @Column(name = "address")
     private String address;
     
-    @Basic(optional = false)
     @Column(name = "phone")
     private String phone;
     
-    @Basic(optional = false)
     @Column(name = "email")
-    private int email;
+    private String email;
     
-    @Basic(optional = false)
     @Column(name = "map_x")
     private String mapX;
     
-    @Basic(optional = false)
     @Column(name = "map_y")
     private String mapY;
     
-    @Basic(optional = false)
     @Column(name = "workingtime")
     private String workingtime;
     
-    @Basic(optional = false)
     @Column(name = "isoimage")
     private String isoimage;
 
@@ -70,7 +63,7 @@ public class Contact implements Serializable {
         this.id = id;
     }
 
-    public Contact(Integer id, String name, String address, String phone, int email, String mapX, String mapY, String workingtime, String isoimage) {
+    public Contact(Integer id, String name, String address, String phone, String email, String mapX, String mapY, String workingtime, String isoimage) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -114,15 +107,16 @@ public class Contact implements Serializable {
         this.phone = phone;
     }
 
-    public int getEmail() {
-        return email;
-    }
 
-    public void setEmail(int email) {
-        this.email = email;
-    }
+    public String getEmail() {
+		return email;
+	}
 
-    public String getMapX() {
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getMapX() {
         return mapX;
     }
 

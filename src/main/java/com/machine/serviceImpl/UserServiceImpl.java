@@ -19,7 +19,11 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public User getUserByUsernameAndPassword(String username, String password) {
-		return userDAO.getUserByUsernameAndPassword(username, password);
+		try{
+			return userDAO.getUserByUsernameAndPassword(username, password);
+		}catch(Exception e){
+			return null;
+		}
 	}
 
 }
