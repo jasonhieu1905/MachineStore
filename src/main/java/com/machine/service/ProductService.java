@@ -11,5 +11,5 @@ public interface ProductService {
 	Product getProductById(int id);
 	List<Product> getProductByCategoryId(int cateId);
 	HashMap<Integer,List<Product>> getMainProductByCategoryAndPriority();
-	
+	List<Product> searchAutoCompleteProduct(String keyword);
 }

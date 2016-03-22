@@ -61,5 +61,11 @@ public class ProductDAOImpl implements ProductDAO {
 		});
 		return productsByCategoryAndPrio;	
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> searchAutoCompleteProduct(String keyword) {
+		return getSession().getNamedQuery("Product.searchProduct").setParameter("keyword", "%" + keyword + "%").list();
+	}
 	
 }

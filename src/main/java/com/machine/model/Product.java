@@ -25,6 +25,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Product.findByImage", query = "SELECT p FROM Product p WHERE p.image = :image"),
     @NamedQuery(name = "Product.findByZoomImage", query = "SELECT p FROM Product p WHERE p.zoomImage = :zoomImage"),
     @NamedQuery(name = "Product.findByCategoryId", query = "SELECT p FROM Product p WHERE p.categoryId.id = :cateId"),
+    @NamedQuery(name = "Product.searchProduct", query = "SELECT p FROM Product p WHERE p.name like :keyword"),
     @NamedQuery(name = "Product.findByPriorityOrder", query = "SELECT p FROM Product p WHERE p.priorityOrder = :priorityOrder")})
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -1,17 +1,16 @@
 package com.machine.controller.admin;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 import com.machine.model.Product;
 import com.machine.service.ProductService;
@@ -32,4 +31,17 @@ public class AdminProductController {
 		
 		return modelAndView;
 	}
+	
+	@RequestMapping(value="/products/search",method=RequestMethod.POST)
+	public @ResponseBody List<HashMap<String, String>> searchProduct(
+			@RequestParam final String keyword) {
+		List<HashMap<String, String>> listProduct = new ArrayList<HashMap<String, String>>();
+		for (Product city : productService.searchAutoCompleteProduct(keyword)) {
+			HashMap<String, String> hmapProduct = new HashMap<String, String>();
+			hmapProduct.put("id", city.getId().toString());
+			hmapProduct.put("name", city.getName());
+			listProduct.add(hmapProduct);
+		}
+		return listProduct;
+	} 
 }

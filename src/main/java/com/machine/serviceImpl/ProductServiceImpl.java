@@ -50,6 +50,11 @@ public class ProductServiceImpl implements ProductService {
 		List<Category> categories = categoryDAO.getCategoriesMainProduct();
 		return productDAO.getMainProductByCategoryAndPriority(categories);
 	}
+
+	@Override
+	public List<Product> searchAutoCompleteProduct(String keyword) {
+		return productDAO.searchAutoCompleteProduct(keyword);
+	}
 	
 
 }

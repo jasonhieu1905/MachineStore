@@ -12,5 +12,5 @@ public interface ProductDAO {
 	Product getProductById(int id);
 	List<Product> getProductByCategoryId(int cateId);
 	HashMap<Integer,List<Product>> getMainProductByCategoryAndPriority(List<Category> categories);
-	
+	List<Product> searchAutoCompleteProduct(String keyword);
 }
