@@ -55,6 +55,11 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> searchAutoCompleteProduct(String keyword) {
 		return productDAO.searchAutoCompleteProduct(keyword);
 	}
+
+	@Override
+	public void deleteProduct(Product product) {
+		productDAO.deleteProduct(product);
+	}
 	
 
 }

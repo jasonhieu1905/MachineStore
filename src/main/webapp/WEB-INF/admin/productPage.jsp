@@ -6,7 +6,7 @@
 	<div id="page-inner">
 		<div class="row">
 			<div class="col-md-12">
-				<h1 class="page-header">List of products</h1>
+				<h1 class="page-header">Danh sách sản phẩm</h1>
 				<ol class="breadcrumb">
 					<li><a
 						href="${pageContext.request.contextPath}/addNewProduct">Thêm mới sản phẩm</a></li>
@@ -15,7 +15,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<button id="deleteButton">Delete</button>
+				<button id="deleteButton" style="margin-bottom: 10px" class="btn-info">Xoá sản phẩm đã chọn</button>
 			</div>
 		</div>
 		<table id="example" class="table table-striped table-bordered"
@@ -31,7 +31,7 @@
 			</thead>
 			<tbody>
 				<c:forEach var="product" items="${products}">
-					<tr>
+					<tr id=${product.id}>
 						<td><a
 							href="${pageContext.request.contextPath}/editProduct/${product.id}">${product.name}</a></td>
 						<td>${product.createddate}</td>
@@ -45,6 +45,24 @@
 	</div>
 	<!-- /. PAGE INNER  -->
 </div>
+
+<!-- set up the modal to start hidden and fade in and out -->
+<div id="myModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<!-- dialog body -->
+			<div class="modal-body">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				Bạn có chắc xoá sản phẩm đã chọn?
+			</div>
+			<!-- dialog buttons -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary OK">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		var table = $('#example').DataTable();
@@ -54,8 +72,40 @@
 		});
 
 		$('#deleteButton').click(function() {
-			alert(table.rows('.selected').data().length + ' row(s) selected');
+			var selectedItem = table.rows('.selected').data().length;
+			console.log(selectedItem);
+			if(selectedItem == 0){
+				alert("Chưa có sản phẩm nào được chọn !");
+				return;
+			}
+			$("#myModal").modal({ // wire up the actual modal functionality and show the dialog
+				"backdrop" : "static",
+				"keyboard" : true,
+				"show" : true
+			});
 		});
+		
+		$("#myModal .OK").on("click", function(e) {
+	        $("#myModal").modal('hide');     // dismiss the dialog
+	        var selectedItem = table.rows('.selected').data();
+	        var listId = "";
+	        for(i = 0; i < selectedItem.length;i++){
+	        	listId += selectedItem[i].DT_RowId + ",";
+	        }
+	        $.ajax({
+				url : 	"<%=request.getContextPath()%>/deleteProduct",
+				type : "POST",
+				data : {
+					productsId: listId
+				},					
+				success : function(data) {
+					table.rows('.selected').remove().draw( false );
+				},
+				error : function(result) {
+					console.log(result);						
+				}
+			});
+	    });
 
 	});
 </script>

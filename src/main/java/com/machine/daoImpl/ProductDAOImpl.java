@@ -67,5 +67,10 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<Product> searchAutoCompleteProduct(String keyword) {
 		return getSession().getNamedQuery("Product.searchProduct").setParameter("keyword", "%" + keyword + "%").list();
 	}
+
+	@Override
+	public void deleteProduct(Product product) {
+		getSession().delete(product);
+	}
 	
 }

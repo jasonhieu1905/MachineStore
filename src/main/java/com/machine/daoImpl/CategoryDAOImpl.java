@@ -48,6 +48,11 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public List<Category> getCategoriesAccessories() {
 		return (List<Category>) getSession().getNamedQuery("Category.findByMainProduct").setParameter("id", 2).list();
 	}
+
+	@Override
+	public void deleteCategories(Category category) {
+		getSession().delete(category);
+	}
 	
 	
 	

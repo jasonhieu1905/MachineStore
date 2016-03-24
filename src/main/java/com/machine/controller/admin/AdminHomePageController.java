@@ -2,6 +2,8 @@ package com.machine.controller.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,6 +25,9 @@ public class AdminHomePageController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	@Autowired
+	HttpSession session;
+	
 	@RequestMapping(value="/login",method = RequestMethod.GET)
 	public String doLogin(ModelMap model) {
 		return "login";
@@ -35,11 +40,17 @@ public class AdminHomePageController {
 		if(userLogin == null){
 			return "redirect:/login" ;
 		}
-		
+		session.setAttribute("admin", "true");
 		List<Category> categories = categoryService.getAllCategories();
 		model.addAttribute("categories",categories);
+		model.addAttribute("username",username);
 		return "adminHomePage";
 	}
 	
+	@RequestMapping(value="/logout")
+	public String logout(){
+		session.removeAttribute("admin");
+		return "redirect:/login";
+	}
 	
 }

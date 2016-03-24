@@ -40,6 +40,10 @@ public class Product implements Serializable {
     private String name;
     
     @Basic(optional = false)
+    @Column(name="description")
+    private String description;
+    
+    @Basic(optional = false)
     @Column(name = "createddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createddate;
@@ -59,6 +63,8 @@ public class Product implements Serializable {
     @JoinColumn(name = "categoryId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Category categoryId;
+    
+    
 
     public Product() {
     }
@@ -67,16 +73,21 @@ public class Product implements Serializable {
         this.id = id;
     }
 
-    public Product(Integer id, String name, Date createddate, String image, String zoomImage, int priorityOrder) {
-        this.id = id;
-        this.name = name;
-        this.createddate = createddate;
-        this.image = image;
-        this.zoomImage = zoomImage;
-        this.priorityOrder = priorityOrder;
-    }
 
-    public Integer getId() {
+    public Product(Integer id, String name, String description, Date createddate, String image, String zoomImage,
+			int priorityOrder, Category categoryId) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.createddate = createddate;
+		this.image = image;
+		this.zoomImage = zoomImage;
+		this.priorityOrder = priorityOrder;
+		this.categoryId = categoryId;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -87,8 +98,17 @@ public class Product implements Serializable {
     public String getName() {
         return name;
     }
+    
 
-    public void setName(String name) {
+    public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setName(String name) {
         this.name = name;
     }
 

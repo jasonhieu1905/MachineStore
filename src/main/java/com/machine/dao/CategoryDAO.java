@@ -15,4 +15,6 @@ public interface CategoryDAO {
 	List<Category> getCategoriesAccessories();
 
 	void addNewCategory(Category category);
+	
+	void deleteCategories(Category category);
 }

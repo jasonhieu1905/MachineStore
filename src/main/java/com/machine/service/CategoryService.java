@@ -11,4 +11,5 @@ public interface CategoryService {
 	List<Category> getCategoriesMainProduct();
 	void addNewCategory(Category category);
 	List<Category> getCategoriesAccessories();
+	void deleteCategories(Category category);
 }
