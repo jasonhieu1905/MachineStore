@@ -17,7 +17,7 @@
 	</div>
 	<c:forEach items="${accessories}" var="item">
 		<c:if test="${item.productList.size()>0 }">
-			<div class="item first-level" current-page="${currentPage}" id="catagory-${item.id }"
+			<div class="item first-level red" current-page="${currentPage}" id="catagory-${item.id }"
 				index="${item.id }" link="${pageContext.request.contextPath}/category/${item.type}/${item.id}">
 				<i class="fa fa-chevron-circle-right  custom-arrow"></i>${item.name}
 			</div>

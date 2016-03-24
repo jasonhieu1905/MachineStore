@@ -1,6 +1,7 @@
 package com.machine.controller.user;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,17 @@ public class ProductCatagoy {
 			}
 		}
 
-
+		if (!currentCategory.getProductList().isEmpty()) {
+			currentCategory.getProductList().sort(new Comparator<Product>() {
+				@Override
+				public int compare(Product o1, Product o2) {
+					if (o1.getPriorityOrder() <= o2.getPriorityOrder())
+						return 1;
+					else
+						return -1;
+				}
+			});
+		}
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("catalogues", mainCatalogues);
 		model.addAttribute("accessories", accCatalogues);

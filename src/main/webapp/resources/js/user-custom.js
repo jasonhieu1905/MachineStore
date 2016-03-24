@@ -38,7 +38,7 @@ $(function() {
 		controls : true,
 		width : $('.container').width() + 30,
 		height : 500,
-		delay : 5000
+		delay : 2000
 	});
 });
 var menuHeight = $(window).height() - 120 - 20;
@@ -147,9 +147,10 @@ $(document).ready(function() {
 									})
 
 					// set min height for menu
-					$('#main-body').css("min-height",
-							$('#left-menu').outerHeight() + 20);
-
+					if($('#left-menu').outerHeight() + 20 > 500){
+						$('#main-body').css("min-height",
+								$('#left-menu').outerHeight() + 20);
+					}
 					// product detail
 					$('#main-body .product-section .product .detail').hover(
 							function() {
@@ -184,7 +185,10 @@ $(document).ready(function() {
 							var link = $(this).attr("link");
 							window.location = link;
 						}else{
-							product.scrollIntoView();
+							var body = $("html, body");
+							body.stop().animate({scrollTop:product.offset().top - 100}, '600', 'swing');
+							//$(window).scrollTop(product.offset().top);
+							//product[0].scrollIntoView();
 						}
 					});
 					$(window).resize(resizeSlider);

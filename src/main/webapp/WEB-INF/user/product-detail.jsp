@@ -8,7 +8,7 @@
 			<div class="scroll">
 				<c:forEach items="${imageList}" var="image">
 					<div class="capture" onclick="showImage(this)">
-						<img alt="thumbnail" src="${image }" />
+						<img alt="thumbnail" src="${pageContext.request.contextPath}/resources/images/${image }" />
 					</div>
 				</c:forEach>
 			</div>
@@ -20,9 +20,9 @@
 		<div class="wm-zoom-container main-product-photo">
 			<div class="wm-zoom-box">
 				<img width="300px" class="photo wm-zoom-default-img"
-					data-hight-src="${imageList[0]}"
+					data-hight-src="${pageContext.request.contextPath}/resources/images/${imageList[0]}"
 					
-					src="${imageList[0]}">
+					src="${pageContext.request.contextPath}/resources/images/${imageList[0]}">
 
 			</div>
 		</div>
@@ -37,12 +37,12 @@
 		</div>
 		<div class="product col-xs-12">
 			<c:forEach items="${currentCategory.productList}" var="product" begin="0"
-				end="8">
+				end="7">
 				<div class="col-xs-3 detail-container">
 					<div class="detail">
 						<div class="scroll-detail">
 							<div class="info">
-								<img alt="product" src="${product.image }" width="185px">
+								<img alt="product" src="${pageContext.request.contextPath}/resources/images/${product.image }" width="185px">
 							</div>
 							<div class="info cover">
 								<a class="more-detail"
