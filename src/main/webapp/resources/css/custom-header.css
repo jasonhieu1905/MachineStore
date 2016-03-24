@@ -1,0 +1,94 @@
+@media (min-width: 768px){
+}
+@media (max-width: 992px){
+	.navy ul >li >a{
+	    padding: 35px !important;
+	    width: auto !important; 
+	}
+	.navy ul >li >a i{
+		margin-bottom: 0px !important;
+	}
+	.navy-text{
+		display: none;
+	}
+}
+@media (min-width: 1200px){
+
+}
+
+
+.navy{
+	
+}
+.navy-header{
+    min-height: 100px !important;
+    background-image:url("../img/head.png");
+    background-color: rgb(0, 79, 146);
+    border-bottom: 1px solid #B9B9B9;
+    box-shadow: inset 0 10px 25px rgba(0, 0, 0, 0.16), 0 5px 25px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+}
+.navy-header.navy-fix-top{
+	position: fixed;
+    right: 0;
+    left: 0;
+    top:0;
+}
+.navy-header .navy-logo{
+	float: left;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100px;
+    width: 150px;
+    background: white;
+}
+
+.navy ul{
+	float: left;
+	position: relative;	
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+.navy ul >li{
+	float:left;
+	position: relative;
+	list-style: none;
+	display: block;
+}
+.navy ul >li >a{
+    padding: 30px 20px 10px 20px;
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    width: 150px; 
+    	-webkit-transition: all 600ms cubic-bezier(.25, .1, .25, 1) 0s
+		!important;
+	-moz-transition: all 600ms cubic-bezier(.25, .1, .25, 1) 0s !important;
+	-o-transition: all 600ms cubic-bezier(.25, .1, .25, 1) 0s !important;
+	transition: all 600ms cubic-bezier(.25, .1, .25, 1) 0s !important;
+	-webkit-transition: all 600ms cubic-bezier(.25, .1, .25, 1) 0s
+		!important;
+}
+.navy ul >li >a:hover, .navy ul >li.active, .navy ul >li.navy-hover,.dropdown-menu.sub-menu{
+	background-color: rgba(21, 111, 187, 0.5);
+	font-weight: bold;
+	box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.14);
+}
+
+.navy ul >li >a:hover i, .navy ul >li.active i, .navy ul >li.navy-hover i{
+	color: white;
+}
+.navy ul >li >a i{
+	color: #DEDEDE;
+	font-size: 30px;
+	width: 100%;
+	margin-bottom: 10px;
+}
+#searchIcon, #searchIcon a{
+	cursor:pointer;
+	height: 100px;
+}
