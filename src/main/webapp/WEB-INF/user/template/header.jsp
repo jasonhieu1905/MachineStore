@@ -1,75 +1,54 @@
 <!-- <div style="width:300px;height:100px;background-color:grey" class="flipInX animated"> navbar-fixed-top-->
-<nav class="navbar navbar-fixed-top">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<div class="navy navy-header navy-fix-top">
 	<div class="container">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-				aria-expanded="false">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand vertical-align-middle" href="#"> <img
-				src="resources/img/logo.png" />
-			</a>
-		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
+		<div class="row">
+			<a class="navy-logo" href="#"><img src="resources/img/logo.png" /></a>
+			<ul>
 				<li id="searchIcon"><a><i class="fa fa-search"></i></a></li>
-				<li class="active"><a href="home"><i class="fa fa-home" style="width: 100%;height: 25px;"></i>Home page</a></li>
-				<li class="dropdown"><a href="product" class="dropdown-toggle">
-				<i class="fa fa-barcode " style="width: 100%;height: 25px;"></i>Main Product</a>
-					<div class="dropdown-menu animated">
-						<div class="header-menu-container">
-							<div class="item">
-								A reader sent me in a GIF showing off a cool effect they
-							</div>
-							<div class="item">
-								A reader sent me in a GIF showing off a cool effect they
-							</div>
-							<div class="item">
-								A reader sent me in a GIF showing off a cool effect they
-							</div>
-							<div class="item">
-								A reader sent me in a GIF showing off a cool effect they
-							</div>
-							<div class="item">
-								A reader sent me in a GIF showing off a cool effect they
-							</div>
-							<div class="item">
-								A reader sent me in a GIF showing off a cool effect they
-							</div>
-							
-						</div>
-					</div></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle">
-				<i class="fa fa-suitcase " style="width: 100%;height: 25px;"></i>Accessorries</a>
-					<div class="dropdown-menu animated bg-info">
-						<div class="header-menu-container">
-							<ul>
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li role="separator" class="divider"></li>
-								<li><a href="#">Separated link</a></li>
-								<li role="separator" class="divider"></li>
-								<li><a href="#">One more separated link</a></li>
-							</ul>
-						</div>
 
+				<li class="${currentPage == 'home'? 'active': ''}"><a
+					href="home"><i class="fa fa-home"></i><span class="navy-text">Home
+							page</span></a></li>
+				<li class="dropdown ${currentPage == 'product'? 'active': ''}"><a
+					href="product" class="dropdown-toggle"><i
+						class="fa fa-barcode "></i><span class="navy-text">Main
+							Product</span></a>
+					<div class="dropdown-menu animated main">
+						<div class="header-menu-container row">
+							<c:forEach items="${catalogues}" var="item" begin="0" end="18">
+								<a href="google.com.vn" class="item"> <i
+									class="fa fa-angle-right"></i> ${item.name }
+								</a>
+							</c:forEach>
+							<c:if test="${catalogues.size() > 19 }">
+								<div class="item show-more">show more...</div>
+							</c:if>
+							<hr style="float: left; width: 100%" />
+						</div>
 					</div></li>
-				<li><a href="#"><i class="fa fa-phone " style="width: 100%;height: 25px;"></i>Contact</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"> <i
+						class="fa fa-suitcase "></i><span class="navy-text">Accessories</span></a>
+					<div class="dropdown-menu animated main">
+						<div class="header-menu-container row">
+							<c:forEach items="${accessories}" var="item" begin="0" end="18">
+								<a href="google.com.vn" class="item"> <i
+									class="fa fa-angle-right"></i> ${item.name }
+								</a>
+							</c:forEach>
+							<c:if test="${accessories.size() > 19 }">
+								<div class="item show-more">show more...</div>
+							</c:if>
+							<hr style="float: left; width: 100%" />
+						</div>
+					</div></li>
+				<li><a href="#"><i class="fa fa-phone"></i><span
+						class="navy-text">Contact</span></a></li>
 			</ul>
 		</div>
-		<!-- /.navbar-collapse -->
 	</div>
-	<!-- /.container-fluid -->
-</nav>
+</div>
 <div id="searchField" class="search-field container">
-	<input type="text"/>
+	<input type="text" />
 	<button class="btn btn-primary">Search</button>
 </div>

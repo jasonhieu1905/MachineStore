@@ -11,6 +11,7 @@
 	
 	<definition name="product" extends="UserTemplate">
 	    <put-attribute name="body"	value="/WEB-INF/user/product.jsp" />
+	    <put-attribute name="banner"	value="" />
 	</definition>
 	
 	<definition name="adminHomePage" extends="AdminTemplate">

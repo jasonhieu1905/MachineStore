@@ -36,79 +36,47 @@ $(function() {
 	window.f = new flux.slider('#slider', {
 		autoplay : true,
 		controls : true,
-		width : 1200,
+		width : $('.container').width() + 30,
 		height : 500,
-		delay : 2000
+		delay : 5000
 	});
 });
 var menuHeight = $(window).height() - 120 - 20;
-$(document)
-		.ready(
-				function() {
-					$("li.dropdown")
-							.hover(
-									function(event) {
-										var toggle = $(this);
-										toggle.find(".header-menu-container")
-												.css("height", "");
-										toggle.addClass("active");
-										toggle
-												.find(".dropdown-menu")
-												.toggleClass("sub-menu flipInX");
-										toggle
-												.find(".header-menu-container")
-												.css(
-														"height",
-														toggle
-																.find(
-																		".header-menu-container")
-																.height());
-										setTimeout(function() {
-											toggle.find(".dropdown-menu")
-													.toggleClass("flipInX");
-										}, 600);
-									},
-									function(event) {
-										var toggle = $(this);
-										toggle.removeClass("active");
-										if (toggle.find(".dropdown-menu")
-												.hasClass("sub-menu")) {
-											toggle.find(
-													".header-menu-container")
-													.css("height", 0);
-											toggle
-													.find(
-															".header-menu-container")
-													.on(
-															'transitionend webkitTransitionEnd oTransitionEnd',
-															function() {
-																toggle
-																		.find(
-																				".header-menu-container")
-																		.css(
-																				"height",
-																				"");
-																toggle
-																		.find(
-																				".dropdown-menu")
-																		.removeClass(
-																				"sub-menu");
-															});
-										}
-
-									})
+$(document).ready(function() {
+	$("li.dropdown").hover(
+			function(event) {
+				var toggle = $(this);
+				toggle.find(".dropdown-menu").css("height", "");
+				toggle.addClass("navy-hover");
+				toggle.find(".dropdown-menu").toggleClass("sub-menu flipInX");
+				toggle.find(".dropdown-menu").css("height",toggle.find(".dropdown-menu").height());
+				setTimeout(function() {
+					toggle.find(".dropdown-menu").toggleClass("flipInX");
+					}, 600);
+				},function(event) {
+					var toggle = $(this);
+					toggle.removeClass("navy-hover");
+					if (toggle.find(".dropdown-menu").hasClass("sub-menu")) {
+						toggle.find(".dropdown-menu").css("height", 0);
+						toggle.find(".dropdown-menu").on('transitionend webkitTransitionEnd oTransitionEnd',
+								function() {
+							toggle.find(".dropdown-menu").css("height","");
+							toggle.find(".dropdown-menu").removeClass("sub-menu");
+							});
+						}
+					})
 
 					$("li#searchIcon, div#searchField").hover(
 							function() {
 								$("div#searchField")
 										.addClass("showSearchField");
-								$("li#searchIcon").addClass("active")
+								$("li#searchIcon").addClass("navy-hover")
 							},
 							function() {
-								if (!$("div#searchField").hasClass("active")) {
+								if (!$("div#searchField").hasClass("navy-hover")) {
 									$("div#searchField").removeClass(
 											"showSearchField");
-									$("li#searchIcon").removeClass("active")
+									$("li#searchIcon").removeClass("navy-hover")
 								}
 							})
 					$("li#searchIcon").on('click', function() {
@@ -116,10 +84,10 @@ $(document)
 					})
 
 					$("div#searchField input").focus(function() {
-						$("div#searchField").addClass("active");
+						$("div#searchField").addClass("navy-hover");
 
 					}).focusout(function() {
-						$("div#searchField").removeClass("active");
+						$("div#searchField").removeClass("navy-hover");
 					})
 					$(document)
 							.click(
@@ -136,24 +104,45 @@ $(document)
 										}
 									})
 									
-					var leftMenuHeight = $('#left-menu').height();						
+					var leftMenuHeight = $('#left-menu').height();	
+					var bannerHeight = 0;
+					var footerHeight = 520;
+					var headerHeight = 120;
+					if($('.banner').length > 0){
+						bannerHeight = $('.banner').height() + 20;
+					}
+					$("#left-menu").css("top", bannerHeight + 120);
 					$(window)
 							.scroll(
 									function(event) {
 										var _h = $(this).scrollTop();
-										if (_h > 520) {
+										if (_h > bannerHeight) {
 											if ($('body')[0].scrollHeight > _h
-													+ 500 + 120 + 20 + leftMenuHeight) {
+													+ footerHeight + headerHeight + leftMenuHeight) {
 												$("#left-menu").css("top",
-														_h + 120);
+														_h + headerHeight);
 											} else {
 												$("#left-menu")
 														.css(
 																"top",
-																$('body')[0].scrollHeight - 500 - 20 - leftMenuHeight);
+																$('body')[0].scrollHeight - footerHeight - leftMenuHeight);
 											}
 										} else {
-											$("#left-menu").css("top", 640);
+											$("#left-menu").css("top", bannerHeight + headerHeight);
+										}
+										
+										var elId = $("[id*=product-]");
+										var windows_h = $(window).height();
+										
+										for(var i=0;i<elId.length;i++){
+											var current = elId.eq(i);
+											var top = current[0].getBoundingClientRect().top;
+											if(top > 0 && top  < (windows_h / 2)){
+												$("[id*=catagory-]").removeClass("active");
+												var catagoryId = "catagory-" + current.attr("index");												
+												$("#"+catagoryId).addClass("active");
+												return;
+											}
 										}
 									})
 
@@ -186,4 +175,25 @@ $(document)
 						}
 					});
 					$('#left-menu').css('max-height',menuHeight);
+					$("[id*=catagory-]").on("click",function(){
+						var index = $(this).attr("index");
+						var productCatagory = "product-"+index;
+						var product = $("#"+productCatagory);
+						product.scrollIntoView();
+					});
+					$(window).resize(resizeSlider);
+
+					function resizeSlider() {
+					    var altezzaDiv = $(window).height() - $('header').height() -
+					        $('footer').height()-$('body').css('margin-top').substring(0,2) - 2; //this will be the right height for the slider
+
+					    $('#slider').height(altezzaDiv);
+					    $('.fluxslider').height(altezzaDiv).width($('.container').width() + 30);
+					    $('.images').height(altezzaDiv).width($('.container').width() + 30);
+					    $('.image1').height(altezzaDiv).width($('.container').width() + 30);
+					    $('.image2').height(altezzaDiv).width($('.container').width() + 30);
+
+					}
+					
+					
 				})
