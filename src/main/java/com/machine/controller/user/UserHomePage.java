@@ -28,26 +28,6 @@ public class UserHomePage {
 		List<Category> accCatalogues = new ArrayList<>();
 		accCatalogues = categoryService.getCategoriesAccessories();
 		
-		
-		/*List<Menu> menu = new ArrayList<>();
-		for(int i = 0; i < 2;i++){
-			String subName = "Menu title "+i;
-			Menu sub = new Menu();
-			MenuObject title = new MenuObject();
-			title.setId(i+"");
-			title.setName(subName);
-			
-			List<MenuObject> items = new ArrayList<>();
-			for(int j = 0 ;j < 3; j++){
-				MenuObject item = new MenuObject();	
-				item.setId(j+"");
-				item.setName(subName +" - item "+j);
-				items.add(item);
-			}
-			sub.setTitle(title);
-			sub.setItems(items);
-			menu.add(sub);
-		}*/
 		model.addAttribute("currentPage","home");
 		model.addAttribute("catalogues", mainCatalogues);
 		model.addAttribute("accessories", accCatalogues);

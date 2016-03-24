@@ -3,21 +3,21 @@
 <div class="navy navy-header navy-fix-top">
 	<div class="container">
 		<div class="row">
-			<a class="navy-logo" href="#"><img src="resources/img/logo.png" /></a>
+			<a class="navy-logo" href="#"><img src="${pageContext.request.contextPath}/resources/img/logo.png" /></a>
 			<ul>
 				<li id="searchIcon"><a><i class="fa fa-search"></i></a></li>
 
 				<li class="${currentPage == 'home'? 'active': ''}"><a
-					href="home"><i class="fa fa-home"></i><span class="navy-text">Home
+					href="${pageContext.request.contextPath}/home"><i class="fa fa-home"></i><span class="navy-text">Home
 							page</span></a></li>
 				<li class="dropdown ${currentPage == 'product'? 'active': ''}"><a
-					href="product" class="dropdown-toggle"><i
+					href="#" class="dropdown-toggle"><i
 						class="fa fa-barcode "></i><span class="navy-text">Main
 							Product</span></a>
 					<div class="dropdown-menu animated main">
 						<div class="header-menu-container row">
 							<c:forEach items="${catalogues}" var="item" begin="0" end="18">
-								<a href="google.com.vn" class="item"> <i
+								<a href="${pageContext.request.contextPath}/category/${item.type}/${item.id}" class="item"> <i
 									class="fa fa-angle-right"></i> ${item.name }
 								</a>
 							</c:forEach>
@@ -27,12 +27,12 @@
 							<hr style="float: left; width: 100%" />
 						</div>
 					</div></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"> <i
+				<li class="dropdown ${currentPage == 'accessories'? 'active': ''}"><a href="#" class="dropdown-toggle"> <i
 						class="fa fa-suitcase "></i><span class="navy-text">Accessories</span></a>
 					<div class="dropdown-menu animated main">
 						<div class="header-menu-container row">
 							<c:forEach items="${accessories}" var="item" begin="0" end="18">
-								<a href="google.com.vn" class="item"> <i
+								<a href="${pageContext.request.contextPath}/category/${item.type}/${item.id}" class="item"> <i
 									class="fa fa-angle-right"></i> ${item.name }
 								</a>
 							</c:forEach>
@@ -42,7 +42,7 @@
 							<hr style="float: left; width: 100%" />
 						</div>
 					</div></li>
-				<li><a href="#"><i class="fa fa-phone"></i><span
+				<li class="${currentPage == 'contact'? 'active': ''}"><a href="${pageContext.request.contextPath}/contact"><i class="fa fa-phone"></i><span
 						class="navy-text">Contact</span></a></li>
 			</ul>
 		</div>

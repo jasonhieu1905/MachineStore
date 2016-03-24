@@ -15,7 +15,7 @@ function bottomClick() {
 	var scrollH = $('.scroll').height();
 	var slideH = $('.slide').height();
 	$('.scroll').css('top', top);
-	if (scrollH - top > slideH) {
+	if (scrollH - top <0 || scrollH - top > slideH) {
 		setTimeout(function() {
 			$('.scroll').css('top', 0);
 		}, 600)
@@ -179,7 +179,13 @@ $(document).ready(function() {
 						var index = $(this).attr("index");
 						var productCatagory = "product-"+index;
 						var product = $("#"+productCatagory);
-						product.scrollIntoView();
+						var currentPage = $(this).attr("current-page");
+						if(currentPage != "home"){
+							var link = $(this).attr("link");
+							window.location = link;
+						}else{
+							product.scrollIntoView();
+						}
 					});
 					$(window).resize(resizeSlider);
 

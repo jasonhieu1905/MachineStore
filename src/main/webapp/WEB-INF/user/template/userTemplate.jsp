@@ -8,22 +8,22 @@
 <head>
 <title>Demo</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
-	<link rel="stylesheet" href="resources/css/custom-header.css"
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom-header.css"
 	type="text/css"></link>
-<link rel="stylesheet" href="resources/css/animate.css" type="text/css"></link>
-<link rel="stylesheet" href="resources/css/bootstrap.css"
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/animate.css" type="text/css"></link>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
 	type="text/css"></link>
-<link rel="stylesheet" href="resources/css/custom-styles.css"
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom-styles.css"
 	type="text/css"></link>
-<link rel="stylesheet" href="resources/css/custom-user-style.css"
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom-user-style.css"
 	type="text/css"></link>
-<link rel="stylesheet" href="resources/css/custom-product.css"
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom-product.css"
 	type="text/css"></link>
-<link rel="stylesheet" href="resources/css/font-awesome.css"
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.css"
 	type="text/css"></link>
-<link rel="stylesheet" href="resources/css/jquery.wm-zoom-1.0.css"
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.wm-zoom-1.0.css"
 	type="text/css"></link>
-<link rel="stylesheet" href="resources/css/custom-slider.css"
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom-slider.css"
 	type="text/css"></link>
 
 <!--[if IE]>
@@ -50,11 +50,11 @@
 
 	<tiles:insertAttribute name="footer" />
 
-	<script type="text/javascript" src="resources/js/jquery-1.10.2.js"></script>
-	<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="resources/js/jquery.wm-zoom-1.0.js"></script>
-	<script type="text/javascript" src="resources/js/flux.min.js"></script>
-	<script type="text/javascript" src="resources/js/user-custom.js"></script>
-	<script type="text/javascript" src="resources/js/jquery.scrollIntoView.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.wm-zoom-1.0.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/flux.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user-custom.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.scrollIntoView.min.js"></script>
 </body>
 </html>

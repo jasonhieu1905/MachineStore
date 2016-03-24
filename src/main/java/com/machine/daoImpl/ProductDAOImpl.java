@@ -34,7 +34,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public Product getProductById(int id) {
-		return (Product) getSession().getNamedQuery("Product.findById").list().get(0);
+		return (Product) getSession().getNamedQuery("Product.findById").setParameter("id", id).list().get(0);
 	}
 
 	@SuppressWarnings("unchecked")
