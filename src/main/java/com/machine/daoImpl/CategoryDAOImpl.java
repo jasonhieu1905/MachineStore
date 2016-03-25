@@ -53,6 +53,11 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public void deleteCategories(Category category) {
 		getSession().delete(category);
 	}
+
+	@Override
+	public void updateCategory(Category category) {
+		getSession().update(category);
+	}
 	
 	
 	

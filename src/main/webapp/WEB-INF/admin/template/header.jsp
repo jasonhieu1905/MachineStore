@@ -13,7 +13,7 @@
 
 	<ul class="nav navbar-top-links navbar-right">
 		<li>
-			Hello  ${username}
+			<div style="color:white;font-size: 20px">Hello  ${username}</div>
 		</li>
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#" aria-expanded="false"> <i

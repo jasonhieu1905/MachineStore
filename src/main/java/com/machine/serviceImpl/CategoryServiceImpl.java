@@ -52,6 +52,12 @@ public class CategoryServiceImpl implements CategoryService {
 	public void deleteCategories(Category category) {
 		categoryDAO.deleteCategories(category);
 	}
+
+
+	@Override
+	public void updateCategory(Category category) {
+		categoryDAO.updateCategory(category);
+	}
 	
 	
 

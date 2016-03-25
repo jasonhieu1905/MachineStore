@@ -36,7 +36,7 @@
 							href="${pageContext.request.contextPath}/editProduct/${product.id}">${product.name}</a></td>
 						<td>${product.createddate}</td>
 						<td>${product.categoryId.name}</td>
-						<td><img src="${product.image}" /></td>
+						<td><img style="width: 50px;height:50px" src="${pageContext.request.contextPath}/resources/images/${product.image}" /></td>
 						<td>${product.priorityOrder}</td>
 					</tr>
 				</c:forEach>

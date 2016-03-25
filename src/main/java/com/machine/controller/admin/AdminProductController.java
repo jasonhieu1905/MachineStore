@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,8 +29,8 @@ public class AdminProductController {
 	HttpSession session;
 	
 	
-	@RequestMapping(value="/products",method = RequestMethod.GET)
-	public ModelAndView getAllProducts(){
+	@RequestMapping(value="/products/{id}",method = RequestMethod.GET)
+	public ModelAndView getAllProducts(@PathVariable int id){
 		if(!LoginHelper.isLogin(session)){
 			return new ModelAndView("redirect:/login");
 		}
@@ -37,7 +38,7 @@ public class AdminProductController {
 		List<Product> products = productService.getAllProducts();
 		modelAndView.addObject("products", products);
 		modelAndView.setViewName("productPage");
-		
+		modelAndView.addObject("id-enable", id);
 		return modelAndView;
 	}
 	

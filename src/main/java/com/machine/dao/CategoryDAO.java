@@ -17,4 +17,6 @@ public interface CategoryDAO {
 	void addNewCategory(Category category);
 	
 	void deleteCategories(Category category);
+	
+	void updateCategory(Category category);
 }

@@ -53,6 +53,7 @@ public class Category implements Serializable {
     @ManyToOne
     private Category parentId;
     
+    @Column(name = "type")
     private int type;
 
     public Category() {

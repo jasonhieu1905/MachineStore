@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2016 at 10:46 AM
+-- Generation Time: Mar 25, 2016 at 06:56 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.5.28
 
@@ -39,15 +39,12 @@ CREATE TABLE IF NOT EXISTS `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `priorityId`, `parentId`, `type`) VALUES
-(1, 'van cầu', 1, NULL, 1),
-(2, 'van cửa', 2, NULL, 1),
+(1, 'Van cầu', 1, NULL, 1),
+(2, 'Van cửa', 2, NULL, 1),
 (3, 'Van an toàn', 3, NULL, 1),
 (4, 'Van giảm áp', 4, NULL, 1),
 (5, 'Phụ kiện van cầu', 0, 1, 2),
-(6, 'Phụ kiện van cửa', 0, 2, 2),
-(8, 'new Cate', 0, NULL, 2),
-(9, 'second Cate', 0, NULL, 2),
-(10, 'van cau access', 0, 1, 2);
+(6, 'Phụ kiện van cửa', 0, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -87,16 +84,45 @@ CREATE TABLE IF NOT EXISTS `product` (
   `categoryId` int(11) NOT NULL,
   `image` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `zoomImage` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `priorityOrder` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `priorityOrder` int(11) NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `name`, `createddate`, `categoryId`, `image`, `zoomImage`, `priorityOrder`) VALUES
-(1, 'Van cua A', '2016-03-13 00:00:00', 2, '', '', 2),
-(2, 'Van Cua B', '2016-03-07 00:00:00', 2, '', '', 3);
+INSERT INTO `product` (`id`, `name`, `createddate`, `categoryId`, `image`, `zoomImage`, `priorityOrder`, `description`) VALUES
+(1, 'Van cua A', '2016-03-13 00:00:00', 2, 'product1.png', 'product2.png,product3.png,product5.png', 2, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(2, 'Van Cua B', '2016-03-07 00:00:00', 2, 'product1.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(3, 'Sản phẩm van cầu 1', '2016-03-13 00:00:00', 1, 'product2.png', 'product2.png,product3.png,product5.png', 2, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(4, 'Sản phẩm van cầu 2', '2016-03-07 00:00:00', 1, 'product3.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(5, 'Sản phẩm van cầu 3', '2016-03-13 00:00:00', 1, 'product4.png', 'product2.png,product3.png,product5.png', 2, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(6, 'Sản phẩm van cầu 4', '2016-03-13 00:00:00', 1, 'product5.png', 'product2.png,product3.png,product5.png', 2, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(7, 'Sản phẩm van cầu 5', '2016-03-13 00:00:00', 1, 'product6.png', 'product2.png,product3.png,product5.png', 2, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(8, 'Sản phẩm van an toàn 1', '2016-03-13 00:00:00', 3, 'product2.png', 'product2.png,product3.png,product5.png', 2, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(9, 'Sản phẩm van an toàn 2', '2016-03-07 00:00:00', 3, 'product4.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(10, 'Sản phẩm van an toàn 3', '2016-03-13 00:00:00', 3, 'product3.png', 'product2.png,product3.png,product5.png', 2, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(11, 'Sản phẩm van an toàn 4', '2016-03-13 00:00:00', 3, 'product1.png', 'product2.png,product3.png,product5.png', 2, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(12, 'Sản phẩm van an toàn 5', '2016-03-13 00:00:00', 3, 'product1.png', 'product2.png,product3.png,product5.png', 2, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(13, 'Sản phẩm van giảm áp 1', '2016-03-13 00:00:00', 4, 'product6.png', 'product2.png,product3.png,product5.png', 2, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(14, 'Sản phẩm van giảm áp 2', '2016-03-07 00:00:00', 4, 'product5.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(15, 'Sản phẩm van giảm áp 3', '2016-03-07 00:00:00', 4, 'product4.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(16, 'Sản phẩm van giảm áp 4', '2016-03-07 00:00:00', 4, 'product2.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(17, 'Sản phẩm van giảm áp 5', '2016-03-07 00:00:00', 4, 'product3.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(18, 'Sản phẩm van giảm áp 6', '2016-03-07 00:00:00', 4, 'product1.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(19, 'Sản phẩm phụ kiện van cầu 1', '2016-03-13 00:00:00', 5, 'product6.png', 'product2.png,product3.png,product5.png', 2, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(20, 'Sản phẩm phụ kiện van cầu 2', '2016-03-07 00:00:00', 5, 'product5.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(21, 'Sản phẩm phụ kiện van cầu 3', '2016-03-07 00:00:00', 5, 'product4.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(22, 'Sản phẩm phụ kiện van cầu 4', '2016-03-07 00:00:00', 5, 'product3.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(23, 'Sản phẩm phụ kiện van cầu 5', '2016-03-07 00:00:00', 5, 'product2.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(24, 'Sản phẩm phụ kiện van cầu 6', '2016-03-07 00:00:00', 5, 'product1.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(25, 'Sản phẩm phụ kiện van cửa 1', '2016-03-13 00:00:00', 6, 'product5.png', 'product2.png,product3.png,product5.png', 2, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(26, 'Sản phẩm phụ kiện van cửa 2', '2016-03-07 00:00:00', 6, 'product1.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(27, 'Sản phẩm phụ kiện van cửa 3', '2016-03-07 00:00:00', 6, 'product2.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(28, 'Sản phẩm phụ kiện van cửa 4', '2016-03-07 00:00:00', 6, 'product3.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(29, 'Sản phẩm phụ kiện van cửa 5', '2016-03-07 00:00:00', 6, 'product5.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
+(30, 'Sản phẩm phụ kiện van cửa 6', '2016-03-07 00:00:00', 6, 'product6.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea');
 
 -- --------------------------------------------------------
 
@@ -161,7 +187,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
 --
 -- Constraints for dumped tables
 --

@@ -138,8 +138,8 @@
 
 .dropdown-menu.sub-menu>.header-menu-container .item {
 	padding: 8px 0px;
-	/* color: rgba(0, 0, 0, 0.65) !important; */
-	color: rgba(255, 255, 255, 0.6) !important;
+	color: white !important; 
+	/*color: rgba(255, 255, 255, 0.6) !important;*/
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	position: relative;

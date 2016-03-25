@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.machine.model.Contact;
 import com.machine.service.ContactService;
@@ -30,8 +30,8 @@ public class AdminContactController {
 	@Autowired
 	HttpSession session;
 
-	@RequestMapping(value = "/contact", method = RequestMethod.GET)
-	public String listContact(final Model modelMap) {
+	@RequestMapping(value = "/contact/{id}", method = RequestMethod.GET)
+	public String listContact(final Model modelMap,@PathVariable int id) {
 		if(!LoginHelper.isLogin(session)){
 			return "redirect:/login";
 		}
@@ -40,6 +40,7 @@ public class AdminContactController {
 
 		modelMap.addAttribute("contact", contact);
 		modelMap.addAttribute("images", images);
+		modelMap.addAttribute("id-enable", id);
 		return "contactPage";
 	}
 

@@ -2,7 +2,6 @@ package com.machine.controller.admin;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,16 +48,18 @@ public class AdminCategoryController {
 		if(!LoginHelper.isLogin(session)){
 			return new ModelAndView("redirect:/login");
 		}
-		return new ModelAndView("redirect:/listAllCategories");
+		categoryService.updateCategory(currentCategory);
+		return new ModelAndView("redirect:/listAllCategories/0");
 	}
 	
-	@RequestMapping(value="/listAllCategories",method = RequestMethod.GET)
-	public String proceedLogin(@ModelAttribute("username")String username,@ModelAttribute("password")String password,ModelMap model) {
+	@RequestMapping(value="/listAllCategories/{id}",method = RequestMethod.GET)
+	public String proceedLogin(@PathVariable int id,@ModelAttribute("username")String username,@ModelAttribute("password")String password,ModelMap model) {
 		if(!LoginHelper.isLogin(session)){
 			return "redirect:/login";
 		}
 		List<Category> categories = categoryService.getAllCategories();
 		model.addAttribute("categories",categories);
+		model.addAttribute("id-enable", id);
 		return "adminHomePage";
 	}
 	
@@ -81,7 +82,7 @@ public class AdminCategoryController {
 			return new ModelAndView("redirect:/login");
 		}
 		categoryService.addNewCategory(category);
-		return new ModelAndView("redirect:/listAllCategories");
+		return new ModelAndView("redirect:/listAllCategories/0");
 	}
 	
 	@RequestMapping(value="/deleteCategory",method=RequestMethod.POST)

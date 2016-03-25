@@ -50,7 +50,8 @@
 
 
 .product .product-left .slide .scroll .capture img {
-	height: 90px;
+	width: 100%;
+	background-color: white
 }
 
 .product .product-left .slide .controller {
