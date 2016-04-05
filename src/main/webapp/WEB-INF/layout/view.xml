@@ -39,4 +39,17 @@
 	<definition name="contactPage" extends="AdminTemplate">
 		<put-attribute name="body" value="/WEB-INF/admin/contactPage.jsp" />
 	</definition>
+	
+	<definition name="adminAccessPage" extends="AdminTemplate">
+		<put-attribute name="body" value="/WEB-INF/admin/adminAccessPage.jsp" />
+	</definition>
+	
+	<definition name="adminBannerPage" extends="AdminTemplate">
+		<put-attribute name="body" value="/WEB-INF/admin/adminBannerPage.jsp" />
+	</definition>
+	
+	<definition name="adminAddNewBanner" extends="AdminTemplate">
+		<put-attribute name="body" value="/WEB-INF/admin/adminAddNewBanner.jsp" />
+	</definition>
+	
 </tiles-definitions>

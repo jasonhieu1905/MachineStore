@@ -8,10 +8,4 @@
 	    
 	</div>
 	
-	<!-- <div id="slider">
-	    <img src="http://hdwallpaperbackgrounds.net/wp-content/uploads/2015/08/Most-Beautiful-Girls-Desktop-Wallpapers.jpg"/>
-		<img src="http://hdwallpaperbackgrounds.net/wp-content/uploads/2015/08/Most-Beautiful-Girls-Desktop-Wallpapers.jpg"/>
-		<img src="http://hdwallpaperbackgrounds.net/wp-content/uploads/2015/08/Most-Beautiful-Girls-Desktop-Wallpapers.jpg"/>
-		<img src="http://hdwallpaperbackgrounds.net/wp-content/uploads/2015/08/Most-Beautiful-Girls-Desktop-Wallpapers.jpg"/>
-	</div> -->
 </div>

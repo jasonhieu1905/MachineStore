@@ -1,0 +1,102 @@
+package com.machine.controller.admin;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.machine.dto.BannerForm;
+import com.machine.model.Banner;
+import com.machine.service.BannerService;
+import com.machine.utils.LoginHelper;
+
+@Controller
+public class AdminBannerController {
+	
+	
+	@Autowired
+	private HttpSession session;
+	
+	@Autowired
+    ServletContext context;
+	
+	@Autowired
+	private BannerService bannerService;
+	
+	@RequestMapping(value="/adminBanner/{id}",method = RequestMethod.GET)
+	public ModelAndView listAllBanner(ModelMap model,@PathVariable int id) {
+		if(!LoginHelper.isLogin(session)){
+			return new ModelAndView("redirect:/login");
+		}else{
+			model.addAttribute("username", session.getAttribute("username"));
+		}
+		model.addAttribute("id-enable", id);
+		return new ModelAndView("adminBannerPage","banners",bannerService.listAllBanners());
+	}
+	
+	@RequestMapping(value="/updatePriorityBanner",method = RequestMethod.POST)
+	public @ResponseBody String updatePriorityBanner(
+			@RequestParam final int id,@RequestParam final int priority) {
+		Banner banner = bannerService.getBannerById(id);
+		banner.setPriority(priority);
+		try{
+			bannerService.updateBanner(banner);
+		}catch(Exception e){
+			return "can not update banner : " + e.toString();
+		}
+		return "success";
+	} 
+	
+	@RequestMapping(value="/deleteBanner",method = RequestMethod.POST)
+	public @ResponseBody String deleteBanner(@RequestParam final String listId) {
+		String[] bannersId = listId.split(",");
+		try{
+			bannerService.deleteBanners(bannersId);
+//			System.out.println(context.getRealPath(""));
+//			URL url = context.getResource("/resources/images/banner5.png");
+//			File file = new File(url.getPath());
+//			boolean delete = file.delete();
+//			System.out.println(delete);
+		}catch(Exception e){
+			return "can not update banner : " + e.toString();
+		}
+		return "success";
+	} 
+	
+	@RequestMapping(value="/addNewBanner",method = RequestMethod.GET)
+	public String addNewBanner(ModelMap model) {
+		model.addAttribute("bannerForm", new BannerForm());
+		return "adminAddNewBanner";
+	} 
+	
+	@RequestMapping(value="addNewBanner",method = RequestMethod.POST)
+	public String acceptAddNewBanner(@ModelAttribute("bannerForm") BannerForm bannerForm) throws IllegalStateException, IOException{
+		String saveDirectory = "/Users/doanconghieu/Desktop";
+		List<MultipartFile> files = bannerForm.getFileUpload().getFiles();
+		if (null != files && files.size() > 0) {
+            for (MultipartFile multipartFile : files) {
+                String fileName = multipartFile.getOriginalFilename();
+                if (!"".equalsIgnoreCase(fileName)) {
+                    // Handle file content - multipartFile.getInputStream()
+                    multipartFile.transferTo(new File(saveDirectory + fileName));
+                }
+            }
+        }
+		return "adminBannerPage";
+	}
+	
+}

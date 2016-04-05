@@ -41,6 +41,7 @@ public class AdminHomePageController {
 			return "redirect:/login" ;
 		}
 		session.setAttribute("admin", "true");
+		session.setAttribute("username", username);
 		List<Category> categories = categoryService.getAllCategories();
 		model.addAttribute("categories",categories);
 		model.addAttribute("username",username);
@@ -50,6 +51,7 @@ public class AdminHomePageController {
 	@RequestMapping(value="/logout")
 	public String logout(){
 		session.removeAttribute("admin");
+		session.removeAttribute("username");
 		return "redirect:/login";
 	}
 	

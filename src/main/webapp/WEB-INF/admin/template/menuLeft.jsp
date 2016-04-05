@@ -19,15 +19,23 @@
 
 			<li><a href="${pageContext.request.contextPath}/contact/2"><i
 					class="fa fa-fw fa-file"></i> Thông tin cửa hàng</a>
+			<li><a
+				href="${pageContext.request.contextPath}/adminAllAccess/3"><i
+					class="fa fa-comment"></i> Truy cập</a>
+			<li><a
+				href="${pageContext.request.contextPath}/adminBanner/4"><i
+					class="fa fa-comment"></i> Banner</a>
 		</ul>
 
 	</div>
 </nav>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		var idEnable = $("#id-enable").val();
-		$(".sidebar-collapse a").removeClass("active-menu");
-		$(".sidebar-collapse a")[idEnable].setAttribute("class", "active-menu");
-	});
+	$(document).ready(
+			function() {
+				var idEnable = $("#id-enable").val();
+				$(".sidebar-collapse a").removeClass("active-menu");
+				$(".sidebar-collapse a")[idEnable].setAttribute("class",
+						"active-menu");
+			});
 </script>

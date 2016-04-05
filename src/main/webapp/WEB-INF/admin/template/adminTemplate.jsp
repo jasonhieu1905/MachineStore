@@ -23,6 +23,7 @@
 	
 <link href="<c:url value="/resources/css/dataTables.css"/>"
 	rel='stylesheet' type='text/css' />	
+	
 
 </head>
 <body>

@@ -33,6 +33,8 @@ public class AdminCategoryController {
 	public ModelAndView editCategory(@PathVariable int id,ModelMap model){
 		if(!LoginHelper.isLogin(session)){
 			return new ModelAndView("redirect:/login");
+		}else{
+			model.addAttribute("username", session.getAttribute("username"));
 		}
 		ModelAndView modelAndView = new ModelAndView();
 		Category category = categoryService.getCategoryById(id);
@@ -56,6 +58,8 @@ public class AdminCategoryController {
 	public String proceedLogin(@PathVariable int id,@ModelAttribute("username")String username,@ModelAttribute("password")String password,ModelMap model) {
 		if(!LoginHelper.isLogin(session)){
 			return "redirect:/login";
+		}else{
+			model.addAttribute("username", session.getAttribute("username"));
 		}
 		List<Category> categories = categoryService.getAllCategories();
 		model.addAttribute("categories",categories);
@@ -65,11 +69,13 @@ public class AdminCategoryController {
 	
 	@RequestMapping(value="/addNewCategory",method = RequestMethod.GET)
 	public ModelAndView addNewCategory(){
+		ModelAndView modelAndView = new ModelAndView();
 		if(!LoginHelper.isLogin(session)){
 			return new ModelAndView("redirect:/login");
+		}else{
+			modelAndView.addObject("username", session.getAttribute("username"));
 		}
 		List<Category> categories = categoryService.getCategoriesMainProduct();
-		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("categories", categories);
 		modelAndView.addObject("newCategory",new Category());
 		modelAndView.setViewName("addNewCategoryPage");

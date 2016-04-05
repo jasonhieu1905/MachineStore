@@ -1,5 +1,7 @@
 package com.machine.controller.admin;
 
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,10 +33,12 @@ public class AdminProductController {
 	
 	@RequestMapping(value="/products/{id}",method = RequestMethod.GET)
 	public ModelAndView getAllProducts(@PathVariable int id){
+		ModelAndView modelAndView = new ModelAndView();
 		if(!LoginHelper.isLogin(session)){
 			return new ModelAndView("redirect:/login");
+		}else{
+			modelAndView.addObject("username", session.getAttribute("username"));
 		}
-		ModelAndView modelAndView = new ModelAndView();
 		List<Product> products = productService.getAllProducts();
 		modelAndView.addObject("products", products);
 		modelAndView.setViewName("productPage");

@@ -1,7 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- /. BODY  -->
 <head>
 <style type="text/css">
 #largeImgPanel {
@@ -17,10 +16,7 @@
 }
 </style>
 </head>
-
-<div id="largeImgPanel" onclick="this.style.display='none'">
-	<img id="largeImg" style="height: 100%; margin: 0; padding: 0;" />
-</div>
+<!-- /. BODY  -->
 <div id="page-wrapper">
 	<div id="page-inner">
 		<div class="row">
@@ -28,47 +24,49 @@
 				<h1 class="page-header">Loại sản phẩm</h1>
 				<ol class="breadcrumb">
 					<li><a
-						href="${pageContext.request.contextPath}/addNewCategory">Thêm
-							mới loại sản phẩm</a></li>
+						href="${pageContext.request.contextPath}/addNewBanner">Thêm
+							mới banner</a></li>
 				</ol>
 			</div>
 		</div>
-		<div class="row">
+
+		<div class="row" style="margin-bottom: 10px">
 			<div class="col-md-12">
-				<button id="deleteButton" style="margin-bottom: 10px"
-					class="btn-info">Xoá sản phẩm đã chọn</button>
+				<button id="deleteButton" class="btn-info">Xoá banner đã
+					chọn</button>
 			</div>
 		</div>
+
 		<table id="example" class="table table-striped table-bordered"
 			cellspacing="0" width="100%">
 			<thead>
 				<tr>
-					<th>Tên sản phẩm</th>
-					<th>Ngày tạo</th>
-					<th>Menu sản phẩm</th>
+					<th>Tên</th>
 					<th>Hình ảnh</th>
 					<th>Độ ưu tiên</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="product" items="${products}">
-					<tr id=${product.id}>
+				<c:forEach var="banner" items="${banners}">
+					<tr id="${banner.id}">
+						<td>${banner.image}</td>
 						<td><a
-							href="${pageContext.request.contextPath}/editProduct/${product.id}">${product.name}</a></td>
-						<td>${product.createddate}</td>
-						<td>${product.categoryId.name}</td>
-						<td><a
-							onclick="showImage('${pageContext.request.contextPath}/resources/images/${product.image}', '${pageContext.request.contextPath}/resources/images/${product.image}');">
-								<img style="width: 50px; height: 50px"
-								src="${pageContext.request.contextPath}/resources/images/${product.image}" />
-						</a></td>
-						<td>${product.priorityOrder}</td>
+							onclick="showImage('${pageContext.request.contextPath}/resources/images/${banner.image}', '${pageContext.request.contextPath}/resources/images/${banner.image}');"><img
+								style="width: 100px; height: 75px"
+								src="${pageContext.request.contextPath}/resources/images/${banner.image}" /></a></td>
+						<td><input readonly="readonly" id="${banner.id}"
+							onkeypress="checkEnter(${banner.id},event)"
+							onclick="enableInput(${banner.id})" style="width: 30px"
+							type="text" value="${banner.priority}" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
 	<!-- /. PAGE INNER  -->
+</div>
+<div id="largeImgPanel" onclick="this.style.display='none'">
+	<img id="largeImg" style="height: 100%; margin: 0; padding: 0;" />
 </div>
 
 <!-- set up the modal to start hidden and fade in and out -->
@@ -88,6 +86,7 @@
 	</div>
 </div>
 
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		var table = $('#example').DataTable();
@@ -95,12 +94,12 @@
 		$('#example tbody').on('click', 'tr', function() {
 			$(this).toggleClass('selected');
 		});
-
+		
 		$('#deleteButton').click(function() {
 			var selectedItem = table.rows('.selected').data().length;
 			console.log(selectedItem);
 			if(selectedItem == 0){
-				alert("Chưa có sản phẩm nào được chọn !");
+				alert("Chưa có banner nào được chọn !");
 				return;
 			}
 			$("#myModal").modal({ // wire up the actual modal functionality and show the dialog
@@ -110,7 +109,6 @@
 			});
 		});
 		
-		
 		$("#myModal .OK").on("click", function(e) {
 	        $("#myModal").modal('hide');     // dismiss the dialog
 	        var selectedItem = table.rows('.selected').data();
@@ -119,32 +117,66 @@
 	        	listId += selectedItem[i].DT_RowId + ",";
 	        }
 	        $.ajax({
-				url : 	"<%=request.getContextPath()%>/deleteProduct",
+				url : 	"<%=request.getContextPath()%>/deleteBanner",
 				type : "POST",
 				data : {
-					productsId : listId
-				},
+					listId: listId
+				},					
 				success : function(data) {
-					table.rows('.selected').remove().draw(false);
+					table.rows('.selected').remove().draw( false );
 				},
 				error : function(result) {
-					console.log(result);
+					console.log(result);						
 				}
 			});
-		});
+
+	    });
 
 	});
-
-	function showImage(smSrc, lgSrc) {
-		document.getElementById('largeImg').src = smSrc;
-		showLargeImagePanel();
-		unselectAll();
-		setTimeout(function() {
-			document.getElementById('largeImg').src = lgSrc;
-		}, 1)
+	
+	
+	function enableInput(id){
+		var input = $("#"+id);
+		input.attr("readonly",false);
 	}
-
-	function showLargeImagePanel() {
-		document.getElementById('largeImgPanel').style.display = 'block';
+	
+	function checkEnter(id,event){
+		var input = $("#"+id);
+		if(isNaN(input.val())){
+			alert("Chỉ được nhập số");
+			return;
+		}
+		if(event.keyCode == 13){
+			input.attr("readonly",true);
+			$.ajax({
+				url : 	"<%=request.getContextPath()%>/updatePriorityBanner",
+				type : "POST",
+				data : {
+					id : id,
+					priority : input.val()
+				},					
+				success : function(data) {
+					table.rows('.selected').remove().draw( false );
+				},
+				error : function(result) {
+					console.log(result);						
+				}
+			});
+		}
+		
 	}
+	
+    function showImage(smSrc, lgSrc) {
+        document.getElementById('largeImg').src = smSrc;
+        showLargeImagePanel();
+        unselectAll();
+        setTimeout(function() {
+            document.getElementById('largeImg').src = lgSrc;
+        }, 1)
+    }
+    
+    function showLargeImagePanel() {
+        document.getElementById('largeImgPanel').style.display = 'block';
+    }
+
 </script>

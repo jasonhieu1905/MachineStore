@@ -34,6 +34,8 @@ public class AdminContactController {
 	public String listContact(final Model modelMap,@PathVariable int id) {
 		if(!LoginHelper.isLogin(session)){
 			return "redirect:/login";
+		}else{
+			modelMap.addAttribute("username", session.getAttribute("username"));
 		}
 		Contact contact = contactService.getContact();
 		String[] images = contact.getIsoimage().split(",");
