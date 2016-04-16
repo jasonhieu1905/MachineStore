@@ -28,7 +28,7 @@
 				<h1 class="page-header">Loại sản phẩm</h1>
 				<ol class="breadcrumb">
 					<li><a
-						href="${pageContext.request.contextPath}/addNewCategory">Thêm
+						href="${pageContext.request.contextPath}/addNewProduct">Thêm
 							mới loại sản phẩm</a></li>
 				</ol>
 			</div>

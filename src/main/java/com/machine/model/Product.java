@@ -6,6 +6,9 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,37 +34,31 @@ public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
     
-    @Basic(optional = false)
     @Column(name = "name")
     private String name;
     
-    @Basic(optional = false)
     @Column(name="description")
     private String description;
     
-    @Basic(optional = false)
     @Column(name = "createddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createddate;
     
-    @Basic(optional = false)
     @Column(name = "image")
     private String image;
     
-    @Basic(optional = false)
     @Column(name = "zoomImage")
     private String zoomImage;
     
-    @Basic(optional = false)
     @Column(name = "priorityOrder")
     private int priorityOrder;
     
     @JoinColumn(name = "categoryId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch=FetchType.EAGER)
     private Category categoryId;
     
     

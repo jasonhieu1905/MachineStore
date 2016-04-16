@@ -17,7 +17,7 @@
 			</div>
 			<div class="form-group">
 				<label for="image">Hình ảnh :</label> 
-				<form:input path="fileUpload.files"  type="file" multiple="multiple" accept="image/*" />
+				<form:input path="fileUpload.files"  type="file" accept="image/*" />
 			</div>
 			
 			<button type="submit" class="btn btn-default">Thêm mới</button>

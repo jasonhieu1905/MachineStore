@@ -14,4 +14,5 @@ public interface ProductDAO {
 	HashMap<Integer,List<Product>> getMainProductByCategoryAndPriority(List<Category> categories);
 	List<Product> searchAutoCompleteProduct(String keyword);
 	void deleteProduct(Product product);
+	void addNewProduct(Product product);
 }

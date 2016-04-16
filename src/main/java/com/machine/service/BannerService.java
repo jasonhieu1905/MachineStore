@@ -8,5 +8,6 @@ public interface BannerService {
 	public List<Banner> listAllBanners();
 	public void updateBanner(Banner banner);
 	Banner getBannerById(int id);
-	public void deleteBanners(String[] bannersId) ;
+	Banner deleteBanner(int bannersId);
+	public void addNewBanner(Banner banner);
 }

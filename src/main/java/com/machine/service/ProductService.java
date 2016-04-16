@@ -13,4 +13,5 @@ public interface ProductService {
 	HashMap<Integer,List<Product>> getMainProductByCategoryAndPriority();
 	List<Product> searchAutoCompleteProduct(String keyword);
 	void deleteProduct(Product product);
+	void addNewProduct(Product product);
 }

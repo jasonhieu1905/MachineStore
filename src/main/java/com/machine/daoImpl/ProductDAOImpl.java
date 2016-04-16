@@ -72,5 +72,10 @@ public class ProductDAOImpl implements ProductDAO {
 	public void deleteProduct(Product product) {
 		getSession().delete(product);
 	}
+
+	@Override
+	public void addNewProduct(Product product) {
+		getSession().persist(product);
+	}
 	
 }

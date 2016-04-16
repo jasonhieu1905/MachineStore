@@ -48,11 +48,15 @@ public class BannerDAOImpl implements BannerDAO {
 	}
 
 	@Override
-	public void deleteBanners(String[] bannersId) {
-		for(String id : bannersId){
-			Banner banner = getBannerById(Integer.parseInt(id));
+	public Banner deleteBanner(int bannersId) {
+			Banner banner = getBannerById(bannersId);
 			getSession().delete(banner);
-		}
+			return banner;
+	}
+
+	@Override
+	public void addNewBanner(Banner banner) {
+		getSession().persist(banner);
 	}
 	
 }

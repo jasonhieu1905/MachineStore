@@ -9,5 +9,6 @@ public interface BannerDAO {
 	List<Banner> listAllBanners();
 	void updateBanner(Banner banner);
 	Banner getBannerById(int id);
-	void deleteBanners(String[] bannersId);
+	Banner deleteBanner(int bannersId);
+	public void addNewBanner(Banner banner);
 }

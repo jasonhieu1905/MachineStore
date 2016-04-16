@@ -52,4 +52,12 @@
 		<put-attribute name="body" value="/WEB-INF/admin/adminAddNewBanner.jsp" />
 	</definition>
 	
+	<definition name="adminAddNewProductPage" extends="AdminTemplate">
+		<put-attribute name="body" value="/WEB-INF/admin/addNewProductPage.jsp" />
+	</definition>
+	
+	<definition name="adminEditProduct" extends="AdminTemplate">
+		<put-attribute name="body" value="/WEB-INF/admin/adminEditProduct.jsp" />
+	</definition>
+	
 </tiles-definitions>

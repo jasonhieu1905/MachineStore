@@ -49,7 +49,7 @@
 			<tbody>
 				<c:forEach var="banner" items="${banners}">
 					<tr id="${banner.id}">
-						<td>${banner.image}</td>
+						<td>${banner.name}</td>
 						<td><a
 							onclick="showImage('${pageContext.request.contextPath}/resources/images/${banner.image}', '${pageContext.request.contextPath}/resources/images/${banner.image}');"><img
 								style="width: 100px; height: 75px"

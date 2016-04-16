@@ -1,9 +1,10 @@
 package com.machine.controller.admin;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.machine.dto.ContactForm;
 import com.machine.model.Contact;
 import com.machine.service.ContactService;
+import com.machine.utils.FileUtils;
 import com.machine.utils.LoginHelper;
 
 @Controller
@@ -38,60 +41,70 @@ public class AdminContactController {
 			modelMap.addAttribute("username", session.getAttribute("username"));
 		}
 		Contact contact = contactService.getContact();
+		ContactForm contactForm = new ContactForm();
+		contactForm.setContact(contact);
 		String[] images = contact.getIsoimage().split(",");
 
-		modelMap.addAttribute("contact", contact);
 		modelMap.addAttribute("images", images);
+		modelMap.addAttribute("contactForm",contactForm);
 		modelMap.addAttribute("id-enable", id);
 		return "contactPage";
 	}
 
-	@RequestMapping(value = "/contact", method = RequestMethod.POST)
-	public String redirectToHomePage(@ModelAttribute("contact") Contact contact) {
-		if(!LoginHelper.isLogin(session)){
-			return "redirect:/login";
-		}
-		try {
-			contactService.updateContact(contact);
-		} catch (Exception e) {
-			System.out.println(e.toString());
-			return "redirect:/contact";
-		}
-		return "redirect:/products";
-	}
 
-	@RequestMapping(value = "/admin/uploadFile", method = RequestMethod.POST)
-    public @ResponseBody
-    String uploadMultipleFileHandler(@RequestParam("name") String[] names,
-            @RequestParam("file") MultipartFile[] files)  {
-
-		String message = "";
-        for (int i = 0; i < files.length; i++) {
-            MultipartFile file = files[i];
-            String name = names[i];
-            try {
-                byte[] bytes = file.getBytes();
- 
-                // Creating the directory to store file
-                String rootPath = System.getProperty("catalina.home");
-                File dir = new File(rootPath + File.separator + "resources"  + File.separator + "images");
-                if (!dir.exists())
-                    dir.mkdirs();
- 
-                // Create the file on server
-                File serverFile = new File(dir.getAbsolutePath()
-                        + File.separator + name);
-                BufferedOutputStream stream = new BufferedOutputStream(
-                        new FileOutputStream(serverFile));
-                stream.write(bytes);
-                stream.close();
-                message = message + "You successfully uploaded file=" + name
-                        + "<br />";
-            } catch (Exception e) {
-                return "You failed to upload " + name + " => " + e.getMessage();
+	@RequestMapping(value="/contact",method = RequestMethod.POST)
+	public synchronized String updateContact(@ModelAttribute("contactForm") ContactForm contactForm,HttpServletRequest request) throws IllegalStateException, IOException, InterruptedException{
+		String savedDirectory = FileUtils.directoryImage(request);
+		List<MultipartFile> files = contactForm.getFileUpload().getFiles();
+		Contact contact = contactForm.getContact();
+		String listIsoImage = contact.getIsoimage();
+		listIsoImage += ",";
+		if (null != files && files.size() > 0) {
+            for (int i=0;i<files.size();i++) {
+            	MultipartFile multipartFile = files.get(i);
+                String fileName = multipartFile.getOriginalFilename();
+                if (!"".equalsIgnoreCase(fileName)) {
+                	listIsoImage += fileName;
+                	multipartFile.transferTo(new File(savedDirectory + fileName));
+                }
+                if(i!= files.size()-1){
+                	listIsoImage += ",";
+                }
             }
         }
-        return message;
+		contact.setIsoimage(listIsoImage);
+		contactService.updateContact(contact);
+		try {
+            wait(2000);
+        } catch (Exception e) {
+        	System.out.println("Error while upload contact");
+        }
+		return "redirect:/contact/2";
+	}
+	
+	@RequestMapping(value = "/contact/deleteIsoImage", method = RequestMethod.POST)
+	public @ResponseBody void deleteIsoImage(@RequestParam final String imageDeleted,HttpServletRequest request) throws InterruptedException{
+		Contact contact = contactService.getContact();
+		String newIsoImage = "";
+		String[] isoImages = contact.getIsoimage().split(",");
+		for(int i=0;i<isoImages.length;i++){
+			if(!isoImages[i].equals(imageDeleted)){
+				newIsoImage += isoImages[i];
+				if(i != isoImages.length-1){
+					newIsoImage += ",";
+				}
+			}
+			
+		}
+		newIsoImage = FileUtils.removeLastCharacterIfComma(newIsoImage);
+		contact.setIsoimage(newIsoImage);
+		contactService.updateContact(contact);
+		FileUtils.removeImageResources(imageDeleted, request);
+		try {
+            wait(1000);
+        } catch (Exception e) {
+        	System.out.println("Error while upload contact");
+        }
 	}
 
 }

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.machine.dto.BannerForm;
 import com.machine.model.Banner;
 import com.machine.service.BannerService;
+import com.machine.utils.FileUtils;
 import com.machine.utils.LoginHelper;
 
 @Controller
@@ -62,15 +64,13 @@ public class AdminBannerController {
 	} 
 	
 	@RequestMapping(value="/deleteBanner",method = RequestMethod.POST)
-	public @ResponseBody String deleteBanner(@RequestParam final String listId) {
+	public @ResponseBody String deleteBanner(@RequestParam final String listId,HttpServletRequest request) {
 		String[] bannersId = listId.split(",");
 		try{
-			bannerService.deleteBanners(bannersId);
-//			System.out.println(context.getRealPath(""));
-//			URL url = context.getResource("/resources/images/banner5.png");
-//			File file = new File(url.getPath());
-//			boolean delete = file.delete();
-//			System.out.println(delete);
+			for(String bannerId : bannersId){
+				Banner banner = bannerService.deleteBanner(Integer.parseInt(bannerId));
+				FileUtils.removeImageResources(banner.getImage(),request);
+			}
 		}catch(Exception e){
 			return "can not update banner : " + e.toString();
 		}
@@ -83,20 +83,21 @@ public class AdminBannerController {
 		return "adminAddNewBanner";
 	} 
 	
-	@RequestMapping(value="addNewBanner",method = RequestMethod.POST)
-	public String acceptAddNewBanner(@ModelAttribute("bannerForm") BannerForm bannerForm) throws IllegalStateException, IOException{
-		String saveDirectory = "/Users/doanconghieu/Desktop";
+	@RequestMapping(value="/addNewBanner",method = RequestMethod.POST)
+	public String acceptAddNewBanner(@ModelAttribute("bannerForm") BannerForm bannerForm,HttpServletRequest request) throws IllegalStateException, IOException{
+		String savedDirectory = FileUtils.directoryImage(request);
 		List<MultipartFile> files = bannerForm.getFileUpload().getFiles();
 		if (null != files && files.size() > 0) {
             for (MultipartFile multipartFile : files) {
                 String fileName = multipartFile.getOriginalFilename();
                 if (!"".equalsIgnoreCase(fileName)) {
-                    // Handle file content - multipartFile.getInputStream()
-                    multipartFile.transferTo(new File(saveDirectory + fileName));
+                    multipartFile.transferTo(new File(savedDirectory + fileName));
+                    bannerForm.getBanner().setImage(fileName);
+                    bannerService.addNewBanner(bannerForm.getBanner());
                 }
             }
         }
-		return "adminBannerPage";
+		return "redirect:/adminBanner/4";
 	}
 	
 }

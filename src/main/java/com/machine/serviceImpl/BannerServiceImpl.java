@@ -37,8 +37,13 @@ public class BannerServiceImpl implements BannerService {
 	}
 
 	@Override
-	public void deleteBanners(String[] bannersId) {
-		bannerDAO.deleteBanners(bannersId);
+	public Banner deleteBanner(int bannerId){
+		return bannerDAO.deleteBanner(bannerId);
+	}
+
+	@Override
+	public void addNewBanner(Banner banner) {
+		bannerDAO.addNewBanner(banner);
 	}
 
 }
