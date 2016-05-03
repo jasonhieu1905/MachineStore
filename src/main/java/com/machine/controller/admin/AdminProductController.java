@@ -3,6 +3,7 @@ package com.machine.controller.admin;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -42,9 +43,10 @@ public class AdminProductController {
 	@Autowired
 	HttpSession session;
 	
+	private static final int activeMenuLeft = 1;
 	
-	@RequestMapping(value="/products/{id}",method = RequestMethod.GET)
-	public ModelAndView getAllProducts(@PathVariable int id){
+	@RequestMapping(value="/products",method = RequestMethod.GET)
+	public ModelAndView getAllProducts(){
 		ModelAndView modelAndView = new ModelAndView();
 		if(!LoginHelper.isLogin(session)){
 			return new ModelAndView("redirect:/login");
@@ -54,7 +56,7 @@ public class AdminProductController {
 		List<Product> products = productService.getAllProducts();
 		modelAndView.addObject("products", products);
 		modelAndView.setViewName("productPage");
-		modelAndView.addObject("id-enable", id);
+		modelAndView.addObject("pageId", activeMenuLeft);
 		return modelAndView;
 	}
 	
@@ -90,7 +92,7 @@ public class AdminProductController {
 		modelMap.addAttribute("productForm", new ProductForm());
 		List<Category> categories = categoryService.getAllCategories();
 		modelMap.addAttribute("categories", categories);
-		
+		modelMap.addAttribute("id-enable", activeMenuLeft);
 		return "adminAddNewProductPage";
 	}
 	
@@ -136,6 +138,65 @@ public class AdminProductController {
 		List<Category> categories = categoryService.getAllCategories();
 		modelMap.addAttribute("categories", categories);
 		
+		//main Image
+		modelMap.addAttribute("mainImage",product.getImage());
+		
+		//detail Image
+		List<String> detailImage = Arrays.asList(product.getZoomImage().split(",")) ;
+		modelMap.addAttribute("detailImages", detailImage);
+		modelMap.addAttribute("id-enable", activeMenuLeft);
 		return "adminEditProduct";
 	}
+	
+	@RequestMapping(value="/editProduct/{id}",method = RequestMethod.POST)
+	public String handleEditProduct(@ModelAttribute("productForm") ProductForm productForm,HttpServletRequest request) throws IllegalStateException, IOException{
+		String savedDirectory = FileUtils.directoryImage(request);
+		Product product = productForm.getProduct();
+		int idProduct = product.getId().intValue();
+		List<MultipartFile> mainFiles = productForm.getMainFileUpload().getFiles();
+		List<MultipartFile> detailFiles = productForm.getDetailFileUpload().getFiles();
+		if (null != mainFiles && mainFiles.size() > 0){
+			MultipartFile file = mainFiles.get(0);
+			String mainFileUploadName = file.getOriginalFilename();
+			product.setImage(mainFileUploadName);
+			FileUtils.removeImageResources(mainFileUploadName,request);
+          	file.transferTo(new File(savedDirectory + mainFileUploadName));
+		}
+		if (null != detailFiles && detailFiles.size() > 0){
+			String newImagesDetail = product.getZoomImage() + ",";
+			for(MultipartFile file : detailFiles){
+				String imageDetailName = file.getOriginalFilename();
+				newImagesDetail += imageDetailName;
+				file.transferTo(new File(savedDirectory + imageDetailName));
+			}
+			newImagesDetail = FileUtils.removeLastCharacterIfComma(newImagesDetail);
+			product.setZoomImage(newImagesDetail); 
+		}
+		productService.updateProduct(product);
+		
+		return "redirect:/editProduct/"+idProduct;
+	}
+	
+	@RequestMapping(value="/product/deleteDetailImage",method=RequestMethod.POST)
+	public @ResponseBody String deleteDetailImage(@RequestParam final String imageDetail,@RequestParam final int id){
+		try{
+			Product product = productService.getProductById(id);
+			String[] detailImages = product.getZoomImage().split(",");
+			String newImages = "";
+			for(String detailImage : detailImages){
+				if(!detailImage.equals(imageDetail)){
+					newImages += detailImage;
+					newImages += ",";
+				}
+			}
+			newImages = FileUtils.removeLastCharacterIfComma(newImages);
+			product.setZoomImage(newImages);
+			productService.updateProduct(product);
+			return "SUCCESS";
+		}catch(Exception e){
+			System.out.println("Problem while deleting category :" + e.toString());
+			return "FAILED";
+		}
+	}
+	
 }

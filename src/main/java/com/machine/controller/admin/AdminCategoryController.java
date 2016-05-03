@@ -29,6 +29,8 @@ public class AdminCategoryController {
 	@Autowired
 	HttpSession session;
 	
+	private static final int activeMenuLeft = 0;
+	
 	@RequestMapping(value="/editCategory/{id}",method = RequestMethod.GET)
 	public ModelAndView editCategory(@PathVariable int id,ModelMap model){
 		if(!LoginHelper.isLogin(session)){
@@ -51,11 +53,11 @@ public class AdminCategoryController {
 			return new ModelAndView("redirect:/login");
 		}
 		categoryService.updateCategory(currentCategory);
-		return new ModelAndView("redirect:/listAllCategories/0");
+		return new ModelAndView("redirect:/listAllCategories");
 	}
 	
-	@RequestMapping(value="/listAllCategories/{id}",method = RequestMethod.GET)
-	public String proceedLogin(@PathVariable int id,@ModelAttribute("username")String username,@ModelAttribute("password")String password,ModelMap model) {
+	@RequestMapping(value="/listAllCategories",method = RequestMethod.GET)
+	public String proceedLogin(@ModelAttribute("username")String username,@ModelAttribute("password")String password,ModelMap model) {
 		if(!LoginHelper.isLogin(session)){
 			return "redirect:/login";
 		}else{
@@ -63,7 +65,7 @@ public class AdminCategoryController {
 		}
 		List<Category> categories = categoryService.getAllCategories();
 		model.addAttribute("categories",categories);
-		model.addAttribute("id-enable", id);
+		model.addAttribute("id-enable", activeMenuLeft);
 		return "adminHomePage";
 	}
 	
@@ -88,7 +90,7 @@ public class AdminCategoryController {
 			return new ModelAndView("redirect:/login");
 		}
 		categoryService.addNewCategory(category);
-		return new ModelAndView("redirect:/listAllCategories/0");
+		return new ModelAndView("redirect:/listAllCategories");
 	}
 	
 	@RequestMapping(value="/deleteCategory",method=RequestMethod.POST)

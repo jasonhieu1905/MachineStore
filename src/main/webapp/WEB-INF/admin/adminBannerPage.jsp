@@ -54,7 +54,7 @@
 							onclick="showImage('${pageContext.request.contextPath}/resources/images/${banner.image}', '${pageContext.request.contextPath}/resources/images/${banner.image}');"><img
 								style="width: 100px; height: 75px"
 								src="${pageContext.request.contextPath}/resources/images/${banner.image}" /></a></td>
-						<td><input readonly="readonly" id="${banner.id}"
+						<td><input readonly="readonly" id="priority${banner.id}"
 							onkeypress="checkEnter(${banner.id},event)"
 							onclick="enableInput(${banner.id})" style="width: 30px"
 							type="text" value="${banner.priority}" /></td>
@@ -136,12 +136,13 @@
 	
 	
 	function enableInput(id){
-		var input = $("#"+id);
+		debugger;
+		var input = $("#priority"+id);
 		input.attr("readonly",false);
 	}
 	
 	function checkEnter(id,event){
-		var input = $("#"+id);
+		var input = $("#priority"+id);
 		if(isNaN(input.val())){
 			alert("Chỉ được nhập số");
 			return;

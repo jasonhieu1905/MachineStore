@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,14 +38,16 @@ public class AdminBannerController {
 	@Autowired
 	private BannerService bannerService;
 	
-	@RequestMapping(value="/adminBanner/{id}",method = RequestMethod.GET)
-	public ModelAndView listAllBanner(ModelMap model,@PathVariable int id) {
+	private static final int activeMenuLeft = 4;
+	
+	@RequestMapping(value="/adminBanner",method = RequestMethod.GET)
+	public ModelAndView listAllBanner(ModelMap model) {
 		if(!LoginHelper.isLogin(session)){
 			return new ModelAndView("redirect:/login");
 		}else{
 			model.addAttribute("username", session.getAttribute("username"));
 		}
-		model.addAttribute("id-enable", id);
+		model.addAttribute("pageId", activeMenuLeft);
 		return new ModelAndView("adminBannerPage","banners",bannerService.listAllBanners());
 	}
 	
@@ -80,6 +81,7 @@ public class AdminBannerController {
 	@RequestMapping(value="/addNewBanner",method = RequestMethod.GET)
 	public String addNewBanner(ModelMap model) {
 		model.addAttribute("bannerForm", new BannerForm());
+		model.addAttribute("pageId", activeMenuLeft);
 		return "adminAddNewBanner";
 	} 
 	
@@ -97,7 +99,7 @@ public class AdminBannerController {
                 }
             }
         }
-		return "redirect:/adminBanner/4";
+		return "redirect:/adminBanner";
 	}
 	
 }

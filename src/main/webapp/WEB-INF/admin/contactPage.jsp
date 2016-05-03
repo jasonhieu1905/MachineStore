@@ -141,7 +141,7 @@
 			},
 			success : function(data) {
 				removedElement.remove();
-				window.location = "<%=request.getContextPath()%>/contact/2";
+				window.location = "<%=request.getContextPath()%>/contact";
 			},
 			error : function(result) {
 				console.log(result);

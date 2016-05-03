@@ -21,6 +21,7 @@
 <div id="largeImgPanel" onclick="this.style.display='none'">
 	<img id="largeImg" style="height: 100%; margin: 0; padding: 0;" />
 </div>
+
 <div id="page-wrapper">
 	<div id="page-inner">
 		<div class="row">

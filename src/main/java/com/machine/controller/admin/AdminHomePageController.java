@@ -45,6 +45,7 @@ public class AdminHomePageController {
 		List<Category> categories = categoryService.getAllCategories();
 		model.addAttribute("categories",categories);
 		model.addAttribute("username",username);
+		model.addAttribute("pageId",0);
 		return "adminHomePage";
 	}
 	

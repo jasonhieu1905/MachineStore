@@ -1,7 +1,17 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- /. BODY  -->
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+<link
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css"
+	rel="stylesheet" type="text/css" />
+
 <div id="page-wrapper">
 	<div id="page-inner">
 		<div class="row">
@@ -11,22 +21,33 @@
 		</div>
 		<div class="row">
 			<div class="col-md-2">
-				<select class="dropdown">
+				<select class="dropdown" id="selectDate">
 					<option value="1">Tất cả</option>
 					<option value="2">Theo mốc thời gian</option>
 				</select>
 			</div>
-			<div class="col-md-5">
-				<div class="input-append date form_datetime">
-					<input size="16" type="text" value="" readonly> <span
-						class="add-on"><i class="icon-th"></i></span>
+			<div class="col-md-4">
+				<div class="form-group">
+					<div id="datepicker1" class="input-group date"
+						data-date-format="dd-mm-yyyy">
+						<input class="form-control" type="text" readonly /> <span
+							class="input-group-addon"><i
+							class="glyphicon glyphicon-calendar"></i></span>
+					</div>
 				</div>
 			</div>
-			<div class="col-md-5">
-				<div class="input-append date form_datetime">
-					<input size="16" type="text" value="" readonly> <span
-						class="add-on"><i class="icon-th"></i></span>
+			<div class="col-md-4">
+				<div class="form-group">
+					<div id="datepicker2" class="input-group date"
+						data-date-format="dd-mm-yyyy">
+						<input class="form-control" type="text" readonly /> <span
+							class="input-group-addon"><i
+							class="glyphicon glyphicon-calendar"></i></span>
+					</div>
 				</div>
+			</div>
+			<div class="col-md-2">
+				<button type="submit" id="btnChangeAccessPage" class="btn btn-default">Cập nhật</button>
 			</div>
 		</div>
 		<table id="example" class="table table-striped table-bordered"
@@ -67,7 +88,8 @@
 		</div>
 	</div>
 </div>
-
+<input type="hidden" value="${startDate}" id="startDate" />
+<input type="hidden" value="${endDate}" id="endDate" />
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -76,10 +98,49 @@
 		$('#example tbody').on('click', 'tr', function() {
 			$(this).toggleClass('selected');
 		});
+		
+		var startDate = new Date();
+		var endDate = new Date();
+		debugger;
+		if($("#startDate").val() != ""){
+			startDate = new Date(parseFloat($("#startDate").val()));
+		}
+		if($("#endDate").val() != ""){
+			endDate = new Date(parseFloat($("#endDate").val()));
+		}
+		
+		$("#datepicker1").datepicker({
+			autoclose: true, 
+			todayHighlight : true
+		}).datepicker('update', startDate);
+		
+		;
 
-		$(".form_datetime").datetimepicker({
-			format : "dd MM yyyy - hh:ii"
+		$("#datepicker2").datepicker({
+			todayHighlight : true,
+			autoclose: true
+
+		}).datepicker('update', endDate);
+		;
+		
+		$("#btnChangeAccessPage").click(function(){
+			var start = $("#datepicker1").data().datepicker.viewDate.getTime();
+			var end  = $("#datepicker2").data().datepicker.viewDate.getTime();
+			window.location = "<%=request.getContextPath()%>/adminAccessByTime?startDate=" + start + "&endDate="+end;
+			<%-- $.ajax({
+				url : 	"<%=request.getContextPath()%>/adminAccessByTime",
+				type : "POST",
+				data : {
+					startDate : start,
+					endDate : end
+				},					
+				success : function(data) {
+					
+				},
+				error : function(result) {
+					console.log(result);						
+				}
+			}); --%>
 		});
-
 	});
 </script>

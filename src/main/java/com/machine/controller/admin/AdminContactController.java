@@ -32,9 +32,11 @@ public class AdminContactController {
 	
 	@Autowired
 	HttpSession session;
+	
+	private static final int activeMenuLeft = 2;
 
-	@RequestMapping(value = "/contact/{id}", method = RequestMethod.GET)
-	public String listContact(final Model modelMap,@PathVariable int id) {
+	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+	public String listContact(final Model modelMap) {
 		if(!LoginHelper.isLogin(session)){
 			return "redirect:/login";
 		}else{
@@ -47,7 +49,7 @@ public class AdminContactController {
 
 		modelMap.addAttribute("images", images);
 		modelMap.addAttribute("contactForm",contactForm);
-		modelMap.addAttribute("id-enable", id);
+		modelMap.addAttribute("pageId", activeMenuLeft);
 		return "contactPage";
 	}
 
@@ -79,7 +81,7 @@ public class AdminContactController {
         } catch (Exception e) {
         	System.out.println("Error while upload contact");
         }
-		return "redirect:/contact/2";
+		return "redirect:/contact";
 	}
 	
 	@RequestMapping(value = "/contact/deleteIsoImage", method = RequestMethod.POST)

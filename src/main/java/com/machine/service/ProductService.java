@@ -14,4 +14,5 @@ public interface ProductService {
 	List<Product> searchAutoCompleteProduct(String keyword);
 	void deleteProduct(Product product);
 	void addNewProduct(Product product);
+	void updateProduct(Product product);
 }

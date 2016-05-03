@@ -49,8 +49,8 @@ public class AccessDAOImpl implements AccessDAO{
 	public List<Access> listAllAccessByPeriodTime(Date from, Date to) {
 		List<Date> startAndEndOfDate = DateUtils.getStartAndEndOfPeriodTime(from,to);
 		return getSession().getNamedQuery("Access.findByPerioudTime")
-				.setParameter("from", startAndEndOfDate.get(0).toString())
-				.setParameter("end", startAndEndOfDate.get(1).toString()).list();
+				.setParameter("from", startAndEndOfDate.get(0))
+				.setParameter("end", startAndEndOfDate.get(1)).list();
 	}
 
 }
