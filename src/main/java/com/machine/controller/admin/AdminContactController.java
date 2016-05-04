@@ -2,6 +2,7 @@ package com.machine.controller.admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,9 +45,11 @@ public class AdminContactController {
 		Contact contact = contactService.getContact();
 		ContactForm contactForm = new ContactForm();
 		contactForm.setContact(contact);
-		String[] images = contact.getIsoimage().split(",");
-
-		modelMap.addAttribute("images", images);
+		if(contact.getIsoimage().isEmpty()){ 
+			modelMap.addAttribute("images", "");
+		}else{
+			modelMap.addAttribute("images",Arrays.asList(contact.getIsoimage().split(",")));
+		}
 		modelMap.addAttribute("contactForm",contactForm);
 		modelMap.addAttribute("pageId", activeMenuLeft);
 		return "contactPage";
@@ -60,7 +62,9 @@ public class AdminContactController {
 		List<MultipartFile> files = contactForm.getFileUpload().getFiles();
 		Contact contact = contactForm.getContact();
 		String listIsoImage = contact.getIsoimage();
-		listIsoImage += ",";
+		if(!listIsoImage.isEmpty()){
+			listIsoImage += ",";
+		}
 		if (null != files && files.size() > 0) {
             for (int i=0;i<files.size();i++) {
             	MultipartFile multipartFile = files.get(i);
@@ -74,6 +78,7 @@ public class AdminContactController {
                 }
             }
         }
+		listIsoImage = FileUtils.removeLastCharacterIfComma(listIsoImage);
 		contact.setIsoimage(listIsoImage);
 		contactService.updateContact(contact);
 		try {

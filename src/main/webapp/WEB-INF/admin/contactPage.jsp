@@ -11,7 +11,8 @@
 				<h1 class="page-header">Thông tin cửa hàng</h1>
 			</div>
 		</div>
-		<form:form modelAttribute="contactForm" id="contactEditForm" enctype="multipart/form-data" 
+		<form:form modelAttribute="contactForm" id="contactEditForm"
+			enctype="multipart/form-data"
 			action="${pageContext.request.contextPath}/contact" method="POST">
 			<form:input type="hidden" path="contact.id" name="id"
 				value="${contact.id}" />
@@ -71,23 +72,26 @@
 			<div class="row">
 				<label for="isoImage">Iso : </label>
 			</div>
-			<c:forEach var="image" items="${images}">
-				<div class="row" id="${image}">
-					<div class="col-md-9 form-group">
-						<img alt="" height="120px" width="220px"
-							style="margin-bottom: 20px; margin-left: 10px"
-							src="${pageContext.request.contextPath}/resources/images/${image}" />
+			<c:if test="${not empty images}">
+				<c:forEach var="image" items="${images}">
+					<div class="row" id="${image}">
+						<div class="col-md-9 form-group">
+							<img alt="" height="120px" width="220px"
+								style="margin-bottom: 20px; margin-left: 10px"
+								src="${pageContext.request.contextPath}/resources/images/${image}" />
+						</div>
+						<div class="col-md-3 form-group">
+							<input type="button" class="btn-danger" value="Xoá hình"
+								onclick="deleteIsoImage('${image}',this)" />
+						</div>
 					</div>
-					<div class="col-md-3 form-group">
-						<input type="button" class="btn-danger" value="Xoá hình"
-							onclick="deleteIsoImage('${image}',this)" />
-					</div>
-				</div>
-			</c:forEach>
+				</c:forEach>
+			</c:if>
 			<form:input type="hidden" path="contact.isoimage" />
 			<div class="form-group">
 				<label for="image">Thêm mới Iso :</label>
-				<form:input id="uploadIsoImage" path="fileUpload.files" multiple="multiple" type="file" accept="image/*" />
+				<form:input id="uploadIsoImage" path="fileUpload.files"
+					multiple="multiple" type="file" accept="image/*" />
 			</div>
 
 			<div class="row" style="margin-top: 20px">

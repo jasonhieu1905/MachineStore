@@ -126,21 +126,12 @@
 		$("#btnChangeAccessPage").click(function(){
 			var start = $("#datepicker1").data().datepicker.viewDate.getTime();
 			var end  = $("#datepicker2").data().datepicker.viewDate.getTime();
-			window.location = "<%=request.getContextPath()%>/adminAccessByTime?startDate=" + start + "&endDate="+end;
-			<%-- $.ajax({
-				url : 	"<%=request.getContextPath()%>/adminAccessByTime",
-				type : "POST",
-				data : {
-					startDate : start,
-					endDate : end
-				},					
-				success : function(data) {
-					
-				},
-				error : function(result) {
-					console.log(result);						
-				}
-			}); --%>
+			var option = $("#selectDate").val();
+			if(option == "1"){
+				window.location = "<%=request.getContextPath()%>/adminAllAccess";			
+			}else{
+				window.location = "<%=request.getContextPath()%>/adminAccessByTime?startDate=" + start + "&endDate="+end;
+			}
 		});
 	});
 </script>

@@ -17,6 +17,9 @@ public class FileUtils {
 	}
 	
 	public static String removeLastCharacterIfComma(String imageNames){
+		if(imageNames.isEmpty()){
+			return "";
+		}
 		if(imageNames.substring(imageNames.length()-1, imageNames.length()).equals(",")){
 			return imageNames.substring(0,imageNames.length()-1);
 		}

@@ -13,16 +13,16 @@
 		<ul class="nav" id="main-menu">
 			<li><a
 				href="${pageContext.request.contextPath}/listAllCategories"><i
-					class="fa fa-dashboard"></i>Menu</a>
+					class="fa fa-tasks"></i>Menu</a>
 			<li><a href="${pageContext.request.contextPath}/products"><i
-					class="fa fa-desktop"></i> Sản phẩm</a></li>
+					class="fa fa-gift"></i> Sản phẩm</a></li>
 
 			<li><a href="${pageContext.request.contextPath}/contact"><i
-					class="fa fa-fw fa-file"></i> Thông tin cửa hàng</a>
+					class="fa fa-map-marker "></i> Thông tin cửa hàng</a>
 			<li><a href="${pageContext.request.contextPath}/adminAllAccess"><i
-					class="fa fa-comment"></i> Truy cập</a>
+					class="fa fa-users"></i> Truy cập</a>
 			<li><a href="${pageContext.request.contextPath}/adminBanner"><i
-					class="fa fa-comment"></i> Banner</a>
+					class="fa fa-picture-o"></i> Banner</a>
 		</ul>
 
 	</div>

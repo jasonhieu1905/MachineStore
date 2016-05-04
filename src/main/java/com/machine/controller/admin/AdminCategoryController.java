@@ -65,7 +65,7 @@ public class AdminCategoryController {
 		}
 		List<Category> categories = categoryService.getAllCategories();
 		model.addAttribute("categories",categories);
-		model.addAttribute("id-enable", activeMenuLeft);
+		model.addAttribute("pageId", activeMenuLeft);
 		return "adminHomePage";
 	}
 	
@@ -81,6 +81,7 @@ public class AdminCategoryController {
 		modelAndView.addObject("categories", categories);
 		modelAndView.addObject("newCategory",new Category());
 		modelAndView.setViewName("addNewCategoryPage");
+		modelAndView.addObject("pageId", activeMenuLeft);
 		return modelAndView;
 	}
 	
