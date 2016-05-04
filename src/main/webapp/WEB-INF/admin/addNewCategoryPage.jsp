@@ -28,7 +28,7 @@ categories<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 			<div class="form-group" id="parentCategory">
 				<label for="parentId">Parent category:</label>
 				<form:select name='editCategory' class="form-control"
-					path="parentId.id">
+					path="parentId.id" id="selectParentCategory">
 					<c:forEach items="${categories}" var="cate">
 						<option value="${cate.id}">${cate.name}</option>
 					</c:forEach>
@@ -46,6 +46,8 @@ categories<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 					var value = $("#type").val();
 					if (value == 1) {
 						$("#parentCategory").hide();
+						$("#selectParentCategory").val("0");
+						
 					} else {
 						$("#parentCategory").show();
 					}

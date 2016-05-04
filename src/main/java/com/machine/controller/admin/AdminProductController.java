@@ -92,7 +92,7 @@ public class AdminProductController {
 		modelMap.addAttribute("productForm", new ProductForm());
 		List<Category> categories = categoryService.getAllCategories();
 		modelMap.addAttribute("categories", categories);
-		modelMap.addAttribute("id-enable", activeMenuLeft);
+		modelMap.addAttribute("pageId", activeMenuLeft);
 		return "adminAddNewProductPage";
 	}
 	
@@ -144,7 +144,7 @@ public class AdminProductController {
 		//detail Image
 		List<String> detailImage = Arrays.asList(product.getZoomImage().split(",")) ;
 		modelMap.addAttribute("detailImages", detailImage);
-		modelMap.addAttribute("id-enable", activeMenuLeft);
+		modelMap.addAttribute("pageId", activeMenuLeft);
 		return "adminEditProduct";
 	}
 	
