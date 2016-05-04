@@ -58,18 +58,17 @@
 			</div>
 		</div>
 		<hr style="width: 100%; border-color: #A7A5A2;">
-
-		<div class="col-xs-4"
+		<div class="col-lg-4 col-md-4 col-xs-12"
 			style="height: 120px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
 			<img src="${pageContext.request.contextPath}/resources/images/isoImage1.jpg"
 				width="200px">
 		</div>
-		<div class="col-xs-4"
+		<div class="col-lg-4 col-md-4 col-xs-12"
 			style="height: 120px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
 			<img src="${pageContext.request.contextPath}/resources/images/isoImage2.jpg"
 				width="200px">
 		</div>
-		<div class="col-xs-4"
+		<div class="col-lg-4 col-md-4 col-xs-12"
 			style="height: 120px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
 			<img src="${pageContext.request.contextPath}/resources/images/isoImage3.png"
 				width="200px">

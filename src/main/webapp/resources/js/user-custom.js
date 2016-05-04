@@ -41,6 +41,16 @@ $(function() {
 		delay : 2000
 	});
 });
+function resizeSlider() {
+    var altezzaDiv = $(window).height() - $('header').height() -
+        $('footer').height()-$('body').css('margin-top').substring(0,2) - 2; //this will be the right height for the slider
+
+    $('#slider').height(altezzaDiv);
+    $('.fluxslider').height(altezzaDiv).width($('.container').width() + 30);
+    $('.images').height(altezzaDiv).width($('.container').width() + 30);
+    $('.image1').height(altezzaDiv).width($('.container').width() + 30);
+    $('.image2').height(altezzaDiv).width($('.container').width() + 30);
+}
 var menuHeight = $(window).height() - 120 - 20;
 $(document).ready(function() {
 	$("li.dropdown").hover(
@@ -70,13 +80,17 @@ $(document).ready(function() {
 							function() {
 								$("div#searchField")
 										.addClass("showSearchField");
-								$("li#searchIcon").addClass("navy-hover")
+								$("li#searchIcon").addClass("navy-hover");
+								
 							},
 							function() {
 								if (!$("div#searchField").hasClass("navy-hover")) {
 									$("div#searchField").removeClass(
 											"showSearchField");
-									$("li#searchIcon").removeClass("navy-hover")
+									$("li#searchIcon").removeClass("navy-hover");
+									
+									$('#search-result').html("");
+									$('#searchField input').val("");
 								}
 							})
 					$("li#searchIcon").on('click', function() {
@@ -84,25 +98,28 @@ $(document).ready(function() {
 					})
 
 					$("div#searchField input").focus(function() {
+						
 						$("div#searchField").addClass("navy-hover");
 
 					}).focusout(function() {
 						$("div#searchField").removeClass("navy-hover");
+						setTimeout(function() {
+							$('#search-result').html("");
+							$('#searchField input').val("");
+						}, 300);
+						
 					})
-					$(document)
-							.click(
-									function(event) {
-										var self = $(event.target);
-										if (self.attr('id') != 'searchField'
-												&& self.parents('#searchField').length == 0
-												&& self.attr('id') != 'searchIcon'
-												&& self.parents('#searchIcon').length == 0) {
-											$("div#searchField").removeClass(
-													"showSearchField");
-											$("li#searchIcon").removeClass(
-													"active")
-										}
-									})
+					$(document).click(function(event) {
+						var self = $(event.target);
+						if (self.attr('id') != 'searchField'
+							&& self.parents('#searchField').length == 0
+							&& self.attr('id') != 'searchIcon'
+							&& self.parents('#searchIcon').length == 0)
+						{
+							$("div#searchField").removeClass("showSearchField");
+							$("li#searchIcon").removeClass("active")
+						}
+					})
 									
 					var leftMenuHeight = $('#left-menu').height();	
 					var bannerHeight = 0;
@@ -192,18 +209,12 @@ $(document).ready(function() {
 						}
 					});
 					$(window).resize(resizeSlider);
-
-					function resizeSlider() {
-					    var altezzaDiv = $(window).height() - $('header').height() -
-					        $('footer').height()-$('body').css('margin-top').substring(0,2) - 2; //this will be the right height for the slider
-
-					    $('#slider').height(altezzaDiv);
-					    $('.fluxslider').height(altezzaDiv).width($('.container').width() + 30);
-					    $('.images').height(altezzaDiv).width($('.container').width() + 30);
-					    $('.image1').height(altezzaDiv).width($('.container').width() + 30);
-					    $('.image2').height(altezzaDiv).width($('.container').width() + 30);
-
-					}
+					
+					$('#searchField input').keyup(function(event){
+						searchAjax();
+					})
+					
+					
 					
 					
 				})

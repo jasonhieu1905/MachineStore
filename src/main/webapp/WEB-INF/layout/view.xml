@@ -17,6 +17,9 @@
 	    <put-attribute name="body"	value="/WEB-INF/user/product-per-category.jsp" />
 	</definition>
 	
+	<definition name="search" extends="UserTemplate">
+	    <put-attribute name="body"	value="/WEB-INF/user/search-result.jsp" />
+	</definition>
 	
 	<definition name="adminHomePage" extends="AdminTemplate">
 	</definition>

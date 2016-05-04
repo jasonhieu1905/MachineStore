@@ -25,7 +25,7 @@
 	type="text/css"></link>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom-slider.css"
 	type="text/css"></link>
-
+<script>var contextPath = "${pageContext.request.contextPath}"</script>
 <!--[if IE]>
 	<link rel="stylesheet" href="resources/css/ie.css" type="text/css" media="screen, projection"></link>
 	<![endif]-->
@@ -54,6 +54,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.wm-zoom-1.0.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/flux.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ajax.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user-custom.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.scrollIntoView.min.js"></script>
 </body>

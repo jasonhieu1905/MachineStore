@@ -25,7 +25,10 @@ public class ProductDetail {
 
 	@Autowired
 	ProductService productService;
-
+	
+	
+	
+	
 	@RequestMapping(value = "/{typeId}/{categoryId}/{productId}", method = RequestMethod.GET)
 	public String getProductDetail(@PathVariable int typeId, @PathVariable int categoryId, @PathVariable int productId,
 			ModelMap model) {

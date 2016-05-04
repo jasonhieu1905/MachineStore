@@ -4,15 +4,20 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import com.machine.model.Category;
 import com.machine.model.Product;
+import com.machine.model.SearchProduct;
 import com.machine.service.CategoryService;
 import com.machine.service.ProductService;
 
@@ -23,7 +28,61 @@ public class ProductCatagoy {
 
 	@Autowired
 	ProductService productService;
+	
+	@ResponseBody
+	@RequestMapping(value = "/search/auto")
+	public List<SearchProduct>  getSearchResultViaAjax(@RequestBody String search) throws JSONException {
+		JSONObject objectSearch = new JSONObject(search);
+		String keyword = (String) objectSearch.get("query");
+		List<Product> list = productService.searchAutoCompleteProduct(keyword);
+		List<SearchProduct> result = new ArrayList<>();	
+		for(Product p : list){
+			SearchProduct sp = new SearchProduct();
+			sp.setImage(p.getImage());
+			sp.setName(p.getName());
+			sp.setId(p.getId());
+			sp.setCategoryId(p.getCategoryId().getId());
+			sp.setCatagoryName(p.getCategoryId().getName());
+			sp.setType(p.getCategoryId().getType());
+			result.add(sp);
+		}
+		//AjaxResponseBody result = new AjaxResponseBody();
+		//result.setProducts(list);
+		
+		//logic
+		return result;
 
+	}	
+	
+	@RequestMapping(value = "/search/full", method = RequestMethod.GET)
+	public String search(@RequestParam(value="query") String data, ModelMap model) throws JSONException{
+		List<Category> mainCatalogues = new ArrayList<>();
+		mainCatalogues = categoryService.getCategoriesMainProduct();
+
+		List<Category> accCatalogues = new ArrayList<>();
+		accCatalogues = categoryService.getCategoriesAccessories();	
+		
+		//JSONObject objectSearch = new JSONObject(data);
+		//String keyword = (String) objectSearch.get("query");
+		List<Product> searchProducts = productService.searchAutoCompleteProduct(data);
+		List<SearchProduct> list = new ArrayList<>();
+		for(Product p : searchProducts){
+			SearchProduct sp = new SearchProduct();
+			sp.setName(p.getName());
+			sp.setImage(p.getImage());
+			sp.setId(p.getId());
+			sp.setCategoryId(p.getCategoryId().getId());
+			sp.setCatagoryName(p.getCategoryId().getName());
+			sp.setType(p.getCategoryId().getType());
+			list.add(sp);
+		}
+		//model.addAttribute("currentPage", currentPage);
+		model.addAttribute("catalogues", mainCatalogues);
+		model.addAttribute("accessories", accCatalogues);
+		model.addAttribute("products", list);
+		return "search";
+	}
+	
 	@RequestMapping(value = "/category/{typeId}/{id}", method = RequestMethod.GET)
 	public String homePage(@PathVariable int typeId, @PathVariable int id, ModelMap model) {
 
