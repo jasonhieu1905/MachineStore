@@ -17,7 +17,7 @@
 			<li><a href="${pageContext.request.contextPath}/products"><i
 					class="fa fa-gift"></i> Sản phẩm</a></li>
 
-			<li><a href="${pageContext.request.contextPath}/contact"><i
+			<li><a href="${pageContext.request.contextPath}/admin/contact"><i
 					class="fa fa-map-marker "></i> Thông tin cửa hàng</a>
 			<li><a href="${pageContext.request.contextPath}/adminAllAccess"><i
 					class="fa fa-users"></i> Truy cập</a>
