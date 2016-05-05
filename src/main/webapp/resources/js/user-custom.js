@@ -139,7 +139,7 @@ $(document).ready(function() {
 					}
 					
 					var bannerHeight = 0;
-					var footerHeight = 520;
+					var footerHeight = $('#main-footer').outerHeight();
 					var headerHeight = 120;
 					if($('.banner').length > 0){
 						bannerHeight = $('.banner').height() + 20;
@@ -156,7 +156,7 @@ $(document).ready(function() {
 														_h + headerHeight);
 											} else {
 												$("#left-menu")
-														.css("top",$('body')[0].scrollHeight - footerHeight - leftMenuHeight + headerHeight);
+														.css("top",($('body')[0].scrollHeight - footerHeight - leftMenuHeight - 80));
 											}
 										} else {
 											$("#left-menu").css("top", bannerHeight + headerHeight);

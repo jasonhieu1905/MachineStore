@@ -28,7 +28,9 @@
 		</div>
 	</div>
 
-	<div class="product-right">${product.description }</div>
+	<div class="product-right">
+		<c:out value="${product.description}" escapeXml="false"/>
+	</div>
 </div>
 <div class="row product-section">
 	<c:if test="${currentCategory.productList.size() >0 }">

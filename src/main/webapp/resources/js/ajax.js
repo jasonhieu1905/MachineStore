@@ -14,7 +14,8 @@ function searchAjax() {
 				// display(data);
 				var result = "";
 				for ( var p in data) {
-					result += "<li><a href='detail/"+data[p].type+"/"+data[p].categoryId+"/"+data[p].id+"'>" + data[p].name
+					var path = contextPath + '/detail/'+data[p].type+'/'+data[p].categoryId+'/'+data[p].id;
+					result += "<li><a href='"+path+"'>" + data[p].name
 							+ " - <span class='catagory-name'>"
 							+ data[p].catagoryName + "</span></a></li>";
 				}

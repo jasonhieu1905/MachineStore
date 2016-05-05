@@ -505,9 +505,3 @@
 	text-align: center;
 }
 
-#main-footer {
-	width: 100%;
-	float: left;
-	height: 340px;
-	background-color: rgba(0, 0, 0, .5);
-}
