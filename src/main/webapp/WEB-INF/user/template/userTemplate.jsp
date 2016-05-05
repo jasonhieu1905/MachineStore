@@ -54,6 +54,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.wm-zoom-1.0.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/flux.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/iscroll.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ajax.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user-custom.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.scrollIntoView.min.js"></script>

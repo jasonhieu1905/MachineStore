@@ -1,3 +1,14 @@
+var myScroll;
+function loaded () {
+	myScroll = new IScroll('#left-menu', {
+		scrollbars: true,
+		mouseWheel: true,
+		interactiveScrollbars: true,
+		shrinkScrollbars: 'scale',
+		fadeScrollbars: false
+	});
+}
+
 function topClick() {
 	var top = parseInt($('.scroll').css('top')) - 70;
 	var scrollH = $('.scroll').height();
@@ -120,8 +131,13 @@ $(document).ready(function() {
 							$("li#searchIcon").removeClass("active")
 						}
 					})
-									
+					
+					$('#left-menu').css('max-height',menuHeight);
 					var leftMenuHeight = $('#left-menu').height();	
+					if(leftMenuHeight > menuHeight){
+						leftMenuHeight = menuHeight;
+					}
+					
 					var bannerHeight = 0;
 					var footerHeight = 520;
 					var headerHeight = 120;
@@ -140,9 +156,7 @@ $(document).ready(function() {
 														_h + headerHeight);
 											} else {
 												$("#left-menu")
-														.css(
-																"top",
-																$('body')[0].scrollHeight - footerHeight - leftMenuHeight);
+														.css("top",$('body')[0].scrollHeight - footerHeight - leftMenuHeight + headerHeight);
 											}
 										} else {
 											$("#left-menu").css("top", bannerHeight + headerHeight);
@@ -192,7 +206,7 @@ $(document).ready(function() {
 							inner : false
 						}
 					});
-					$('#left-menu').css('max-height',menuHeight);
+					
 					$("[id*=catagory-]").on("click",function(){
 						var index = $(this).attr("index");
 						var productCatagory = "product-"+index;
@@ -214,6 +228,8 @@ $(document).ready(function() {
 						searchAjax();
 					})
 					
+					loaded();
+					document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 					
 					
 					
