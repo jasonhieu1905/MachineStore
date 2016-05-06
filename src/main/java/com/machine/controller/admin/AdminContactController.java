@@ -35,7 +35,7 @@ public class AdminContactController {
 	
 	private static final int activeMenuLeft = 2;
 
-	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/contact", method = RequestMethod.GET)
 	public String listContact(final Model modelMap) {
 		if(!LoginHelper.isLogin(session)){
 			return "redirect:/login";
@@ -56,7 +56,7 @@ public class AdminContactController {
 	}
 
 
-	@RequestMapping(value="/contact",method = RequestMethod.POST)
+	@RequestMapping(value="/admin/contact",method = RequestMethod.POST)
 	public synchronized String updateContact(@ModelAttribute("contactForm") ContactForm contactForm,HttpServletRequest request) throws IllegalStateException, IOException, InterruptedException{
 		String savedDirectory = FileUtils.directoryImage(request);
 		List<MultipartFile> files = contactForm.getFileUpload().getFiles();
@@ -86,7 +86,7 @@ public class AdminContactController {
         } catch (Exception e) {
         	System.out.println("Error while upload contact");
         }
-		return "redirect:/contact";
+		return "redirect:/admin/contact";
 	}
 	
 	@RequestMapping(value = "/contact/deleteIsoImage", method = RequestMethod.POST)

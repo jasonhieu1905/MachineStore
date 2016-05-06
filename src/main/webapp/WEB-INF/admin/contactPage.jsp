@@ -13,7 +13,7 @@
 		</div>
 		<form:form modelAttribute="contactForm" id="contactEditForm"
 			enctype="multipart/form-data"
-			action="${pageContext.request.contextPath}/contact" method="POST">
+			action="${pageContext.request.contextPath}/admin/contact" method="POST">
 			<form:input type="hidden" path="contact.id" name="id"
 				value="${contact.id}" />
 			<div class="row">
@@ -145,7 +145,7 @@
 			},
 			success : function(data) {
 				removedElement.remove();
-				window.location = "<%=request.getContextPath()%>/contact";
+				window.location = "<%=request.getContextPath()%>/admin/contact";
 			},
 			error : function(result) {
 				console.log(result);

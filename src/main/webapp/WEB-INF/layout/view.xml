@@ -21,6 +21,10 @@
 	    <put-attribute name="body"	value="/WEB-INF/user/search-result.jsp" />
 	</definition>
 	
+	<definition name="contact" extends="ContactTemplate">
+	    <put-attribute name="body"	value="/WEB-INF/user/contact.jsp" />
+	</definition>
+	
 	<definition name="adminHomePage" extends="AdminTemplate">
 	</definition>
 	
