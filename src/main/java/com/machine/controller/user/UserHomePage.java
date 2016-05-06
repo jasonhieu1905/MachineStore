@@ -10,8 +10,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.machine.model.Banner;
 import com.machine.model.Category;
 import com.machine.model.Product;
+import com.machine.service.BannerService;
 import com.machine.service.CategoryService;
 
 @Controller
@@ -20,6 +22,9 @@ public class UserHomePage {
 
 	@Autowired
 	CategoryService categoryService;
+	
+	@Autowired
+	BannerService bannerService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String homePage(ModelMap model) {
@@ -42,10 +47,13 @@ public class UserHomePage {
 
 		List<Category> accCatalogues = new ArrayList<>();
 		accCatalogues = categoryService.getCategoriesAccessories();
-
+		List<Banner> banners = new ArrayList<>();
+		banners = bannerService.listAllBanners();
+		
 		model.addAttribute("currentPage", "home");
 		model.addAttribute("catalogues", mainCatalogues);
 		model.addAttribute("accessories", accCatalogues);
+		model.addAttribute("banners", banners);
 		return "home";
 
 	}

@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.machine.model.Banner;
 import com.machine.model.Category;
+import com.machine.service.BannerService;
 import com.machine.service.CategoryService;
 import com.machine.service.ProductService;
 import com.machine.model.Product;
@@ -27,7 +29,8 @@ public class ProductDetail {
 	ProductService productService;
 	
 	
-	
+	@Autowired
+	BannerService bannerService;
 	
 	@RequestMapping(value = "/{typeId}/{categoryId}/{productId}", method = RequestMethod.GET)
 	public String getProductDetail(@PathVariable int typeId, @PathVariable int categoryId, @PathVariable int productId,
@@ -70,13 +73,17 @@ public class ProductDetail {
 				}
 			});
 		}
+		
+		List<Banner> banners = new ArrayList<>();
+		banners = bannerService.listAllBanners();
+		
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("catalogues", mainCatalogues);
 		model.addAttribute("accessories", accCatalogues);
 		model.addAttribute("product", product);
 		model.addAttribute("imageList", imageList);
 		model.addAttribute("currentCategory", currentCategory);
-
+		model.addAttribute("banners", banners);
 		return "detail";
 
 	}

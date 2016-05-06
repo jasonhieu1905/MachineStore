@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.machine.model.Banner;
 import com.machine.model.Category;
 import com.machine.model.Product;
 import com.machine.model.SearchProduct;
+import com.machine.service.BannerService;
 import com.machine.service.CategoryService;
 import com.machine.service.ProductService;
 
@@ -28,6 +31,10 @@ public class ProductCatagoy {
 
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	BannerService bannerService;
+
 	
 	@ResponseBody
 	@RequestMapping(value = "/search/auto")
@@ -76,10 +83,16 @@ public class ProductCatagoy {
 			sp.setType(p.getCategoryId().getType());
 			list.add(sp);
 		}
+		
+
+		List<Banner> banners = new ArrayList<>();
+		banners = bannerService.listAllBanners();
+		
 		//model.addAttribute("currentPage", currentPage);
 		model.addAttribute("catalogues", mainCatalogues);
 		model.addAttribute("accessories", accCatalogues);
 		model.addAttribute("products", list);
+		model.addAttribute("banners", banners);
 		return "search";
 	}
 	
@@ -123,10 +136,15 @@ public class ProductCatagoy {
 				}
 			});
 		}
+		
+		List<Banner> banners = new ArrayList<>();
+		banners = bannerService.listAllBanners();
+		
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("catalogues", mainCatalogues);
 		model.addAttribute("accessories", accCatalogues);
 		model.addAttribute("currentCategory", currentCategory);
+		model.addAttribute("banners", banners);
 		return "category";
 	}
 }
