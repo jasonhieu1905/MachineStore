@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.machine.model.Banner;
 import com.machine.model.Category;
+import com.machine.model.Contact;
 import com.machine.service.BannerService;
 import com.machine.service.CategoryService;
+import com.machine.service.ContactService;
 import com.machine.service.ProductService;
 import com.machine.model.Product;
 
@@ -31,6 +33,9 @@ public class ProductDetail {
 	
 	@Autowired
 	BannerService bannerService;
+	
+	@Autowired
+	private ContactService contactService;
 	
 	@RequestMapping(value = "/{typeId}/{categoryId}/{productId}", method = RequestMethod.GET)
 	public String getProductDetail(@PathVariable int typeId, @PathVariable int categoryId, @PathVariable int productId,
@@ -76,7 +81,8 @@ public class ProductDetail {
 		
 		List<Banner> banners = new ArrayList<>();
 		banners = bannerService.listAllBanners();
-		
+		Contact contact = contactService.getContact();	
+		model.addAttribute("contact", contact);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("catalogues", mainCatalogues);
 		model.addAttribute("accessories", accCatalogues);

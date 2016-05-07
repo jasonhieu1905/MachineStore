@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.machine.model.Banner;
 import com.machine.model.Category;
+import com.machine.model.Contact;
 import com.machine.model.Product;
 import com.machine.model.SearchProduct;
 import com.machine.service.BannerService;
 import com.machine.service.CategoryService;
+import com.machine.service.ContactService;
 import com.machine.service.ProductService;
 
 @Controller
@@ -34,7 +36,9 @@ public class ProductCatagoy {
 	
 	@Autowired
 	BannerService bannerService;
-
+	
+	@Autowired
+	private ContactService contactService;
 	
 	@ResponseBody
 	@RequestMapping(value = "/search/auto")
@@ -87,7 +91,8 @@ public class ProductCatagoy {
 
 		List<Banner> banners = new ArrayList<>();
 		banners = bannerService.listAllBanners();
-		
+		Contact contact = contactService.getContact();	
+		model.addAttribute("contact", contact);
 		//model.addAttribute("currentPage", currentPage);
 		model.addAttribute("catalogues", mainCatalogues);
 		model.addAttribute("accessories", accCatalogues);
@@ -139,7 +144,8 @@ public class ProductCatagoy {
 		
 		List<Banner> banners = new ArrayList<>();
 		banners = bannerService.listAllBanners();
-		
+		Contact contact = contactService.getContact();	
+		model.addAttribute("contact", contact);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("catalogues", mainCatalogues);
 		model.addAttribute("accessories", accCatalogues);
