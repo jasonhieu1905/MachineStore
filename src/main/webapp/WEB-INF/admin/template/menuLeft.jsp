@@ -23,6 +23,8 @@
 					class="fa fa-users"></i> Truy cập</a>
 			<li><a href="${pageContext.request.contextPath}/adminBanner"><i
 					class="fa fa-picture-o"></i> Banner</a>
+			<li><a href="${pageContext.request.contextPath}/adminMessage"><i
+					class="fa fa-envelope-o"></i> Hộp thư khách hàng</a>
 		</ul>
 
 	</div>

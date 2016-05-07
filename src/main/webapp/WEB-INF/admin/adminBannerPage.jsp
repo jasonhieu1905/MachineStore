@@ -21,7 +21,7 @@
 	<div id="page-inner">
 		<div class="row">
 			<div class="col-md-12">
-				<h1 class="page-header">Loại sản phẩm</h1>
+				<h1 class="page-header">Quản lí banner</h1>
 				<ol class="breadcrumb">
 					<li><a
 						href="${pageContext.request.contextPath}/addNewBanner">Thêm

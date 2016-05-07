@@ -34,6 +34,7 @@
 				<value>com.machine.model.Contact</value>
 				<value>com.machine.model.Access</value>
 				<value>com.machine.model.Banner</value>
+				<value>com.machine.model.Message</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -90,6 +91,14 @@
 	</bean>
 
 	<bean id="bannerDAO" class="com.machine.daoImpl.BannerDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
+	<bean id="messageService" class="com.machine.serviceImpl.MessageServiceImpl">
+		<property name="messageDAO" ref="messageDAO"></property>
+	</bean>
+
+	<bean id="messageDAO" class="com.machine.daoImpl.MessageDAOImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
 

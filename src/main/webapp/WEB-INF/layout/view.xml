@@ -6,39 +6,41 @@
 
 
 	<definition name="home" extends="UserTemplate">
-	    <put-attribute name="body"	value="/WEB-INF/user/home.jsp" />
+		<put-attribute name="body" value="/WEB-INF/user/home.jsp" />
 	</definition>
-	
+
 	<definition name="detail" extends="UserTemplate">
-	    <put-attribute name="body"	value="/WEB-INF/user/product-detail.jsp" />
+		<put-attribute name="body" value="/WEB-INF/user/product-detail.jsp" />
 	</definition>
-	
+
 	<definition name="category" extends="UserTemplate">
-	    <put-attribute name="body"	value="/WEB-INF/user/product-per-category.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/user/product-per-category.jsp" />
 	</definition>
-	
+
 	<definition name="search" extends="UserTemplate">
-	    <put-attribute name="body"	value="/WEB-INF/user/search-result.jsp" />
+		<put-attribute name="body" value="/WEB-INF/user/search-result.jsp" />
 	</definition>
-	
+
 	<definition name="contact" extends="ContactTemplate">
-	    <put-attribute name="body"	value="/WEB-INF/user/contact.jsp" />
+		<put-attribute name="body" value="/WEB-INF/user/contact.jsp" />
 	</definition>
-	
+
 	<definition name="adminHomePage" extends="AdminTemplate">
 	</definition>
-	
+
 	<definition name="login" template="/WEB-INF/admin/loginPage.jsp">
 	</definition>
-	
+
 	<definition name="categoryPage" extends="AdminTemplate">
 		<put-attribute name="body" value="/WEB-INF/admin/categoryPage.jsp" />
 	</definition>
-	
+
 	<definition name="addNewCategoryPage" extends="AdminTemplate">
-		<put-attribute name="body" value="/WEB-INF/admin/addNewCategoryPage.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/admin/addNewCategoryPage.jsp" />
 	</definition>
-	
+
 	<definition name="productPage" extends="AdminTemplate">
 		<put-attribute name="body" value="/WEB-INF/admin/productPage.jsp" />
 	</definition>
@@ -46,25 +48,33 @@
 	<definition name="contactPage" extends="AdminTemplate">
 		<put-attribute name="body" value="/WEB-INF/admin/contactPage.jsp" />
 	</definition>
-	
+
 	<definition name="adminAccessPage" extends="AdminTemplate">
 		<put-attribute name="body" value="/WEB-INF/admin/adminAccessPage.jsp" />
 	</definition>
-	
+
 	<definition name="adminBannerPage" extends="AdminTemplate">
 		<put-attribute name="body" value="/WEB-INF/admin/adminBannerPage.jsp" />
 	</definition>
-	
+
 	<definition name="adminAddNewBanner" extends="AdminTemplate">
-		<put-attribute name="body" value="/WEB-INF/admin/adminAddNewBanner.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/admin/adminAddNewBanner.jsp" />
 	</definition>
-	
+
 	<definition name="adminAddNewProductPage" extends="AdminTemplate">
-		<put-attribute name="body" value="/WEB-INF/admin/addNewProductPage.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/admin/addNewProductPage.jsp" />
 	</definition>
-	
+
 	<definition name="adminEditProduct" extends="AdminTemplate">
-		<put-attribute name="body" value="/WEB-INF/admin/adminEditProduct.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/admin/adminEditProduct.jsp" />
+	</definition>
+
+	<definition name="adminMessage" extends="AdminTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/admin/adminMessage.jsp" />
 	</definition>
 	
 </tiles-definitions>
