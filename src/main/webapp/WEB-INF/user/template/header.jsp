@@ -15,34 +15,20 @@
 					href="#" class="dropdown-toggle"><i
 						class="fa fa-barcode "></i><span class="navy-text">Main
 							Product</span></a>
-					<div class="dropdown-menu animated main">
-						<div class="header-menu-container row">
-							<c:forEach items="${catalogues}" var="item" begin="0" end="18">
-								<a href="${pageContext.request.contextPath}/category/${item.type}/${item.id}" class="item"> <i
-									class="fa fa-angle-right"></i> ${item.name }
-								</a>
-							</c:forEach>
-							<c:if test="${catalogues.size() > 19 }">
-								<div class="item show-more">show more...</div>
-							</c:if>
-							<hr style="float: left; width: 100%" />
-						</div>
-					</div></li>
+					<div class="dropdown-menu sub-menu" id="category-id">
+						<div class="scroller">
+							
+						 </div>
+					</div>
+				</li>
 				<li class="dropdown ${currentPage == 'accessories'? 'active': ''}"><a href="#" class="dropdown-toggle"> <i
 						class="fa fa-suitcase "></i><span class="navy-text">Accessories</span></a>
-					<div class="dropdown-menu animated main">
-						<div class="header-menu-container row">
-							<c:forEach items="${accessories}" var="item" begin="0" end="18">
-								<a href="${pageContext.request.contextPath}/category/${item.type}/${item.id}" class="item"> <i
-									class="fa fa-angle-right"></i> ${item.name }
-								</a>
-							</c:forEach>
-							<c:if test="${accessories.size() > 19 }">
-								<div class="item show-more">show more...</div>
-							</c:if>
-							<hr style="float: left; width: 100%" />
-						</div>
-					</div></li>
+					<div class="dropdown-menu sub-menu" id="accessories-id">
+						<div class="scroller">
+							
+						 </div>
+					</div>
+				</li>
 				<li class="${currentPage == 'contact'? 'active': ''}"><a href="${pageContext.request.contextPath}/contact"><i class="fa fa-phone"></i><span
 						class="navy-text">Contact</span></a></li>
 			</ul>

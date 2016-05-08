@@ -30,7 +30,7 @@ public class UserHomePage {
 	@Autowired
 	CategoryService categoryService;
 	
-	@Autowired
+	@Autowired	
 	BannerService bannerService;
 	
 	@Autowired

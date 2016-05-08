@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.machine.model.Banner;
 import com.machine.model.Category;
+import com.machine.model.CategoryHeader;
 import com.machine.model.Contact;
 import com.machine.model.Product;
 import com.machine.model.SearchProduct;
@@ -64,6 +65,41 @@ public class ProductCatagoy {
 		return result;
 
 	}	
+	
+	@ResponseBody
+	@RequestMapping(value = "/menu/catagories", method = RequestMethod.GET)
+	public List<CategoryHeader>  getCatagoryViaAjax(){
+		List<Category> mainCatalogues = new ArrayList<>();
+		mainCatalogues = categoryService.getCategoriesMainProduct();
+		List<CategoryHeader> result = new ArrayList<>();
+		for(Category cat : mainCatalogues){
+			CategoryHeader tmp = new CategoryHeader();
+			tmp.setId(cat.getId());
+			tmp.setName(cat.getName());
+			tmp.setType(cat.getType());
+			result.add(tmp);
+		}
+		return result;
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/menu/accessories", method = RequestMethod.GET)
+	public List<CategoryHeader>  getAccessoriesViaAjax(){
+		List<Category> mainCatalogues = new ArrayList<>();
+		mainCatalogues = categoryService.getCategoriesAccessories();
+		List<CategoryHeader> result = new ArrayList<>();
+		for(Category cat : mainCatalogues){
+			CategoryHeader tmp = new CategoryHeader();
+			tmp.setId(cat.getId());
+			tmp.setName(cat.getName());
+			tmp.setType(cat.getType());
+			result.add(tmp);
+		}
+		return result;
+
+	}
+	
 	
 	@RequestMapping(value = "/search/full", method = RequestMethod.GET)
 	public String search(@RequestParam(value="query") String data, ModelMap model) throws JSONException{
