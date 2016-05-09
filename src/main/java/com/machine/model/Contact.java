@@ -55,6 +55,9 @@ public class Contact implements Serializable {
     
     @Column(name = "isoimage")
     private String isoimage;
+    
+    @Column(name="zoommap")
+    private int zoommap;
 
     public Contact() {
     }
@@ -148,7 +151,15 @@ public class Contact implements Serializable {
         this.isoimage = isoimage;
     }
 
-    @Override
+    public int getZoommap() {
+		return zoommap;
+	}
+
+	public void setZoommap(int zoommap) {
+		this.zoommap = zoommap;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

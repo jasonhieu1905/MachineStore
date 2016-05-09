@@ -10,4 +10,7 @@ public interface AccessDAO {
 	List<Access> listAllAccess();
 	List<Access> listAllAccessPerDate(Date date);
 	List<Access> listAllAccessByPeriodTime(Date from,Date to);
+	Access getAccessToday();
+	int allAcccess();
+	void updateAccess(Access access);
 }

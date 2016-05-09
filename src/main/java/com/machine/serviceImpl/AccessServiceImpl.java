@@ -45,6 +45,24 @@ public class AccessServiceImpl implements AccessService{
 	public List<Access> listAllAccessByPeriodTime(Date start, Date end) {
 		return accessDAO.listAllAccessByPeriodTime(start, end);
 	}
+
+
+	@Override
+	public int allAcccess() {
+		return accessDAO.allAcccess();
+	}
+
+
+	@Override
+	public Access getAccessToday() {
+		return accessDAO.getAccessToday();
+	}
+
+
+	@Override
+	public void updateAccess(Access access) {
+		accessDAO.updateAccess(access);
+	}
 	
 	
 

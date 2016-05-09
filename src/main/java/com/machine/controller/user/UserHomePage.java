@@ -1,11 +1,11 @@
 package com.machine.controller.user;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,6 +38,11 @@ public class UserHomePage {
 	
 	@Autowired
 	private AccessService accessService;
+	
+	public static int ACCESS_PAGE = 0;
+	
+	@Autowired
+	HttpSession session;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String homePage(ModelMap model) {
@@ -62,17 +67,29 @@ public class UserHomePage {
 		accCatalogues = categoryService.getCategoriesAccessories();
 		List<Banner> banners = new ArrayList<>();
 		banners = bannerService.listAllBanners();
-		Calendar cal = Calendar.getInstance();
+		
+		ACCESS_PAGE = accessService.allAcccess();
 	    
-		//List<Access> access = accessService.listAllAccessPerDate(cal.getTime());
-		//model.addAttribute("access", access.get(0));
 		Contact contact = contactService.getContact();	
 		model.addAttribute("contact", contact);
 		model.addAttribute("currentPage", "home");
 		model.addAttribute("catalogues", mainCatalogues);
 		model.addAttribute("accessories", accCatalogues);
 		model.addAttribute("banners", banners);
+		model.addAttribute("accessPage", ACCESS_PAGE);
 		
+		if(session.getAttribute("ACCESS_PAGE") == null){
+			session.setAttribute("ACCESS_PAGE", ACCESS_PAGE);
+			Access access = accessService.getAccessToday();
+			if(access == null){
+				access = new Access();
+				access.setAccessdate(new Date());
+				access.setAccessnumber(1);
+				accessService.addAccessPage(access);
+			}
+			access.setAccessnumber(access.getAccessnumber()+1);
+			accessService.updateAccess(access);
+		}
 		return "home";
 
 	}

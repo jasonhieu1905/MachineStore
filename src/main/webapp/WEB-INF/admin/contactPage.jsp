@@ -13,13 +13,14 @@
 		</div>
 		<form:form modelAttribute="contactForm" id="contactEditForm"
 			enctype="multipart/form-data"
-			action="${pageContext.request.contextPath}/admin/contact" method="POST">
+			action="${pageContext.request.contextPath}/admin/contact"
+			method="POST">
 			<form:input type="hidden" path="contact.id" name="id"
 				value="${contact.id}" />
 			<div class="row">
 				<div class="col-md-12 form-group">
 					<label for="parentId">Tên cửa hàng: </label>
-					<form:input path="contact.name" type="text" class="form-control"
+					<form:input required="required" path="contact.name" type="text" class="form-control"
 						name="name" value="${contact.name}" />
 				</div>
 			</div>
@@ -27,7 +28,7 @@
 			<div class="row">
 				<div class="col-md-12 form-group">
 					<label for="parentId">Đia chỉ: </label>
-					<form:textarea path="contact.address" class="form-control"
+					<form:textarea required="required" path="contact.address" class="form-control"
 						value="${contact.address}" />
 				</div>
 			</div>
@@ -35,7 +36,7 @@
 			<div class="row">
 				<div class="col-md-12 form-group">
 					<label for="parentId">Số điện thoại: </label>
-					<form:input type="text" class="form-control" path="contact.phone"
+					<form:input required="required" type="text" class="form-control" path="contact.phone"
 						name="phone" value="${contact.phone}" />
 				</div>
 			</div>
@@ -43,7 +44,7 @@
 			<div class="row">
 				<div class="col-md-12 form-group">
 					<label for="parentId">Email: </label>
-					<form:input name="email" path="contact.email" type="text"
+					<form:input required="required" name="email" path="contact.email" type="email"
 						class="form-control" value="${contact.email}" />
 				</div>
 			</div>
@@ -51,7 +52,7 @@
 			<div class="row">
 				<div class="col-md-12 form-group">
 					<label for="parentId">Thời gian làm việc: </label>
-					<form:textarea path="contact.workingtime" name="workingtime"
+					<form:textarea required="required" path="contact.workingtime" name="workingtime"
 						class="form-control" value="${contact.workingtime}" />
 				</div>
 			</div>
@@ -59,13 +60,20 @@
 			<div class="row">
 				<div class="col-md-6 form-group">
 					<label for="parentId">Hoành độ: </label>
-					<form:input path="contact.mapX" name="mapX" class="form-control"
+					<form:input required="required" path="contact.mapX" name="mapX" class="form-control"
 						value="${contact.mapX}" />
 				</div>
 				<div class="col-md-6 form-group">
 					<label for="parentId">Tung độ: </label>
-					<form:input path="contact.mapY" name="mapY" class="form-control"
+					<form:input required="required" path="contact.mapY" name="mapY" class="form-control"
 						value="${contact.mapY}" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 form-group">
+					<label for="zoomMap">Zoom google map: </label> 
+					<form:input required="required" path="contact.zoommap" class="form-control" type="number"
+						value="${contact.zoommap}" />
 				</div>
 			</div>
 
@@ -145,12 +153,13 @@
 			},
 			success : function(data) {
 				removedElement.remove();
-				window.location = "<%=request.getContextPath()%>/admin/contact";
-			},
-			error : function(result) {
-				console.log(result);
-			}
-		});
+				window.location = "<%=request.getContextPath()%>
+	/admin/contact";
+									},
+									error : function(result) {
+										console.log(result);
+									}
+								});
 
-	});
+					});
 </script>

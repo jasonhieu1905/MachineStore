@@ -134,6 +134,7 @@ public class ProductCatagoy {
 		model.addAttribute("accessories", accCatalogues);
 		model.addAttribute("products", list);
 		model.addAttribute("banners", banners);
+		model.addAttribute("accessPage", UserHomePage.ACCESS_PAGE);
 		return "search";
 	}
 	
@@ -187,6 +188,7 @@ public class ProductCatagoy {
 		model.addAttribute("accessories", accCatalogues);
 		model.addAttribute("currentCategory", currentCategory);
 		model.addAttribute("banners", banners);
+		model.addAttribute("accessPage", UserHomePage.ACCESS_PAGE);
 		return "category";
 	}
 }

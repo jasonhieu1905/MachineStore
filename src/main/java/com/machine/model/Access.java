@@ -18,6 +18,8 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "access")
 @NamedQueries({
+	@NamedQuery(name="Access.getAccessNumber", query = "SELECT SUM(a.accessnumber) FROM Access a"),
+	@NamedQuery(name = "Access.getAccessToday", query = "SELECT a FROM Access a WHERE a.accessdate = :accessdate"),
     @NamedQuery(name = "Access.findAll", query = "SELECT a FROM Access a"),
     @NamedQuery(name = "Access.findById", query = "SELECT a FROM Access a WHERE a.id = :id"),
     @NamedQuery(name = "Access.findByAccessdate", query = "SELECT a FROM Access a WHERE a.accessdate = :accessdate"),

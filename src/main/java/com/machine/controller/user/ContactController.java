@@ -24,6 +24,7 @@ public class ContactController {
 		modelMap.setViewName("contact");
 		modelMap.addObject("contact",contact);
 		modelMap.addObject("message",message);
+		modelMap.addObject("accessPage", UserHomePage.ACCESS_PAGE);
 		return modelMap;
 	}
 }

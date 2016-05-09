@@ -10,4 +10,7 @@ public interface AccessService {
 	List<Access> listAllAccess();
 	List<Access> listAllAccessPerDate(Date date);
 	public List<Access> listAllAccessByPeriodTime(Date start,Date end);
+	int allAcccess();
+	public Access getAccessToday();
+	void updateAccess(Access access);
 }

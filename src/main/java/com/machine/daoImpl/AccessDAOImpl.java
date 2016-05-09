@@ -53,4 +53,23 @@ public class AccessDAOImpl implements AccessDAO{
 				.setParameter("end", startAndEndOfDate.get(1)).list();
 	}
 
+	@Override
+	public int allAcccess() {
+		return ((Long) getSession().getNamedQuery("Access.getAccessNumber").list().get(0)).intValue();
+	}
+
+	@Override
+	public Access getAccessToday() {
+		List<Access> accesses = getSession().getNamedQuery("Access.getAccessToday").setParameter("accessdate", new Date()).list();
+		if(accesses == null){
+			return null;
+		}
+		return accesses.get(0);
+	}
+
+	@Override
+	public void updateAccess(Access access) {
+		getSession().update(access);
+	}
+
 }

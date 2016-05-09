@@ -90,6 +90,7 @@ public class ProductDetail {
 		model.addAttribute("imageList", imageList);
 		model.addAttribute("currentCategory", currentCategory);
 		model.addAttribute("banners", banners);
+		model.addAttribute("accessPage", UserHomePage.ACCESS_PAGE);
 		return "detail";
 
 	}

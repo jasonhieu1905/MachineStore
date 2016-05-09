@@ -13,9 +13,10 @@
 </style>
 </head>
 <div>
-	<input type="hidden" value="${contact.mapX}" id="mapX" /> <input
-		type="hidden" value="${contact.mapY}" id="mapY" /> <input
-		type="hidden" value="${contact.name}" id="name" />
+	<input type="hidden" value="${contact.mapX}" id="mapX" /> 
+	<input type="hidden" value="${contact.mapY}" id="mapY" /> 
+	<input type="hidden" value="${contact.name}" id="name" />
+	<input type="hidden" value="${contact.zoommap}" id="zoommap" />
 	<div id="map"></div>
 	<script>
 		function initMap() {
@@ -23,12 +24,13 @@
 			var mapX = $("#mapX").val();
 			var mapY = $("#mapY").val();
 			var name = $("#name").val();
+			var zoommap = $("#zoommap").val();
 			var map = new google.maps.Map(mapDiv, {
 				center : {
 					lat : parseFloat(mapX),
 					lng : parseFloat(mapY)
 				},
-				zoom : 12
+				zoom : parseInt(zoommap)
 			});
 			var marker = new google.maps.Marker({
 				position : {
@@ -56,13 +58,13 @@
 				</div>
 				<div class="form-group">
 					<label for="Contact">Email :</label>
-					<form:input path="email" type="email" class="form-control" required="required"
-						value="${message.email}" />
+					<form:input path="email" type="email" class="form-control"
+						required="required" value="${message.email}" />
 				</div>
 				<div class="form-group">
 					<label for="Contact">Phone :</label>
-					<form:input path="phone" type="number" class="form-control" required="required"
-						value="${message.phone}" />
+					<form:input path="phone" type="number" class="form-control"
+						required="required" value="${message.phone}" />
 				</div>
 				<div class="form-group">
 					<label for="Contact">Viết bình luận :</label>
