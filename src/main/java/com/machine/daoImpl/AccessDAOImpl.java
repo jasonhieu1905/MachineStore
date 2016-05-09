@@ -60,8 +60,9 @@ public class AccessDAOImpl implements AccessDAO{
 
 	@Override
 	public Access getAccessToday() {
+		@SuppressWarnings("unchecked")
 		List<Access> accesses = getSession().getNamedQuery("Access.getAccessToday").setParameter("accessdate", new Date()).list();
-		if(accesses == null){
+		if(accesses.size() == 0){
 			return null;
 		}
 		return accesses.get(0);
