@@ -239,8 +239,5 @@ $(document).ready(function() {
 					})
 					
 					loaded();
-					document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-					
-					
 					
 				})
