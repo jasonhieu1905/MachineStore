@@ -306,8 +306,6 @@
 		!important;
 	min-height: 500px;
 	overflow: hidden;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
-	border: 1px solid #CACACA;
 	z-index: 1;
 }
 
@@ -348,6 +346,16 @@
 	transition: all 300ms cubic-bezier(.25, .1, .25, 1) 0s !important;
 	-webkit-transition: all 300ms cubic-bezier(.25, .1, .25, 1) 0s
 		!important;
+		
+	border-left: 1px solid #cacaca !important;
+    border-right: 1px solid #cacaca !important;
+}
+#left-menu .item:first-child{
+	border-top: 1px solid #cacaca !important;
+}
+
+#left-menu .item:last-child{
+	border-bottom: 1px solid #cacaca !important;
 }
 
 #left-menu .item.first-level-head {
