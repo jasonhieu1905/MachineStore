@@ -63,7 +63,7 @@ function resizeSlider() {
     $('.image1').height(altezzaDiv).width($('.container').width() + 30);
     $('.image2').height(altezzaDiv).width($('.container').width() + 30);
 }
-var menuHeight = $(window).height() - 120 - 20;
+var menuHeight = $(window).height() - 600 - 20;
 $(document).ready(function() {
 	getCategories(function(data){
 		category = new menu({data:data,parent:"category-id"})
@@ -143,8 +143,8 @@ $(document).ready(function() {
 					})
 					
 					$('#left-menu').css('max-height',menuHeight);
-					var leftMenuHeight = $('#left-menu').height();	
-					if(leftMenuHeight > menuHeight){
+					var leftMenuHeight = 500;//$('#left-menu').height();	
+					if(leftMenuHeight < menuHeight){
 						leftMenuHeight = menuHeight;
 					}
 					
@@ -166,7 +166,7 @@ $(document).ready(function() {
 														_h + headerHeight);
 											} else {
 												$("#left-menu")
-														.css("top",($('body')[0].scrollHeight - footerHeight - leftMenuHeight - 80));
+														.css("top",($('body')[0].scrollHeight - footerHeight - leftMenuHeight - 20));
 											}
 										} else {
 											$("#left-menu").css("top", bannerHeight + headerHeight);
@@ -217,7 +217,7 @@ $(document).ready(function() {
 						}
 					});
 					
-					$("[id*=catagory-]").on("click",function(){
+					$("[id*=catagory-]").on("click touchstart",function(){
 						var index = $(this).attr("index");
 						var productCatagory = "product-"+index;
 						var product = $("#"+productCatagory);

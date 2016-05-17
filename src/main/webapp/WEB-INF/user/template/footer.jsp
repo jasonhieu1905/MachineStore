@@ -42,8 +42,13 @@
 			<hr
 				style="width: 100%; border-color: #A7A5A2; margin: 5PX 0PX; FLOAT: LEFT;">
 			<div class="counter">
+<<<<<<< Updated upstream
 				<span style="padding: 0 10px"><i class="fa fa-users fa-2x"></i>
 					Tổng lượt truy cập <b>${accessPage}</b> lượt</span>
+=======
+				<span style="padding: 0 10px"><i class="fa fa-user fa-2x"></i> Hôm nay <b>3000</b> lượt </span>
+				<span style="padding: 0 10px"><i class="fa fa-users fa-2x"></i> Tổng cộng  <b>3000</b> lượt</span>
+>>>>>>> Stashed changes
 			</div>
 		</div>
 

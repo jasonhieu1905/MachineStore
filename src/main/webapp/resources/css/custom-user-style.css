@@ -304,7 +304,7 @@
 	transition: all 600ms cubic-bezier(.25, .1, .25, 1) 0s !important;
 	-webkit-transition: all 600ms cubic-bezier(.25, .1, .25, 1) 0s
 		!important;
-	max-height: 510px;
+	min-height: 500px;
 	overflow: hidden;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
 	border: 1px solid #CACACA;
