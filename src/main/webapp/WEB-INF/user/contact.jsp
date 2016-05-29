@@ -13,10 +13,10 @@
 </style>
 </head>
 <div>
-	<input type="hidden" value="${contact.mapX}" id="mapX" /> 
-	<input type="hidden" value="${contact.mapY}" id="mapY" /> 
-	<input type="hidden" value="${contact.name}" id="name" />
-	<input type="hidden" value="${contact.zoommap}" id="zoommap" />
+	<input type="hidden" value="${contact.mapX}" id="mapX" /> <input
+		type="hidden" value="${contact.mapY}" id="mapY" /> <input
+		type="hidden" value="${contact.name}" id="name" /> <input
+		type="hidden" value="${contact.zoommap}" id="zoommap" />
 	<div id="map"></div>
 	<script>
 		function initMap() {
@@ -48,7 +48,7 @@
 	<div class="row" style="margin-top: 20px">
 		<div class="col-md-7">
 			<h2 style="margin-bottom: 20px">Liên hệ với chúng tôi</h2>
-			<form:form modelAttribute="message"
+			<form:form modelAttribute="message" id="form-contact"
 				action="${pageContext.request.contextPath}/addNewMessage"
 				method="post">
 				<div class="form-group">
@@ -99,3 +99,4 @@
 		</div>
 	</div>
 </div>
+

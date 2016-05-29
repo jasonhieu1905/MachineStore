@@ -148,13 +148,14 @@ public class AdminProductController {
 		return "adminEditProduct";
 	}
 	
-	@RequestMapping(value="/editProduct/{id}",method = RequestMethod.POST)
+	@RequestMapping(value="/editProduct",method = RequestMethod.POST)
 	public String handleEditProduct(@ModelAttribute("productForm") ProductForm productForm,HttpServletRequest request) throws IllegalStateException, IOException{
 		String savedDirectory = FileUtils.directoryImage(request);
 		Product product = productForm.getProduct();
 		int idProduct = product.getId().intValue();
 		List<MultipartFile> mainFiles = productForm.getMainFileUpload().getFiles();
 		List<MultipartFile> detailFiles = productForm.getDetailFileUpload().getFiles();
+		
 		if (null != mainFiles && mainFiles.size() > 0){
 			MultipartFile file = mainFiles.get(0);
 			String mainFileUploadName = file.getOriginalFilename();

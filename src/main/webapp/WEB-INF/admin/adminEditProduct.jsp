@@ -7,8 +7,6 @@
 	rel="stylesheet" />
 <link href="<c:url value="/resources/css/jquery-te-1.4.0.css"/>"
 	rel="stylesheet" />
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery.min.js" charset="utf-8"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <script src="<c:url value="/resources/js/jquery-te-1.4.0.min.js" />"></script>
