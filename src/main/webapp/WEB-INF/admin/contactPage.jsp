@@ -101,6 +101,18 @@
 				<form:input id="uploadIsoImage" path="fileUpload.files"
 					multiple="multiple" type="file" accept="image/*" />
 			</div>
+			
+			<div class="form-group">
+				<label>Banner Footer</label>
+				<div class="row" id="${image}">
+					<img alt="" height="120px" width="220px"
+						style="margin-bottom: 20px; margin-left: 10px"
+						src="${pageContext.request.contextPath}/resources/images/${contact.bannerfooter}" />
+				</div>
+				<label for="image">Thay thế banner footer :</label>
+				<form:input id="uploadBannerFooter" path="bannerFooterFileUpload.files"
+					type="file" accept="image/*" />
+			</div>
 
 			<div class="row" style="margin-top: 20px">
 				<button type="submit" class="btn btn-default">Cập nhật</button>
@@ -143,6 +155,8 @@
 		
 	}
 	
+	function deleteBannerImage(bannerFooter,e)
+	
 	$("#myModal .OK").on("click", function(e) {
         $("#myModal").modal('hide');     // dismiss the dialog
         $.ajax({
@@ -153,8 +167,7 @@
 			},
 			success : function(data) {
 				removedElement.remove();
-				window.location = "<%=request.getContextPath()%>
-	/admin/contact";
+				window.location = "<%=request.getContextPath()%>/admin/contact";
 									},
 									error : function(result) {
 										console.log(result);

@@ -58,6 +58,11 @@ public class Contact implements Serializable {
     
     @Column(name="zoommap")
     private int zoommap;
+    
+    @Column(name="bannerfooter")
+    private String bannerfooter;
+    
+    private FileUpload bannerFooterFileUpload;
 
     public Contact() {
     }
@@ -66,19 +71,24 @@ public class Contact implements Serializable {
         this.id = id;
     }
 
-    public Contact(Integer id, String name, String address, String phone, String email, String mapX, String mapY, String workingtime, String isoimage) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
-        this.mapX = mapX;
-        this.mapY = mapY;
-        this.workingtime = workingtime;
-        this.isoimage = isoimage;
-    }
 
-    public Integer getId() {
+    public Contact(Integer id, String name, String address, String phone, String email, String mapX, String mapY,
+			String workingtime, String isoimage, int zoommap, String bannerfooter) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.phone = phone;
+		this.email = email;
+		this.mapX = mapX;
+		this.mapY = mapY;
+		this.workingtime = workingtime;
+		this.isoimage = isoimage;
+		this.zoommap = zoommap;
+		this.bannerfooter = bannerfooter;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -157,6 +167,24 @@ public class Contact implements Serializable {
 
 	public void setZoommap(int zoommap) {
 		this.zoommap = zoommap;
+	}
+	
+
+	public String getBannerfooter() {
+		return bannerfooter;
+	}
+
+	public void setBannerfooter(String bannerfooter) {
+		this.bannerfooter = bannerfooter;
+	}
+	
+
+	public FileUpload getBannerFooterFileUpload() {
+		return bannerFooterFileUpload;
+	}
+
+	public void setBannerFooterFileUpload(FileUpload bannerFooterFileUpload) {
+		this.bannerFooterFileUpload = bannerFooterFileUpload;
 	}
 
 	@Override

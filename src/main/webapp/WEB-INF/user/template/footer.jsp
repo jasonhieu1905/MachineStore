@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <div id="main-footer">
 
 	<div class="container">
 		<div class="col-xs-12 col-md-7 col-lg-7 left">
 			<h3>${contact.name }</h3>
 			<img
-				src="http://ownastore.hallmark.com/wp-content/uploads/2012/12/poster-store-landing-1360x598.jpg"
+				src="${pageContext.request.contextPath}/resources/images/${contact.bannerfooter}"
 				width="300px" height="150px" class="store" />
 
 			<div class="info">
@@ -27,20 +28,13 @@
 
 		</div>
 		<div class="col-xs-12 col-md-5 col-lg-5 right">
-			<div class="thumbnail logo">
-				<img
-					src="${pageContext.request.contextPath}/resources/images/isoImage1.jpg">
-			</div>
-			<div class="thumbnail logo">
-				<img
-					src="${pageContext.request.contextPath}/resources/images/isoImage2.jpg">
-			</div>
-			<div class="thumbnail logo">
-				<img
-					src="${pageContext.request.contextPath}/resources/images/isoImage3.png">
-			</div>
-			<hr
-				style="width: 100%; border-color: #A7A5A2; margin: 5PX 0PX; FLOAT: LEFT;">
+			<c:forEach var="iso" items="${fn:split(contact.isoimage, ',')}">
+				<div class="thumbnail logo">
+					<img
+						src="${pageContext.request.contextPath}/resources/images/${iso}">
+				</div>
+			</c:forEach>
+			<hr style="width: 100%; border-color: #A7A5A2; margin: 5PX 0PX; FLOAT: LEFT;">
 			<div class="counter">
 				<span style="padding: 0 10px"><i class="fa fa-users fa-2x"></i>
 					Tổng lượt truy cập <b>${accessPage}</b> lượt</span>
