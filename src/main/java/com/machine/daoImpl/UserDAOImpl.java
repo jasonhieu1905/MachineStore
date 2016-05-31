@@ -27,4 +27,18 @@ public class UserDAOImpl implements UserDAO {
 		query.setParameter("password", password);
 		return (User) query.list().get(0);
 	}
+
+	@Override
+	public User getUserByUsername(String username) {
+		Query query = getSession().createQuery("from User Where username=:username");
+		query.setParameter("username", username);
+		return (User) query.list().get(0);
+	}
+
+	@Override
+	public void updateUser(User user) {
+		getSession().update(user);
+	}
+	
+	
 }

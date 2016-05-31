@@ -26,4 +26,24 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	@Override
+	public User getUserByUsername(String username) {
+		try{
+			return userDAO.getUserByUsername(username);
+		}catch(Exception e){
+			return null;
+		}
+	}
+
+	@Override
+	public void updateUser(User user) {
+		try{
+			 userDAO.updateUser(user);
+		}catch(Exception e){
+			System.out.println("Can not update user" + e.toString());
+		}
+	}
+	
+	
+
 }

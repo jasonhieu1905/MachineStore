@@ -62,8 +62,6 @@ public class Contact implements Serializable {
     @Column(name="bannerfooter")
     private String bannerfooter;
     
-    private FileUpload bannerFooterFileUpload;
-
     public Contact() {
     }
 
@@ -176,15 +174,6 @@ public class Contact implements Serializable {
 
 	public void setBannerfooter(String bannerfooter) {
 		this.bannerfooter = bannerfooter;
-	}
-	
-
-	public FileUpload getBannerFooterFileUpload() {
-		return bannerFooterFileUpload;
-	}
-
-	public void setBannerFooterFileUpload(FileUpload bannerFooterFileUpload) {
-		this.bannerFooterFileUpload = bannerFooterFileUpload;
 	}
 
 	@Override

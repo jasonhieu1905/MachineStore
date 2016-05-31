@@ -41,6 +41,7 @@ public class AdminCategoryController {
 		ModelAndView modelAndView = new ModelAndView();
 		Category category = categoryService.getCategoryById(id);
 		List<Category> categories = categoryService.getCategoriesMainProduct();
+		modelAndView.addObject("pageId", activeMenuLeft);
 		modelAndView.addObject("currentCategory",category);
 		modelAndView.addObject("categories",categories);
 		modelAndView.setViewName("categoryPage");

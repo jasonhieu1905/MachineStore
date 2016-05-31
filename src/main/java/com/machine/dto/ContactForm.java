@@ -8,8 +8,17 @@ public class ContactForm {
 	private Contact contact;
 	
 	private FileUpload fileUpload;
-
 	
+	private FileUpload bannerFooterUpload;
+	
+	public FileUpload getBannerFooterUpload() {
+		return bannerFooterUpload;
+	}
+
+	public void setBannerFooterUpload(FileUpload bannerFooterUpload) {
+		this.bannerFooterUpload = bannerFooterUpload;
+	}
+
 	public Contact getContact() {
 		return contact;
 	}
@@ -29,6 +38,7 @@ public class ContactForm {
 	public ContactForm(){
 		this.contact = new Contact();
 		this.fileUpload = new FileUpload();
+		this.bannerFooterUpload = new FileUpload();
 	}
 
 }

@@ -20,63 +20,63 @@
 			<div class="row">
 				<div class="col-md-12 form-group">
 					<label for="parentId">Tên cửa hàng: </label>
-					<form:input required="required" path="contact.name" type="text" class="form-control"
-						name="name" value="${contact.name}" />
+					<form:input required="required" path="contact.name" type="text"
+						class="form-control" name="name" value="${contact.name}" />
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-md-12 form-group">
 					<label for="parentId">Đia chỉ: </label>
-					<form:textarea required="required" path="contact.address" class="form-control"
-						value="${contact.address}" />
+					<form:textarea required="required" path="contact.address"
+						class="form-control" value="${contact.address}" />
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-md-12 form-group">
 					<label for="parentId">Số điện thoại: </label>
-					<form:input required="required" type="text" class="form-control" path="contact.phone"
-						name="phone" value="${contact.phone}" />
+					<form:input required="required" type="text" class="form-control"
+						path="contact.phone" name="phone" value="${contact.phone}" />
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-md-12 form-group">
 					<label for="parentId">Email: </label>
-					<form:input required="required" name="email" path="contact.email" type="email"
-						class="form-control" value="${contact.email}" />
+					<form:input required="required" name="email" path="contact.email"
+						type="email" class="form-control" value="${contact.email}" />
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-md-12 form-group">
 					<label for="parentId">Thời gian làm việc: </label>
-					<form:textarea required="required" path="contact.workingtime" name="workingtime"
-						class="form-control" value="${contact.workingtime}" />
+					<form:textarea required="required" path="contact.workingtime"
+						name="workingtime" class="form-control"
+						value="${contact.workingtime}" />
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-md-6 form-group">
 					<label for="parentId">Hoành độ: </label>
-					<form:input required="required" path="contact.mapX" name="mapX" class="form-control"
-						value="${contact.mapX}" />
+					<form:input required="required" path="contact.mapX" name="mapX"
+						class="form-control" value="${contact.mapX}" />
 				</div>
 				<div class="col-md-6 form-group">
 					<label for="parentId">Tung độ: </label>
-					<form:input required="required" path="contact.mapY" name="mapY" class="form-control"
-						value="${contact.mapY}" />
+					<form:input required="required" path="contact.mapY" name="mapY"
+						class="form-control" value="${contact.mapY}" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12 form-group">
-					<label for="zoomMap">Zoom google map: </label> 
-					<form:input required="required" path="contact.zoommap" class="form-control" type="number"
-						value="${contact.zoommap}" />
+					<label for="zoomMap">Zoom google map: </label>
+					<form:input required="required" path="contact.zoommap"
+						class="form-control" type="number" value="${contact.zoommap}" />
 				</div>
 			</div>
-
 			<div class="row">
 				<label for="isoImage">Iso : </label>
 			</div>
@@ -101,16 +101,22 @@
 				<form:input id="uploadIsoImage" path="fileUpload.files"
 					multiple="multiple" type="file" accept="image/*" />
 			</div>
+
+			<form:input type="hidden" path="contact.bannerfooter" id="bannerFooter" name="bannerFooter"/>
 			
-			<div class="form-group">
-				<label>Banner Footer</label>
-				<div class="row" id="${image}">
-					<img alt="" height="120px" width="220px"
-						style="margin-bottom: 20px; margin-left: 10px"
-						src="${pageContext.request.contextPath}/resources/images/${contact.bannerfooter}" />
+			<div class="row">
+				<label for="isoImage">Banner Footer : </label>
+			</div>
+			<div class="row">
+				<div class="col-md-9 form-group">
+					<img alt="" height="120px" width="220px" id="imgBannerFooter"
+								style="margin-bottom: 20px; margin-left: 10px"
+								src="" />
 				</div>
-				<label for="image">Thay thế banner footer :</label>
-				<form:input id="uploadBannerFooter" path="bannerFooterFileUpload.files"
+			</div>
+			<div class="form-group">
+				<label for="image">Thay đổi banner Footer :</label>
+				<form:input id="bannerFooter" path="bannerFooterUpload.files"
 					type="file" accept="image/*" />
 			</div>
 
@@ -142,6 +148,8 @@
 </div>
 
 <script type="text/javascript">
+	
+	$("#imgBannerFooter").attr("src","${pageContext.request.contextPath}/resources/images/"+$("#bannerFooter").val());
 	var isoImage = "";
 	var removedElement;
 	function deleteIsoImage(imageName,e){
@@ -154,8 +162,6 @@
 		isoImage = imageName;
 		
 	}
-	
-	function deleteBannerImage(bannerFooter,e)
 	
 	$("#myModal .OK").on("click", function(e) {
         $("#myModal").modal('hide');     // dismiss the dialog

@@ -25,6 +25,8 @@
 					class="fa fa-picture-o"></i> Banner</a>
 			<li><a href="${pageContext.request.contextPath}/adminMessage"><i
 					class="fa fa-envelope-o"></i> Hộp thư khách hàng</a>
+			<li><a href="${pageContext.request.contextPath}/adminInfo"><i
+					class="fa fa-user"></i> Thông tin cá nhân</a>		
 		</ul>
 
 	</div>

@@ -77,4 +77,9 @@
 			value="/WEB-INF/admin/adminMessage.jsp" />
 	</definition>
 	
+	<definition name="adminInfo" extends="AdminTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/admin/adminInfoPage.jsp" />
+	</definition>
+	
 </tiles-definitions>

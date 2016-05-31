@@ -65,6 +65,7 @@ public class AdminContactController {
 		if(!listIsoImage.isEmpty()){
 			listIsoImage += ",";
 		}
+		//Handler image iso
 		if (null != files && files.size() > 0) {
             for (int i=0;i<files.size();i++) {
             	MultipartFile multipartFile = files.get(i);
@@ -77,9 +78,25 @@ public class AdminContactController {
                 	listIsoImage += ",";
                 }
             }
+            listIsoImage = FileUtils.removeLastCharacterIfComma(listIsoImage);
+            contact.setIsoimage(listIsoImage);
         }
-		listIsoImage = FileUtils.removeLastCharacterIfComma(listIsoImage);
-		contact.setIsoimage(listIsoImage);
+		
+		
+		//Handle image banner footer
+		List<MultipartFile> bannerFooterFile = contactForm.getBannerFooterUpload().getFiles();
+		if(null != bannerFooterFile && bannerFooterFile.size() > 0){
+			for (int i=0;i<bannerFooterFile.size();i++) {
+            	MultipartFile multipartFile = bannerFooterFile.get(i);
+                String fileName = multipartFile.getOriginalFilename();
+                if (!"".equalsIgnoreCase(fileName)) {
+                	listIsoImage += fileName;
+                	multipartFile.transferTo(new File(savedDirectory + fileName));
+                	contact.setBannerfooter(fileName);
+                }
+            }
+		}
+		
 		contactService.updateContact(contact);
 		try {
             wait(2000);
