@@ -2,6 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!-- /. BODY  -->
 <link href="<c:url value="/resources/css/jquery-jte.css"/>"
 	rel="stylesheet" />
@@ -19,7 +20,7 @@
 			<form:input type="hidden" path="product.id" id="productId" value="${product.id}" />
 			<div class="control-group">
 				<label for="name">Tên sản phẩm :</label>
-				<form:input type="text" path="product.name"
+				<form:input type="text" path="product.name" required="required"
 					class="form-control control-group" id="name"
 					value="${product.name}" />
 			</div>
@@ -46,6 +47,7 @@
 
 			<div class="form-group">
 				<label>Hình chính sản phẩm</label>
+				<form:input path="product.image" type="hidden" />
 				<div class="row" id="${image}">
 					<img alt="" height="120px" width="220px"
 						style="margin-bottom: 20px; margin-left: 10px"
@@ -58,6 +60,7 @@
 
 			<div class="form-group">
 				<label>Hình chi tiết sản phẩm</label>
+				<form:input path="product.zoomImage" type="hidden" />
 				<c:forEach var="image" items="${detailImages}">
 					<div class="row" id="${image}">
 						<div class="col-md-9 form-group">
@@ -67,7 +70,7 @@
 						</div>
 						<div class="col-md-3 form-group">
 							<input type="button" class="btn-danger" value="Xoá hình"
-								onclick="deleteDetailImage('${image}',this)" />
+								onclick="deleteDetailImage('${fn:trim(image)}' , this )" />
 						</div>
 					</div>
 				</c:forEach>
@@ -104,8 +107,18 @@
 	</div>
 </div>
 
-<script>
+<script type="text/javascript">
+
 	var isoImage = "";
+	function deleteDetailImage(imageName,e){
+		removedElement = $(e.parentElement.parentElement);
+		$("#myModal").modal({ // wire up the actual modal functionality and show the dialog
+			"backdrop" : "static",
+			"keyboard" : true,
+			"show" : true
+		});
+		isoImage = imageName;
+	}
 	$(document).ready(function() {
 		$("#type").change(function() {
 			var value = $("#type").val();
@@ -135,15 +148,7 @@
 		})
 	});
 	
-	function deleteDetailImage(imageName,e){
-		removedElement = $(e.parentElement.parentElement);
-		$("#myModal").modal({ // wire up the actual modal functionality and show the dialog
-			"backdrop" : "static",
-			"keyboard" : true,
-			"show" : true
-		});
-		isoImage = imageName;
-	}
+
 	
 	$("#myModal .OK").on("click", function(e) {
         $("#myModal").modal('hide');     // dismiss the dialog
