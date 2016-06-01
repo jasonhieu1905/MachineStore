@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.machine.model.Category;
 import com.machine.model.User;
 import com.machine.service.CategoryService;
-import com.machine.service.ContactService;
 import com.machine.service.UserService;
 
 @Controller

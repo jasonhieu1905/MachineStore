@@ -1,5 +1,7 @@
 package com.machine.controller.user;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +20,7 @@ public class MessageController {
 	
 	@RequestMapping(value="/addNewMessage",method = RequestMethod.POST)
 	public ModelAndView listAllAccessPage(@ModelAttribute("message") Message message){
+		message.setCreateddate(new Date());
 		messageService.addNewMessage(message);
 		return new ModelAndView("redirect:/contact");
 	}

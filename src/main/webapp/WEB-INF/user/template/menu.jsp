@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="left-menu" class="row">
 	<div class="" id="scroller">
 		<div class="item first-level-head">
-			<i class="fa fa-angle-double-down custom-arrow"></i>Catelogies
+			<i class="fa fa-angle-double-down custom-arrow"></i>Sản phẩm chính
 		</div>
 		<c:forEach items="${catalogues}" var="item">
 			<c:if test="${item.productList.size()>=0 }">
@@ -15,7 +17,7 @@
 		</c:forEach>
 
 		<div class="item first-level-head red">
-			<i class="fa fa-angle-double-down custom-arrow"></i>Accessories
+			<i class="fa fa-angle-double-down custom-arrow"></i>Phụ kiện
 		</div>
 		<c:forEach items="${accessories}" var="item">
 			<c:if test="${item.productList.size()>=0 }">

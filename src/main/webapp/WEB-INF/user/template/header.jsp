@@ -4,7 +4,7 @@
 <div class="navy navy-header navy-fix-top">
 	<div class="container">
 		<div class="row">
-			<a class="navy-logo" href="#"><img height="100px" src="${pageContext.request.contextPath}/resources/images/logo-fixed.png" /></a>
+			<a class="navy-logo" href="${pageContext.request.contextPath}/home"><img height="100px" src="${pageContext.request.contextPath}/resources/images/logo-fixed.png" /></a>
 			<ul>
 				<li id="searchIcon"><a><i class="fa fa-search"></i></a></li>
 

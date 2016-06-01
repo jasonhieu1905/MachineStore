@@ -26,6 +26,7 @@
 					<th>Số điện thoại</th>
 					<th>Email</th>
 					<th>Nội dung</th>
+					<th>Ngày tạo</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -35,6 +36,7 @@
 						<td>${message.phone}</td>
 						<td>${message.email}</td>
 						<td>${message.content}</td>
+						<td>${message.createddate}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -1,6 +1,7 @@
 package com.machine.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,15 +37,20 @@ public class Message implements Serializable {
     @Column(name = "content")
     private String content;
     
-    public Message(){}
+    @Column(name = "createddate")
+    private Date createddate;
     
-	public Message(Integer id, String name, String email, String phone, String content) {
+    public Message(){}
+
+	public Message(Integer id, String name, String email, String phone,
+			String content, Date createddate) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.content = content;
+		this.createddate = createddate;
 	}
 
 	public Integer getId() {
@@ -86,7 +92,17 @@ public class Message implements Serializable {
 	public void setContent(String content) {
 		this.content = content;
 	}
-    
-    
+
+
+	public Date getCreateddate() {
+		return createddate;
+	}
+
+
+	public void setCreateddate(Date createddate) {
+		this.createddate = createddate;
+	}
+
+	
 }
 

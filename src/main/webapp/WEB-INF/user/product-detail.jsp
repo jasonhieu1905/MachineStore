@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="row product">
 	<div class="product-left">
@@ -35,7 +37,7 @@
 <div class="row product-section">
 	<c:if test="${currentCategory.productList.size() >0 }">
 		<div class="title-container">
-			<div class="title">The products you may want to see</div>
+			<div class="title">Những sản phẩm liên quan</div>
 		</div>
 		<div class="product col-xs-12">
 			<c:forEach items="${currentCategory.productList}" var="product" begin="0"

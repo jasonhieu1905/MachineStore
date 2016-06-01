@@ -126,7 +126,7 @@ public class AdminProductController {
 			product.setZoomImage(detailsImageName);
 		}
 		productService.addNewProduct(product);
-		return "redirect:/adminBanner/4";
+		return "redirect:/products";
 	}
 
 	@RequestMapping(value = "/editProduct/{id}", method = RequestMethod.GET)

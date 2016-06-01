@@ -20,7 +20,7 @@
 			<div class="control-group">
 				<label for="name">Tên sản phẩm :</label>
 				<form:input type="text" path="product.name"
-					class="form-control control-group" id="name" />
+					class="form-control control-group" id="name" required="required" />
 			</div>
 			<div class="form-group">
 				<label>Menu sản phẩm :</label>
@@ -32,20 +32,20 @@
 			</div>
 			<div class="form-group">
 				<label for="type">Hình chính sản phẩm :</label>
-				<form:input path="mainFileUpload.files" type="file" accept="image/*" />
+				<form:input path="mainFileUpload.files" type="file" accept="image/*" required="required" />
 			</div>
 			<div class="form-group">
 				<label for="type">Hình chi tiết sản phẩm :</label>
 				<form:input path="detailFileUpload.files" multiple="multiple"
-					type="file" accept="image/*" />
+					type="file" accept="image/*" required="required" />
 			</div>
 			<div class="form-group">
 				<label for="type">Độ ưu tiên :</label>
-				<form:input path="product.priorityOrder" type="number" />
+				<form:input path="product.priorityOrder" type="number" required="required" />
 			</div>
 			<div class="form-group">
 				<label for="type">Mô tả về sản phẩm :</label>
-				<form:input path="product.description" name="input" type="text"  class="jqte-test" />
+				<form:input path="product.description" name="input" type="text"  class="jqte-test" required="required" />
 			</div>
 			<button type="submit" class="btn btn-default">Thêm mới sản
 				phẩm</button>
