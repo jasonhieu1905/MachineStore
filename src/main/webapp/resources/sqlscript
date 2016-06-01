@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
+-- version 4.4.14
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: May 17, 2016 at 05:36 PM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.5.30
+-- Host: 127.0.0.1
+-- Generation Time: Jun 01, 2016 at 11:14 AM
+-- Server version: 5.6.26
+-- PHP Version: 5.5.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `MachineStore`
+-- Database: `machinestore`
 --
 
 -- --------------------------------------------------------
@@ -26,11 +26,11 @@ SET time_zone = "+00:00";
 -- Table structure for table `access`
 --
 
-CREATE TABLE `access` (
+CREATE TABLE IF NOT EXISTS `access` (
   `id` int(11) NOT NULL,
   `accessdate` date NOT NULL,
   `accessnumber` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `access`
@@ -41,7 +41,10 @@ INSERT INTO `access` (`id`, `accessdate`, `accessnumber`) VALUES
 (2, '2016-03-09', 42),
 (3, '2016-05-08', 7),
 (4, '2016-05-09', 9),
-(5, '2016-05-17', 6);
+(5, '2016-05-17', 6),
+(6, '2016-05-25', 3),
+(7, '2016-05-31', 8),
+(8, '2016-06-01', 8);
 
 -- --------------------------------------------------------
 
@@ -49,12 +52,12 @@ INSERT INTO `access` (`id`, `accessdate`, `accessnumber`) VALUES
 -- Table structure for table `banner`
 --
 
-CREATE TABLE `banner` (
+CREATE TABLE IF NOT EXISTS `banner` (
   `id` int(11) NOT NULL,
   `image` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `priority` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `banner`
@@ -74,13 +77,13 @@ INSERT INTO `banner` (`id`, `image`, `priority`, `name`) VALUES
 -- Table structure for table `category`
 --
 
-CREATE TABLE `category` (
+CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL,
   `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `priorityId` int(11) NOT NULL,
   `parentId` int(11) DEFAULT NULL,
   `type` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `category`
@@ -91,7 +94,13 @@ INSERT INTO `category` (`id`, `name`, `priorityId`, `parentId`, `type`) VALUES
 (2, 'Van cửa', 2, NULL, 1),
 (3, 'Van an toàn ABC', 3, NULL, 1),
 (4, 'Van giảm áp', 4, NULL, 1),
-(6, 'Phụ kiện van cửa', 0, 2, 2);
+(6, 'Phụ kiện van cửa', 0, 2, 2),
+(7, 'Van Samsung', 4, 2, 1),
+(8, 'Van Apple', 5, 1, 1),
+(9, 'Van Nokia', 5, 3, 1),
+(10, 'Van Microsoft', 6, 4, 6),
+(11, 'Phu kien Samsung', 4, 7, 2),
+(12, 'Phu kien van apple', 5, 8, 2);
 
 -- --------------------------------------------------------
 
@@ -99,7 +108,7 @@ INSERT INTO `category` (`id`, `name`, `priorityId`, `parentId`, `type`) VALUES
 -- Table structure for table `contact`
 --
 
-CREATE TABLE `contact` (
+CREATE TABLE IF NOT EXISTS `contact` (
   `id` int(11) NOT NULL,
   `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
@@ -109,15 +118,16 @@ CREATE TABLE `contact` (
   `map_y` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `workingtime` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `isoimage` varchar(3000) COLLATE utf8_unicode_ci NOT NULL,
-  `zoommap` int(11) DEFAULT NULL
+  `zoommap` int(11) DEFAULT NULL,
+  `bannerfooter` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `contact`
 --
 
-INSERT INTO `contact` (`id`, `name`, `address`, `phone`, `email`, `map_x`, `map_y`, `workingtime`, `isoimage`, `zoommap`) VALUES
-(1, 'Cửa hàng Thành Mỹ 123', '123 Tan Son Nhi, Tan Phu', '0938 111222', 'abc@gmail.com', '10.795638', '106.632929', '7h - 19h', 'isoImage1.jpg', 14);
+INSERT INTO `contact` (`id`, `name`, `address`, `phone`, `email`, `map_x`, `map_y`, `workingtime`, `isoimage`, `zoommap`, `bannerfooter`) VALUES
+(1, 'Cửa hàng Thành Mỹ 123', '123 Tan Son Nhi, Tan Phu', '0938 111222', 'abc@gmail.com', '21.024135', '105.840911', '7h - 19h', 'isoImage1.jpg', 14, 'bannerFooter.jpg');
 
 -- --------------------------------------------------------
 
@@ -125,13 +135,21 @@ INSERT INTO `contact` (`id`, `name`, `address`, `phone`, `email`, `map_x`, `map_
 -- Table structure for table `message`
 --
 
-CREATE TABLE `message` (
+CREATE TABLE IF NOT EXISTS `message` (
   `id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `content` varchar(500) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `content` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `createddate` datetime DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`id`, `name`, `email`, `phone`, `content`, `createddate`) VALUES
+(5, 'hieu', 'gege@gmail.com', '99897949', 'test', '2016-06-01 11:02:34');
 
 -- --------------------------------------------------------
 
@@ -139,7 +157,7 @@ CREATE TABLE `message` (
 -- Table structure for table `product`
 --
 
-CREATE TABLE `product` (
+CREATE TABLE IF NOT EXISTS `product` (
   `id` int(11) NOT NULL,
   `name` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `createddate` datetime DEFAULT NULL,
@@ -148,7 +166,7 @@ CREATE TABLE `product` (
   `zoomImage` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `priorityOrder` int(11) DEFAULT NULL,
   `description` mediumtext COLLATE utf8_unicode_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product`
@@ -178,9 +196,11 @@ INSERT INTO `product` (`id`, `name`, `createddate`, `categoryId`, `image`, `zoom
 (27, 'Sản phẩm phụ kiện van cửa 3', '2016-03-07 00:00:00', 6, 'product2.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
 (28, 'Sản phẩm phụ kiện van cửa 4', '2016-03-07 00:00:00', 6, 'product3.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
 (29, 'Sản phẩm phụ kiện van cửa 5', '2016-03-07 00:00:00', 6, 'product5.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
-(30, 'Sản phẩm phụ kiện van cửa 6', '2016-03-07 00:00:00', 6, 'product6.png', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT\r\n\r\n- Size : 40A - 1000A\r\n\r\n- Thân: Gang dẻo\r\n\r\n- Đĩa : EPDM + Gang dẻo\r\n\r\n- Trục: Inox \r\n\r\n- Nhiệt độ: 0°C - 80°C\r\n\r\n- Áp suất: PN16\r\n\r\n- Kiểu: Lắp bích.\r\n\r\n- Sử dụng: Nước, Nước thải, Khí ...\r\n\r\n* Xuất xứ : Dong Jin -  Korea'),
-(31, 'testSP', '2016-04-14 00:02:36', 1, 'IMG_28032016_222620.png', 'IMG_28032016_222236.png,samsung-galaxy-note-5-review-aa-28-of-32-840x473.jpg', 33, NULL),
-(32, 'hieudoan', '2016-04-16 13:22:42', 1, '20160401_213923.jpg', '20160110_163428.jpg,20160110_165502.jpg', 44, 'efqfeqfe<span style="color:rgb(252,229,205);">feqfeqfeq</span><p><ol><li><span style="color: rgb(252, 229, 205); line-height: 1.42857;">feqfeqfeqdwqdwqd</span><br></li></ol><ul><li style="text-align: center;">veqveqveq</li></ul><span style="text-align: center; line-height: 1.42857;">eqceqcqeceqefeqfeq</span><br></p>');
+(30, 'Sản phẩm phụ kiện van cửa 6', '2016-03-07 00:00:00', 1, 's1.PNG', 'product2.png,product3.png,product5.png', 3, '** THÔNG SỐ KỸ THUẬT- Size : 40A - 1000A- Thân: Gang dẻo- Đĩa : EPDM + Gang dẻo- Trục: Inox - Nhiệt độ: 0°C - 80°C- Áp suất: PN16- Kiểu: Lắp bích.- Sử dụng: Nước, Nước thải, Khí ...* Xuất xứ : Dong Jin -  Korea'),
+(33, 'Van cầu XYZ', '2016-05-25 11:29:22', 1, 'product3.png', 'product4.png,product5.png', 6, 'this is product about van cau'),
+(34, 'Van cau QRW', '2016-05-25 11:34:21', 1, 'product4.png', 'product1.png,product2.png', 34, 'san pham Van Cau QRW<p>Chất lượng cao</p>'),
+(35, 'new product of Van Cầu', '2016-06-01 11:08:59', 1, 'product1.png', 'product2.png,product3.png', 26, '<span style="color:rgb(255,0,0);">New product</span><p><b>Description 1</b></p><p><b>Description 2</b></p>'),
+(36, 'san pham mới 1', '2016-06-01 11:12:19', 1, 'product1.png', 'product3.png,product4.png', 33, '<ol><li>test 1</li><li>test 2</li><li>test 3</li></ol><p><span style="color: rgb(0, 255, 0);"><br></span></p>');
 
 -- --------------------------------------------------------
 
@@ -188,7 +208,7 @@ INSERT INTO `product` (`id`, `name`, `createddate`, `categoryId`, `image`, `zoom
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL,
   `username` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL
@@ -258,27 +278,27 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `access`
 --
 ALTER TABLE `access`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
 --
 -- Constraints for dumped tables
 --
