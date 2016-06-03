@@ -135,6 +135,7 @@ public class AdminProductController {
 		ProductForm productForm = new ProductForm();
 		productForm.setProduct(product);
 		modelMap.addAttribute("productForm", productForm);
+		modelMap.addAttribute("product", productForm.getProduct());
 		List<Category> categories = categoryService.getAllCategories();
 		modelMap.addAttribute("categories", categories);
 

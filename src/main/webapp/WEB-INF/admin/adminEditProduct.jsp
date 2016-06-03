@@ -2,7 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!-- /. BODY  -->
 <link href="<c:url value="/resources/css/jquery-jte.css"/>"
 	rel="stylesheet" />
@@ -17,25 +17,21 @@
 		<form:form modelAttribute="productForm"
 			action="${pageContext.request.contextPath}/editProduct" method="post"
 			enctype="multipart/form-data">
-			<form:input type="hidden" path="product.id" id="productId" value="${product.id}" />
+			<form:input type="hidden" path="product.id" id="productId"
+				value="${product.id}" />
 			<div class="control-group">
 				<label for="name">Tên sản phẩm :</label>
 				<form:input type="text" path="product.name" required="required"
-					class="form-control control-group" id="name"
-					value="${product.name}" />
+					class="form-control control-group" id="name" />
 			</div>
 			<div class="form-group">
 				<label>Menu sản phẩm :</label>
-				<form:select class="form-control" path="product.categoryId.id">
+				<form:select class="form-control" name="editProduct" path="product.categoryId.id">
+					<option value="${product.categoryId.id}" selected="selected">${product.categoryId.name}</option>
 					<c:forEach items="${categories}" var="cate">
-						<c:choose>
-							<c:when test="${product.categoryId.id == cate.id}">
-								<option value="${cate.id}" selected="selected">${cate.name}</option>
-							</c:when>
-							<c:otherwise>
-								<option value="${cate.id}">${cate.name}</option>
-							</c:otherwise>
-						</c:choose>
+						<c:if test="${cate.id != product.categoryId.id}">
+							<option value="${cate.id}">${cate.name}</option>
+						</c:if>
 					</c:forEach>
 				</form:select>
 			</div>
@@ -162,7 +158,8 @@
 			},
 			success : function(data) {
 				removedElement.remove();
-				window.location = "<%=request.getContextPath()%>/products";
+				window.location = "<%=request.getContextPath()%>
+	/products";
 			},
 			error : function(result) {
 				console.log(result);
@@ -170,7 +167,5 @@
 		});
 
 	});
-	
-	
 </script>
 
