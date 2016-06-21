@@ -1,6 +1,7 @@
 <!-- <div style="width:300px;height:100px;background-color:grey" class="flipInX animated"> navbar-fixed-top-->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <div class="navy navy-header navy-fix-top">
 	<div class="container">
 		<div class="row">
@@ -9,12 +10,10 @@
 				<li id="searchIcon"><a><i class="fa fa-search"></i></a></li>
 
 				<li class="${currentPage == 'home'? 'active': ''}"><a
-					href="${pageContext.request.contextPath}/home"><i class="fa fa-home"></i><span class="navy-text">Home
-							page</span></a></li>
+					href="${pageContext.request.contextPath}/home"><i class="fa fa-home"></i><span class="navy-text">Trang chủ</span></a></li>
 				<li class="dropdown ${currentPage == 'product'? 'active': ''}"><a
 					href="#" class="dropdown-toggle"><i
-						class="fa fa-barcode "></i><span class="navy-text">Main
-							Product</span></a>
+						class="fa fa-barcode "></i><span class="navy-text">Sản phẩm chính</span></a>
 					<div class="dropdown-menu sub-menu" id="category-id">
 						<div class="scroller">
 							
@@ -22,7 +21,7 @@
 					</div>
 				</li>
 				<li class="dropdown ${currentPage == 'accessories'? 'active': ''}"><a href="#" class="dropdown-toggle"> <i
-						class="fa fa-suitcase "></i><span class="navy-text">Accessories</span></a>
+						class="fa fa-suitcase "></i><span class="navy-text">Phụ kiện</span></a>
 					<div class="dropdown-menu sub-menu" id="accessories-id">
 						<div class="scroller">
 							
@@ -30,7 +29,7 @@
 					</div>
 				</li>
 				<li class="${currentPage == 'contact'? 'active': ''}"><a href="${pageContext.request.contextPath}/contact"><i class="fa fa-phone"></i><span
-						class="navy-text">Contact</span></a></li>
+						class="navy-text">Liên lạc với tôi</span></a></li>
 			</ul>
 		</div>
 	</div>
