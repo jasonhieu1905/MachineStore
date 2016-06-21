@@ -158,8 +158,7 @@
 			},
 			success : function(data) {
 				removedElement.remove();
-				window.location = "<%=request.getContextPath()%>
-	/products";
+				window.location = "<%=request.getContextPath()%>/products";
 			},
 			error : function(result) {
 				console.log(result);
