@@ -13,8 +13,7 @@ import com.machine.service.ContactService;
 @Transactional
 public class ContactServiceImpl implements ContactService{
 	private ContactDAO contactDAO;
-	
-	
+
 	public void setContactDAO(ContactDAO contactDAO) {
 		this.contactDAO = contactDAO;
 	}
@@ -28,6 +27,5 @@ public class ContactServiceImpl implements ContactService{
 	public void updateContact(Contact contact) {
 		 contactDAO.updateContact(contact);
 	}
-
 	
 }

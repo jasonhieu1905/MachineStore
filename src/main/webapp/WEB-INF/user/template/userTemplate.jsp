@@ -27,6 +27,7 @@
 	type="text/css"></link>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom-footer.css"
 	type="text/css"></link>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />	
 <script>var contextPath = "${pageContext.request.contextPath}"</script>
 <!--[if IE]>
 	<link rel="stylesheet" href="resources/css/ie.css" type="text/css" media="screen, projection"></link>
