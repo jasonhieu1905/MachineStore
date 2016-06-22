@@ -26,7 +26,8 @@
 			</div>
 			<div class="form-group">
 				<label>Menu sản phẩm :</label>
-				<form:select class="form-control" name="editProduct" path="product.categoryId.id">
+				<form:select class="form-control" name="editProduct"
+					path="product.categoryId.id">
 					<option value="${product.categoryId.id}" selected="selected">${product.categoryId.name}</option>
 					<c:forEach items="${categories}" var="cate">
 						<c:if test="${cate.id != product.categoryId.id}">
@@ -104,6 +105,16 @@
 </div>
 
 <script type="text/javascript">
+	$('.jqte-test').jqte();
+	
+	// settings of status
+	var jqteStatus = true;
+	$(".status").click(function() {
+		jqteStatus = jqteStatus ? false : true;
+		$('.jqte-test').jqte({
+			"status" : jqteStatus
+		})
+	});
 
 	var isoImage = "";
 	function deleteDetailImage(imageName,e){

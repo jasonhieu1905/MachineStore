@@ -61,22 +61,6 @@
 	</div>
 </div>
 
-<!-- set up the modal to start hidden and fade in and out -->
-<div id="myModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<!-- dialog body -->
-			<div class="modal-body">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				Bạn có chắc xoá message đã chọn?
-			</div>
-			<!-- dialog buttons -->
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary OK">OK</button>
-			</div>
-		</div>
-	</div>
-</div>
 
 <script type="text/javascript">
 	$(document).ready(function() {
