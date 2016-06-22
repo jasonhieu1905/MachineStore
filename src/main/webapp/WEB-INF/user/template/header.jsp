@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <div class="navy navy-header navy-fix-top">
 	<div class="container">
 		<div class="row">
@@ -16,7 +17,6 @@
 						class="fa fa-barcode "></i><span class="navy-text">Sản phẩm chính</span></a>
 					<div class="dropdown-menu sub-menu" id="category-id">
 						<div class="scroller">
-							
 						 </div>
 					</div>
 				</li>
@@ -29,7 +29,7 @@
 					</div>
 				</li>
 				<li class="${currentPage == 'contact'? 'active': ''}"><a href="${pageContext.request.contextPath}/contact"><i class="fa fa-phone"></i><span
-						class="navy-text">Liên lạc với tôi</span></a></li>
+						class="navy-text">Liên hệ</span></a></li>
 			</ul>
 		</div>
 	</div>

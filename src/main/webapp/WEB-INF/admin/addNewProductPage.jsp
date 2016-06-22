@@ -19,12 +19,12 @@
 			method="post" enctype="multipart/form-data">
 			<div class="control-group">
 				<label for="name">Tên sản phẩm :</label>
-				<form:input type="text" path="product.name"
-					class="form-control control-group" id="name" required="required" />
+				<form:input type="text" path="product.name" required = "true"
+					class="form-control control-group" id="name"  />
 			</div>
 			<div class="form-group">
 				<label>Menu sản phẩm :</label>
-				<form:select class="form-control" path="product.categoryId.id">
+				<form:select class="form-control" required="required" path="product.categoryId.id">
 					<c:forEach items="${categories}" var="cate">
 						<option value="${cate.id}">${cate.name}</option>
 					</c:forEach>
@@ -32,7 +32,7 @@
 			</div>
 			<div class="form-group">
 				<label for="type">Hình chính sản phẩm :</label>
-				<form:input path="mainFileUpload.files" type="file" accept="image/*" required="required" />
+				<form:input path="mainFileUpload.files" required="required" type="file" accept="image/*" />
 			</div>
 			<div class="form-group">
 				<label for="type">Hình chi tiết sản phẩm :</label>

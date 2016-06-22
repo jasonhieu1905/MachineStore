@@ -13,7 +13,7 @@
 
 			<div class="info">
 				<div>
-					<i class="fa fa-phone-square fa-2x"></i> ${contact.phone }
+					<i class="fa fa-phone-square fa-2x"></i> <a href="tel:${contact.phone}"> ${contact.phone}</a> 
 				</div>
 				<div>
 					<i class="fa fa-envelope fa-2x"></i> ${contact.email}
