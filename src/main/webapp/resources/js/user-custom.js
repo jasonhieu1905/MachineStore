@@ -64,7 +64,7 @@ function resizeSlider() {
     $('.image1').height(altezzaDiv).width($('.container').width() + 30);
     $('.image2').height(altezzaDiv).width($('.container').width() + 30);
 }
-var menuHeight = $(window).height() - 100 - 20;
+var menuHeight = $(window).height() - 100 - 20 - 20;
 $(document).ready(function() {
 	
 	
@@ -198,11 +198,9 @@ $(document).ready(function() {
 										pageScroll();
 									})
 
-					// set min height for menu
-					if($('#left-menu').outerHeight() + 20 > 500){
-						$('#main-body').css("min-height",
-								$('#left-menu').outerHeight() + 20);
-					}
+					// set min height for #main-body
+					$('#main-body').css("min-height",menuHeight);
+					
 					// product detail
 					$('#main-body .product-section .product .detail').hover(
 							function() {
