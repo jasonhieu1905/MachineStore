@@ -304,7 +304,6 @@
 	transition: all 600ms cubic-bezier(.25, .1, .25, 1) 0s !important;
 	-webkit-transition: all 600ms cubic-bezier(.25, .1, .25, 1) 0s
 		!important;
-	min-height: 500px;
 	overflow: hidden;
 	z-index: 1;
 }
