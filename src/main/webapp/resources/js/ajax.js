@@ -1,3 +1,4 @@
+
 function searchAjax() {
 	var data = {}
 	var tmp = $('#searchField input').val();
@@ -13,6 +14,7 @@ function searchAjax() {
 				console.log("SUCCESS: ", data);
 				// display(data);
 				var result = "";
+				indexOfSearchItem = -1;
 				for ( var p in data) {
 					var path = contextPath + '/detail/'+data[p].type+'/'+data[p].categoryId+'/'+data[p].id;
 					result += "<li><a href='"+path+"'>" + data[p].name

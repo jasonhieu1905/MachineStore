@@ -22,7 +22,7 @@
 							</div>
 						</div>
 					</div>
-					<span class="name">${product.name}</span>
+					<div class="name">${product.name}</div>
 				</div>
 
 			</c:forEach>
@@ -38,9 +38,9 @@
 </c:forEach>
 <c:forEach items="${accessories}" var="item">
 	<c:if test="${item.productList.size() >0 }">
-		<div class="title-container" index="${item.id}"
+		<div class="title-container red" index="${item.id}"
 			id="product-${item.id}">
-			<div class="title">${item.name}</div>
+			<div class="title red">${item.name}</div>
 		</div>
 		<div class="product col-xs-12">
 			<c:forEach items="${item.productList}" var="product" begin="0"
@@ -59,7 +59,7 @@
 							</div>
 						</div>
 					</div>
-					<span class="name">${product.name}</span>
+					<div class="name">${product.name}</div>
 				</div>
 
 			</c:forEach>

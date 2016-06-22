@@ -18,7 +18,7 @@
 							</div>
 						</div>
 					</div>
-					<span class="name">${product.name}</span>
+					<div class="name">${product.name}</div>
 				</div>
 
 			</c:forEach>

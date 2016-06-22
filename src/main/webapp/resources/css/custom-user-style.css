@@ -430,7 +430,9 @@
 	float: left;
 	border-bottom: 1px solid #337ab7 !important;
 }
-
+#main-body .product-section .title-container.red{
+	border-bottom-color:#E81717 !important;
+}
 #main-body .product-section .show-more-product a {
 	cursor: pointer;
 	display: block;
@@ -460,7 +462,9 @@
 	background-color: #1788E8 !important;
 	float: left;
 }
-
+#main-body .product-section .title-container .title.red{
+	background-color: #E81717 !important;
+}
 #main-body .product-section .product {
 	float: left;
 }
@@ -530,10 +534,6 @@
 }
 
 #main-body .product-section .product .detail-container .name {
-	position: absolute;
-	bottom: -30px;
-	left: 0;
-	width: 100%;
 	text-align: center;
 }
 

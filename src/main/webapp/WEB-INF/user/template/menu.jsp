@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="left-menu" class="row">
 	<div class="" id="scroller">
-		<div class="item first-level-head">
+		<div class="item first-level-head" id="main-products">
 			<i class="fa fa-angle-double-down custom-arrow"></i>Sản phẩm chính
 		</div>
 		<c:forEach items="${catalogues}" var="item">
@@ -16,7 +16,7 @@
 			</c:if>
 		</c:forEach>
 
-		<div class="item first-level-head red">
+		<div class="item first-level-head red" id="accessories">
 			<i class="fa fa-angle-double-down custom-arrow"></i>Phụ kiện
 		</div>
 		<c:forEach items="${accessories}" var="item">

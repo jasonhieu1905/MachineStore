@@ -17,7 +17,11 @@
 		<put-attribute name="body"
 			value="/WEB-INF/user/product-per-category.jsp" />
 	</definition>
-
+	
+	<definition name="categoryList" extends="UserTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/user/product-per-type.jsp" />
+	</definition>
 	<definition name="search" extends="UserTemplate">
 		<put-attribute name="body" value="/WEB-INF/user/search-result.jsp" />
 	</definition>

@@ -1,4 +1,5 @@
 var myScroll;
+var indexOfSearchItem = -1;
 function loaded () {
 	myScroll = new IScroll('#left-menu', {
 		scrollbars: true,
@@ -65,6 +66,8 @@ function resizeSlider() {
 }
 var menuHeight = $(window).height() - 600 - 20;
 $(document).ready(function() {
+	
+
 	getCategories(function(data){
 		category = new menu({data:data,parent:"category-id"})
 	});
@@ -159,14 +162,16 @@ $(document).ready(function() {
 							.scroll(
 									function(event) {
 										var _h = $(this).scrollTop();
+										var tmpMenu = $('#scroller').height();
 										if (_h > bannerHeight) {
 											if ($('body')[0].scrollHeight > _h
-													+ footerHeight + headerHeight + leftMenuHeight) {
+													+ footerHeight + headerHeight + tmpMenu) {
 												$("#left-menu").css("top",
 														_h + headerHeight);
 											} else {
+												
 												$("#left-menu")
-														.css("top",($('body')[0].scrollHeight - footerHeight - leftMenuHeight - 20));
+														.css("top",($('body')[0].scrollHeight - footerHeight - tmpMenu - 20));
 											}
 										} else {
 											$("#left-menu").css("top", bannerHeight + headerHeight);
@@ -228,14 +233,52 @@ $(document).ready(function() {
 						}else{
 							var body = $("html, body");
 							body.stop().animate({scrollTop:product.offset().top - 100}, '600', 'swing');
-							//$(window).scrollTop(product.offset().top);
-							//product[0].scrollIntoView();
 						}
 					});
+					$("#main-products").on("click touchstart",function(){
+						var link = contextPath+"/category/1";
+						window.location = link;
+					});
+					$("#accessories").on("click touchstart",function(){
+						var link = contextPath+"/category/2";
+						window.location = link;
+					});
+					
+					
 					$(window).resize(resizeSlider);
 					
+					var searchResult = $('#search-result');
 					$('#searchField input').keyup(function(event){
-						searchAjax();
+						
+						if(event.which == 38){
+							//up
+							searchResult.find('li').removeClass('active');
+							
+							if(indexOfSearchItem > 0){
+								indexOfSearchItem--;
+							}
+							searchResult.find('li').eq(indexOfSearchItem).addClass('active');
+							
+						}else if(event.which == 40){
+							//down
+							searchResult.find('li').removeClass('active');
+							if(indexOfSearchItem < searchResult.find('li').length - 1){
+								indexOfSearchItem++;
+							}
+							searchResult.find('li').eq(indexOfSearchItem).addClass('active');
+							
+						}else if(event.which == 13){
+							if(searchResult.find('li.active').length > 0){
+								var url = searchResult.find('li.active').find('a').attr('href');
+								window.location.href = url;
+							}else{
+								searchFullAjax();
+							}
+							searchResult.find('li').removeClass('active');
+						}else{
+							searchResult.find('li').removeClass('active');
+							searchAjax();
+						}
 					})
 					
 					loaded();

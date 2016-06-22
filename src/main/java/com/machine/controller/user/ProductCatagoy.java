@@ -191,4 +191,66 @@ public class ProductCatagoy {
 		model.addAttribute("accessPage", UserHomePage.ACCESS_PAGE);
 		return "category";
 	}
+	
+	@RequestMapping(value = "/category/{typeId}", method = RequestMethod.GET)
+	public String catagoryPage(@PathVariable int typeId,  ModelMap model) {
+
+		List<Category> mainCatalogues = new ArrayList<>();
+		mainCatalogues = categoryService.getCategoriesMainProduct();
+		for (int i = 0; i < mainCatalogues.size(); i++) {
+			if (!mainCatalogues.get(i).getProductList().isEmpty()) {
+				mainCatalogues.get(i).getProductList().sort(new Comparator<Product>() {
+					@Override
+					public int compare(Product o1, Product o2) {
+						if (o1.getPriorityOrder() <= o2.getPriorityOrder())
+							return 1;
+						else
+							return -1;
+					}
+				});
+			}
+		}
+		
+		List<Category> accCatalogues = new ArrayList<>();
+		accCatalogues = categoryService.getCategoriesAccessories();
+		for (int i = 0; i < accCatalogues.size(); i++) {
+			if (!accCatalogues.get(i).getProductList().isEmpty()) {
+				accCatalogues.get(i).getProductList().sort(new Comparator<Product>() {
+					@Override
+					public int compare(Product o1, Product o2) {
+						if (o1.getPriorityOrder() <= o2.getPriorityOrder())
+							return 1;
+						else
+							return -1;
+					}
+				});
+			}
+		}
+		
+		String currentPage ="";
+		List<Category> currentCategoryList = new ArrayList<>();
+		if (typeId == 1) {
+			currentPage = "product";
+			currentCategoryList = mainCatalogues;
+
+		} else if (typeId == 2) {
+			currentPage = "accessories";
+			currentCategoryList = accCatalogues;
+			//currentCategory
+		}
+
+		
+		
+		List<Banner> banners = new ArrayList<>();
+		banners = bannerService.listAllBanners();
+		Contact contact = contactService.getContact();	
+		model.addAttribute("contact", contact);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("catalogues", mainCatalogues);
+		model.addAttribute("accessories", accCatalogues);
+		model.addAttribute("currentCategoryList", currentCategoryList);
+		model.addAttribute("banners", banners);
+		model.addAttribute("accessPage", UserHomePage.ACCESS_PAGE);
+		return "categoryList";
+	}
 }

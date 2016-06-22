@@ -96,7 +96,7 @@
 
 .search-result{
 	width: calc(100% - 190px);
-    BACKGROUND: white;
+        background-color: white;
     z-index: 9999999999999999999;
     position: absolute;
     top: 56px;
@@ -111,8 +111,12 @@
 .search-result li a .catagory-name{
 	font-size: 12px;
 }
-.search-result li a:hover{
-	color:#337ab7;
+.search-result li:hover, .search-result li.active{
+	color: white !important;
+    background-color: rgba(13, 94, 162, 0.8); !important;
+}
+.search-result li:hover a, .search-result li.active a{
+	color: white !important;
 }
 .search-result li a{
 	color: black;
