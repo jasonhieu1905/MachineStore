@@ -8,6 +8,5 @@
 					alt="" />
 			</c:forEach>
 		</div>
-
 	</div>
 </c:if>

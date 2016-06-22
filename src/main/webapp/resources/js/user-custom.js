@@ -64,10 +64,10 @@ function resizeSlider() {
     $('.image1').height(altezzaDiv).width($('.container').width() + 30);
     $('.image2').height(altezzaDiv).width($('.container').width() + 30);
 }
-var menuHeight = $(window).height() - 600 - 20;
+var menuHeight = $(window).height() - 100 - 20;
 $(document).ready(function() {
 	
-
+	
 	getCategories(function(data){
 		category = new menu({data:data,parent:"category-id"})
 	});
@@ -146,50 +146,56 @@ $(document).ready(function() {
 					})
 					
 					$('#left-menu').css('max-height',menuHeight);
-					var leftMenuHeight = 500;//$('#left-menu').height();	
-					if(leftMenuHeight < menuHeight){
-						leftMenuHeight = menuHeight;
-					}
+					//var leftMenuHeight = $('#scroller').height();	
+					//if(leftMenuHeight < menuHeight){
+					//	leftMenuHeight = menuHeight;
+					//}
 					
-					var bannerHeight = 0;
+					var bannerHeight = 120;
 					var footerHeight = $('#main-footer').outerHeight();
 					var headerHeight = 120;
 					if($('.banner').length > 0){
-						bannerHeight = $('.banner').height() + 20;
+						bannerHeight = $('.banner').height() + 140 ;
 					}
-					$("#left-menu").css("top", bannerHeight + 120);
+					
+					function pageScroll(){
+						var _h = $(this).scrollTop();
+						var tmpMenu = $('#left-menu').height();
+						
+						if (_h > bannerHeight) {
+							var total = $('body')[0].scrollHeight;
+							footerHeight = $('#main-footer').outerHeight();
+							console.log(_h," < ",total - footerHeight - 20);
+							if (_h + tmpMenu + headerHeight < total - footerHeight - 20) {
+								$("#left-menu").css("top", _h + headerHeight);
+							} else {
+
+								$("#left-menu")
+										.css("top", total - footerHeight - 20 - tmpMenu);
+							}
+						} else {
+							$("#left-menu").css("top", bannerHeight);
+						}
+						
+						var elId = $("[id*=product-]");
+						var windows_h = $(window).height();
+						
+						for(var i=0;i<elId.length;i++){
+							var current = elId.eq(i);
+							var top = current[0].getBoundingClientRect().top;
+							if(top > 0 && top  < (windows_h / 2)){
+								$("[id*=catagory-]").removeClass("active");
+								var catagoryId = "catagory-" + current.attr("index");												
+								$("#"+catagoryId).addClass("active");
+								return;
+							}
+						}
+					}
+					pageScroll();
 					$(window)
 							.scroll(
 									function(event) {
-										var _h = $(this).scrollTop();
-										var tmpMenu = $('#scroller').height();
-										if (_h > bannerHeight) {
-											if ($('body')[0].scrollHeight > _h
-													+ footerHeight + headerHeight + tmpMenu) {
-												$("#left-menu").css("top",
-														_h + headerHeight);
-											} else {
-												
-												$("#left-menu")
-														.css("top",($('body')[0].scrollHeight - footerHeight - tmpMenu - 20));
-											}
-										} else {
-											$("#left-menu").css("top", bannerHeight + headerHeight);
-										}
-										
-										var elId = $("[id*=product-]");
-										var windows_h = $(window).height();
-										
-										for(var i=0;i<elId.length;i++){
-											var current = elId.eq(i);
-											var top = current[0].getBoundingClientRect().top;
-											if(top > 0 && top  < (windows_h / 2)){
-												$("[id*=catagory-]").removeClass("active");
-												var catagoryId = "catagory-" + current.attr("index");												
-												$("#"+catagoryId).addClass("active");
-												return;
-											}
-										}
+										pageScroll();
 									})
 
 					// set min height for menu

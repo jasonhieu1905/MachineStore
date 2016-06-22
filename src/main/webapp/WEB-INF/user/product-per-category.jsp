@@ -2,15 +2,15 @@
 <div class="row product-section">
 	<c:if test="${currentCategory.productList.size() >0 }">
 		<c:if test="${currentPage == 'product' }">
-			<div class="title-container" index="${item.id}"
-				id="product-${item.id}">
-				<div class="title">${item.name}</div>
+			<div class="title-container" index="${currentCategory.id}"
+				id="product-${currentCategory.id}">
+				<div class="title">${currentCategory.name}</div>
 			</div>
 		</c:if>
 		<c:if test="${currentPage == 'accessories' }">
-			<div class="title-container red" index="${item.id}"
-				id="product-${item.id}">
-				<div class="title red">${item.name}</div>
+			<div class="title-container red" index="${currentCategory.id}"
+				id="product-${currentCategory.id}">
+				<div class="title red">${currentCategory.name}</div>
 			</div>
 		</c:if>
 		
