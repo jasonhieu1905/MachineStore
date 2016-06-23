@@ -155,17 +155,16 @@ $(document).ready(function() {
 					var footerHeight = $('#main-footer').outerHeight();
 					var headerHeight = 120;
 					if($('.banner').length > 0){
-						bannerHeight = $('.banner').height() + 140 ;
+						bannerHeight = $('.banner').height() + 20 ;
 					}
 					
 					function pageScroll(){
 						var _h = $(this).scrollTop();
 						var tmpMenu = $('#left-menu').height();
-						
 						if (_h > bannerHeight) {
 							var total = $('body')[0].scrollHeight;
 							footerHeight = $('#main-footer').outerHeight();
-							console.log(_h," < ",total - footerHeight - 20);
+							
 							if (_h + tmpMenu + headerHeight < total - footerHeight - 20) {
 								$("#left-menu").css("top", _h + headerHeight);
 							} else {
@@ -174,7 +173,7 @@ $(document).ready(function() {
 										.css("top", total - footerHeight - 20 - tmpMenu);
 							}
 						} else {
-							$("#left-menu").css("top", bannerHeight);
+							$("#left-menu").css("top", bannerHeight + headerHeight);
 						}
 						
 						var elId = $("[id*=product-]");
