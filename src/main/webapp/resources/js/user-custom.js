@@ -285,5 +285,13 @@ $(document).ready(function() {
 					})
 					
 					loaded();
-					
+					$('#left-menu .item').hover(function(){
+						setTimeout(function () {
+					        myScroll.refresh();
+					    }, 0);
+					},function(){
+						setTimeout(function () {
+					        myScroll.refresh();
+					    }, 0);
+					})
 				})
