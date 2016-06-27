@@ -1,5 +1,8 @@
 package com.machine.daoImpl;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -35,7 +38,15 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Category> getCategoriesMainProduct() {
-		return (List<Category>) getSession().getNamedQuery("Category.findByMainProduct").setParameter("id", 1).list();
+		List<Category> categories = getSession().getNamedQuery("Category.findByMainProduct").setParameter("id", 1).list();
+		Collections.sort(categories,new Comparator<Category>() {
+
+			@Override
+			public int compare(Category o1, Category o2) {
+				return o1.getPriorityId() - o2.getPriorityId();
+			}
+		});
+		return categories;
 	}
 
 	@Override

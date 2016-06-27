@@ -49,19 +49,6 @@ public class UserHomePage {
 		model.addAttribute("name", "JCG Hello World!");
 		List<Category> mainCatalogues = new ArrayList<>();
 		mainCatalogues = categoryService.getCategoriesMainProduct();
-		for (int i = 0; i < mainCatalogues.size(); i++) {
-			if (!mainCatalogues.get(i).getProductList().isEmpty()) {
-				mainCatalogues.get(i).getProductList().sort(new Comparator<Product>() {
-					@Override
-					public int compare(Product o1, Product o2) {
-						if (o1.getPriorityOrder() <= o2.getPriorityOrder())
-							return 1;
-						else
-							return -1;
-					}
-				});
-			}
-		}
 
 		List<Category> accCatalogues = new ArrayList<>();
 		accCatalogues = categoryService.getCategoriesAccessories();
