@@ -50,8 +50,7 @@
 							</div>
 							<div class="info cover">
 								<a class="more-detail"
-									href="${pageContext.request.contextPath}/detail/${currentCategory.type}/${currentCategory.id}/${product.id}">More
-									detail</a>
+									href="${pageContext.request.contextPath}/detail/${currentCategory.type}/${currentCategory.id}/${product.id}">Xem chi tiết</a>
 							</div>
 						</div>
 					</div>
