@@ -28,7 +28,7 @@ import com.machine.service.ContactService;
 import com.machine.service.ProductService;
 
 @Controller
-public class ProductCatagoy {
+public class ProductCategory {
 	@Autowired
 	CategoryService categoryService;
 
