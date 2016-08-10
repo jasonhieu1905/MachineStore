@@ -519,14 +519,14 @@
 
 #main-body .product-section .product .detail-container .detail .scroll-detail .info.cover
 	{
-	background-color: #3E3E3E;
+	background-color: #BFDAF3;
 }
 
 #main-body .product-section .product .detail-container .detail .scroll-detail .info .more-detail
 	{
 	padding: 10px;
 	background: rgba(255, 255, 255, 0.28);
-	color: white;
+	color: #E81717;
 	font-weight: bold;
 	border-radius: 30px;
 	text-decoration: none;
