@@ -1,6 +1,7 @@
 package com.machine.controller.user;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -168,7 +169,18 @@ public class ProductCategory {
 		}
 
 		if (!currentCategory.getProductList().isEmpty()) {
-			currentCategory.getProductList().sort(new Comparator<Product>() {
+//			currentCategory.getProductList().sort(new Comparator<Product>() {
+//				@Override
+//				public int compare(Product o1, Product o2) {
+//					if (o1.getPriorityOrder() <= o2.getPriorityOrder())
+//						return 1;
+//					else
+//						return -1;
+//				}
+//			});
+			
+			Collections.sort(currentCategory.getProductList(),new Comparator<Product>() {
+
 				@Override
 				public int compare(Product o1, Product o2) {
 					if (o1.getPriorityOrder() <= o2.getPriorityOrder())
@@ -199,7 +211,18 @@ public class ProductCategory {
 		mainCatalogues = categoryService.getCategoriesMainProduct();
 		for (int i = 0; i < mainCatalogues.size(); i++) {
 			if (!mainCatalogues.get(i).getProductList().isEmpty()) {
-				mainCatalogues.get(i).getProductList().sort(new Comparator<Product>() {
+//				mainCatalogues.get(i).getProductList().sort(new Comparator<Product>() {
+//					@Override
+//					public int compare(Product o1, Product o2) {
+//						if (o1.getPriorityOrder() <= o2.getPriorityOrder())
+//							return 1;
+//						else
+//							return -1;
+//					}
+//				});
+				
+				Collections.sort(mainCatalogues.get(i).getProductList(),new Comparator<Product>() {
+
 					@Override
 					public int compare(Product o1, Product o2) {
 						if (o1.getPriorityOrder() <= o2.getPriorityOrder())
@@ -215,7 +238,18 @@ public class ProductCategory {
 		accCatalogues = categoryService.getCategoriesAccessories();
 		for (int i = 0; i < accCatalogues.size(); i++) {
 			if (!accCatalogues.get(i).getProductList().isEmpty()) {
-				accCatalogues.get(i).getProductList().sort(new Comparator<Product>() {
+//				accCatalogues.get(i).getProductList().sort(new Comparator<Product>() {
+//					@Override
+//					public int compare(Product o1, Product o2) {
+//						if (o1.getPriorityOrder() <= o2.getPriorityOrder())
+//							return 1;
+//						else
+//							return -1;
+//					}
+//				});
+				
+				Collections.sort(accCatalogues.get(i).getProductList(),new Comparator<Product>() {
+
 					@Override
 					public int compare(Product o1, Product o2) {
 						if (o1.getPriorityOrder() <= o2.getPriorityOrder())

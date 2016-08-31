@@ -1,6 +1,7 @@
 package com.machine.controller.user;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -14,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.machine.model.Banner;
 import com.machine.model.Category;
 import com.machine.model.Contact;
+import com.machine.model.Product;
 import com.machine.service.BannerService;
 import com.machine.service.CategoryService;
 import com.machine.service.ContactService;
 import com.machine.service.ProductService;
-import com.machine.model.Product;
 
 @Controller
 @RequestMapping("/detail")
@@ -68,7 +69,18 @@ public class ProductDetail {
 			}
 		}
 		if (!currentCategory.getProductList().isEmpty()) {
-			currentCategory.getProductList().sort(new Comparator<Product>() {
+//			currentCategory.getProductList().sort(new Comparator<Product>() {
+//				@Override
+//				public int compare(Product o1, Product o2) {
+//					if (o1.getPriorityOrder() <= o2.getPriorityOrder())
+//						return 1;
+//					else
+//						return -1;
+//				}
+//			});
+			
+			Collections.sort(currentCategory.getProductList(),new Comparator<Product>() {
+
 				@Override
 				public int compare(Product o1, Product o2) {
 					if (o1.getPriorityOrder() <= o2.getPriorityOrder())

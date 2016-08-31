@@ -46,7 +46,7 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public HashMap<Integer, List<Product>> getMainProductByCategoryAndPriority(List<Category> categories) {
 		HashMap<Integer, List<Product>> productsByCategoryAndPrio = new HashMap<>();
-		categories.stream().forEach(cate->{
+		for(Category cate : categories){
 			int cateId = cate.getId();
 			@SuppressWarnings("unchecked")
 			List<Product> productByCate = getSession().getNamedQuery("Product.findByCategoryId").setParameter("cateId", cateId).list();
@@ -58,7 +58,7 @@ public class ProductDAOImpl implements ProductDAO {
 				}
 			});
 			productsByCategoryAndPrio.put(cateId, productByCate);
-		});
+		}
 		return productsByCategoryAndPrio;	
 	}
 

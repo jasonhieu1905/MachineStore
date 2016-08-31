@@ -1,5 +1,6 @@
 package com.machine.daoImpl;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -27,8 +28,15 @@ public class BannerDAOImpl implements BannerDAO {
 	@Override
 	public List<Banner> listAllBanners() {
 		List<Banner> banners = getSession().getNamedQuery("Banner.findAll").list();
-	    banners.sort(new Comparator<Banner>() {
-			@Override
+//	    banners.sort(new Comparator<Banner>() {
+//			@Override
+//			public int compare(Banner o1, Banner o2) {
+//				return o1.getPriority() - o2.getPriority();
+//			}
+//		});
+	    
+	    Collections.sort(banners,new Comparator<Banner>() {
+	    	@Override
 			public int compare(Banner o1, Banner o2) {
 				return o1.getPriority() - o2.getPriority();
 			}

@@ -18,9 +18,9 @@
 		id="dataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/MachineStore?characterEncoding=UTF-8"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value=""></property>
+			value="jdbc:mysql://localhost/thanhmyv_db?characterEncoding=UTF-8"></property>
+		<property name="username" value="thanhmyv_db"></property>
+		<property name="password" value="123456@A"></property>
 	</bean>
 
 	<bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
