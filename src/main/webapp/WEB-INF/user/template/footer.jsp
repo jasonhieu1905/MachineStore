@@ -7,9 +7,6 @@
 	<div class="container">
 		<div class="col-xs-12 col-md-7 col-lg-7 left">
 			<h3>${contact.name }</h3>
-			<img
-				src="${pageContext.request.contextPath}/resources/images/${contact.bannerfooter}"
-				width="300px" height="150px" class="store" />
 
 			<div class="info">
 				<div>

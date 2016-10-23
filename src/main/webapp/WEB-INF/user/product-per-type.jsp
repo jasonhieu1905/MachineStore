@@ -27,7 +27,7 @@
 									width="185px">
 							</div>
 							<div class="info cover">
-								<a class="more-detail" href="${pageContext.request.contextPath}/detail/${item.type}/${item.id}/${product.id}">More detail</a>
+								<a class="more-detail" href="${pageContext.request.contextPath}/detail/${item.type}/${item.id}/${product.id}">Xem chi tiết</a>
 							</div>
 						</div>
 					</div>
