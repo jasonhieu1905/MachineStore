@@ -54,7 +54,7 @@
                 var boxWidth,
                     boxHeight,
                     pOffset;
-
+                
                 // ajax statuses
                 var wmAjaxInit,
                     wmAjaxEnd,
@@ -94,7 +94,7 @@
 
                 var stageW,
                     stageH;
-
+                var scale = 0.5;
                 var setBoxesSize = function()
                 {
                     // get dimensions to div box default image and offset element
@@ -180,7 +180,7 @@
                     $hightBox.stop().fadeIn(300);
 
                     loaderW = $loader.width();
-                    loaderH = $loader.height();
+                    loaderH = $loader.height(); 
                     halfLoaderW = (stageW/2)-(loaderW/2);
                     halfLoaderH = (stageH/2)-(loaderH/2);
 

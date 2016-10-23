@@ -25,6 +25,7 @@ img.wm-zoom-default-img{
 	left: 0;
 	position: absolute;
 	top: 0;
+	zoom: 0.2;
 }
 img.wm-zoom-loader{
 	z-index: 1;
