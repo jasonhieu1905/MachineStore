@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <div class="row product-section">
 	<c:if test="${currentCategory.productList.size() >0 }">
 		<c:if test="${currentPage == 'product' }">

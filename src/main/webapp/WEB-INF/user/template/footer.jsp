@@ -6,11 +6,11 @@
 
 	<div class="container">
 		<div class="col-xs-12 col-md-7 col-lg-7 left">
-			<h3>${contact.name }</h3>
+			<h3 style="color: white">${contact.name }</h3>
 
 			<div class="info">
 				<div>
-					<i class="fa fa-phone-square fa-2x"></i> <a href="tel:${contact.phone}"> ${contact.phone}</a> 
+					<i class="fa fa-phone-square fa-2x"></i> <a style="color:white; text-decoration: none" href="tel:${contact.phone}"> ${contact.phone}</a> 
 				</div>
 				<div>
 					<i class="fa fa-envelope fa-2x"></i> ${contact.email}

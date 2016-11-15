@@ -97,7 +97,7 @@
 				</div>
 				<div class="row" style="margin-top: 10px; margin-left: 10px">
 					<i class="fa fa-phone" style="font-size: xx-large"
-						aria-hidden="true"></i><a href="tel:${contact.phone}">
+						aria-hidden="true"></i><a style="color: black; text-decoration: none" href="tel:${contact.phone}">
 						${contact.phone}</a>
 				</div>
 				<div class="row" style="margin-top: 10px; margin-left: 10px">

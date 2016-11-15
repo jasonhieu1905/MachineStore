@@ -68,8 +68,7 @@
 		<c:if test="${item.productList.size()>8}">
 			<div class="show-more-product">
 				<a class="title"
-					href="${pageContext.request.contextPath}/category/${item.type}/${item.id}">Show
-					more product</a>
+					href="${pageContext.request.contextPath}/category/${item.type}/${item.id}">Xem tất cả</a>
 			</div>
 		</c:if>
 	</c:if>
