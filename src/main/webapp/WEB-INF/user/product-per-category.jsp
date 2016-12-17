@@ -23,7 +23,7 @@
 					<div class="detail">
 						<div class="scroll-detail">
 							<div class="info">
-								<img alt="product" src="${pageContext.request.contextPath}/resources/images/${product.image }" width="185px">
+								<img alt="product" src="${pageContext.request.contextPath}/resources/thumbnail/${product.image }" width="185px">
 							</div>
 							<div class="info cover">
 								<a class="more-detail"

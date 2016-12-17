@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
-import org.imgscalr.Scalr;
-import org.imgscalr.Scalr.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.imgscalr.Scalr;
+import org.imgscalr.Scalr.Mode;
 
 import com.machine.dto.ProductForm;
 import com.machine.model.Category;
@@ -120,7 +120,7 @@ public class AdminProductController {
 		}
 
 		if (null != detailFiles && detailFiles.get(0).getSize() > 0) {
-			String newImagesDetail = product.getZoomImage() + ",";
+			String newImagesDetail = "";
 			for (MultipartFile file : detailFiles) {
 				String imageDetailName = file.getOriginalFilename();
 				newImagesDetail += saveImage(file.getInputStream(), imageDetailName, resourcePath, false);
@@ -275,13 +275,16 @@ public class AdminProductController {
 
 			if (isCeateThumbnail) {
 				BufferedImage thumbImg = Scalr.resize(outputImage, Scalr.Method.QUALITY, scaleMode, thumbnailSize);
+				thumbImg.flush();
+				outputImage.flush();
 				File thumnail = new File(resourcesPath + "thumbnail/" + imageName);
 				ImageIO.write(thumbImg, extension, thumnail);
+			}else{
+				outputImage.flush();
+				File detail = new File(resourcesPath + "images/" + imageName);
+				ImageIO.write(outputImage, extension, detail);
 			}
-
-			File detail = new File(resourcesPath + "images/" + imageName);
-			ImageIO.write(outputImage, extension, detail);
-
+			
 			return imageName;
 
 		} catch (Exception e) {

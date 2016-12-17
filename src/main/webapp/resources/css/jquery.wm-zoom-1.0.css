@@ -25,7 +25,6 @@ img.wm-zoom-default-img{
 	left: 0;
 	position: absolute;
 	top: 0;
-	zoom: 0.2;
 }
 img.wm-zoom-loader{
 	z-index: 1;
@@ -49,6 +48,7 @@ img.wm-zoom-hight-img{
 	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=30);
 	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=30);
 	filter:alpha(opacity=30);
+	border:1px solid gray;
 }
 .wm-zoom-hight{
 	background: #f4f4f4;
