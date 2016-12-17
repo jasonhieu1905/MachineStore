@@ -104,7 +104,7 @@ public class AdminProductController {
 
 	@RequestMapping(value = "/addNewProduct", method = RequestMethod.POST)
 	public String handleAddNewProduct(@ModelAttribute("productForm") ProductForm productForm,
-			HttpServletRequest request) throws IllegalStateException, IOException {	
+			HttpServletRequest request) throws IllegalStateException, IOException {
 		String resourcePath = FileUtils.resourcesPath(request);
 		List<MultipartFile> mainFiles = productForm.getMainFileUpload().getFiles();
 		List<MultipartFile> detailFiles = productForm.getDetailFileUpload().getFiles();
@@ -123,7 +123,7 @@ public class AdminProductController {
 			String newImagesDetail = "";
 			for (MultipartFile file : detailFiles) {
 				String imageDetailName = file.getOriginalFilename();
-				newImagesDetail += saveImage(file.getInputStream(), imageDetailName, resourcePath, false);
+				newImagesDetail += saveImage(file.getInputStream(), imageDetailName, resourcePath, false) + ",";
 				// file.transferTo(new File(savedDirectory + imageDetailName));
 			}
 			newImagesDetail = FileUtils.removeLastCharacterIfComma(newImagesDetail);
@@ -176,7 +176,7 @@ public class AdminProductController {
 			String newImagesDetail = product.getZoomImage() + ",";
 			for (MultipartFile file : detailFiles) {
 				String imageDetailName = file.getOriginalFilename();
-				newImagesDetail += saveImage(file.getInputStream(), imageDetailName, resourcePath, false);
+				newImagesDetail += saveImage(file.getInputStream(), imageDetailName, resourcePath, false) + ",";
 				// file.transferTo(new File(savedDirectory + imageDetailName));
 			}
 			newImagesDetail = FileUtils.removeLastCharacterIfComma(newImagesDetail);
@@ -233,7 +233,7 @@ public class AdminProductController {
 				// the width is too large, resize again
 				outputImage = Scalr.resize(outputImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_TO_WIDTH, maxSize);
 			}
-			
+
 			int paddingSize = 0;
 			if (outputImage.getWidth() != maxSize) {
 				// we need padding on the width axis
@@ -243,33 +243,34 @@ public class AdminProductController {
 				paddingSize = (maxSize - outputImage.getHeight()) / 2;
 			}
 
-			 // we need padding?
-		    if (paddingSize > 0) {
-		        // add the padding to the image
-		        outputImage = Scalr.pad(outputImage, paddingSize, Color.WHITE);
-		        // now we have to crop the image because the padding was added to all sides
-		        int x = 0, y = 0, width = 0, height = 0;
-		        if (outputImage.getWidth() > maxSize) {
-		            // set the correct range
-		            x = paddingSize;
-		            y = 0;
-		            width = outputImage.getWidth() - (2 * paddingSize);
-		            height = outputImage.getHeight();
-		        } else if (outputImage.getHeight() > maxSize) {
-		            // set the correct range
-		            x = 0;
-		            y = paddingSize;
-		            width = outputImage.getWidth();
-		            height = outputImage.getHeight() - (2 * paddingSize);
-		        }
-		        
-		        // Crop the image 
-		        if (width > 0 && height > 0) {
-		            outputImage = Scalr.crop(outputImage, x, y, width, height);
-		        }
-		    }
-		    
-		    String name = FilenameUtils.removeExtension(filename);
+			// we need padding?
+			if (paddingSize > 0) {
+				// add the padding to the image
+				outputImage = Scalr.pad(outputImage, paddingSize, Color.WHITE);
+				// now we have to crop the image because the padding was added
+				// to all sides
+				int x = 0, y = 0, width = 0, height = 0;
+				if (outputImage.getWidth() > maxSize) {
+					// set the correct range
+					x = paddingSize;
+					y = 0;
+					width = outputImage.getWidth() - (2 * paddingSize);
+					height = outputImage.getHeight();
+				} else if (outputImage.getHeight() > maxSize) {
+					// set the correct range
+					x = 0;
+					y = paddingSize;
+					width = outputImage.getWidth();
+					height = outputImage.getHeight() - (2 * paddingSize);
+				}
+
+				// Crop the image
+				if (width > 0 && height > 0) {
+					outputImage = Scalr.crop(outputImage, x, y, width, height);
+				}
+			}
+
+			String name = FilenameUtils.removeExtension(filename);
 			String extension = FilenameUtils.getExtension(filename);
 			String imageName = name + "_" + new Date().getTime() + "." + extension;
 
@@ -279,12 +280,12 @@ public class AdminProductController {
 				outputImage.flush();
 				File thumnail = new File(resourcesPath + "thumbnail/" + imageName);
 				ImageIO.write(thumbImg, extension, thumnail);
-			}else{
+			} else {
 				outputImage.flush();
 				File detail = new File(resourcesPath + "images/" + imageName);
 				ImageIO.write(outputImage, extension, detail);
 			}
-			
+
 			return imageName;
 
 		} catch (Exception e) {

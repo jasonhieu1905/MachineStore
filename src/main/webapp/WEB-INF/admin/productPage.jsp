@@ -59,9 +59,9 @@
 						<td>${product.createddate}</td>
 						<td>${product.categoryId.name}</td>
 						<td><a
-							onclick="showImage('${pageContext.request.contextPath}/resources/images/${product.image}', '${pageContext.request.contextPath}/resources/images/${product.image}');">
+							onclick="showImage('${pageContext.request.contextPath}/resources/thumbnail/${product.image}', '${pageContext.request.contextPath}/resources/images/${product.image}');">
 								<img style="width: 50px; height: 50px"
-								src="${pageContext.request.contextPath}/resources/images/${product.image}" />
+								src="${pageContext.request.contextPath}/resources/thumbnail/${product.image}" />
 						</a></td>
 						<td>${product.priorityOrder}</td>
 					</tr>

@@ -48,7 +48,7 @@
 				<div class="row" id="${image}">
 					<img alt="" height="120px" width="220px"
 						style="margin-bottom: 20px; margin-left: 10px"
-						src="${pageContext.request.contextPath}/resources/images/${mainImage}" />
+						src="${pageContext.request.contextPath}/resources/thumbnail/${mainImage}" />
 				</div>
 				<label for="image">Thay thế hình sản phẩm chính :</label>
 				<form:input id="uploadIsoImage" path="mainFileUpload.files"

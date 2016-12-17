@@ -18,7 +18,7 @@
 				<i class="fa fa-angle-down  fa-2x"></i>
 			</div>
 		</div>
-		<div class="title">${product.name }</div>
+		
 		<div class="wm-zoom-container main-product-photo">
 			<div class="wm-zoom-box">
 				<img width="300px" class="photo wm-zoom-default-img"
@@ -31,7 +31,10 @@
 	</div>
 
 	<div class="product-right">
-		<c:out value="${product.description}" escapeXml="false"/>
+		<div class="title">${product.name }</div>
+		<div class="description">
+			<c:out value="${product.description}" escapeXml="false"/>
+		</div>
 	</div>
 </div>
 <div class="row product-section">
