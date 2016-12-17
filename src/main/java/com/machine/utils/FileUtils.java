@@ -26,4 +26,11 @@ public class FileUtils {
 		return imageNames;
 	}
 	
+	public static String thumbnailImageFolder(HttpServletRequest request){
+		return  request.getSession().getServletContext().getRealPath("/") + "resources/thumbnail/";
+	}
+	
+	public static String resourcesPath(HttpServletRequest request){
+		return  request.getSession().getServletContext().getRealPath("/") + "resources/";
+	}
 }

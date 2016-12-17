@@ -1,16 +1,23 @@
 package com.machine.controller.admin;
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
+import org.imgscalr.Scalr;
+import org.imgscalr.Scalr.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -97,33 +104,30 @@ public class AdminProductController {
 
 	@RequestMapping(value = "/addNewProduct", method = RequestMethod.POST)
 	public String handleAddNewProduct(@ModelAttribute("productForm") ProductForm productForm,
-			HttpServletRequest request) throws IllegalStateException, IOException {
-		String savedDirectory = FileUtils.directoryImage(request);
+			HttpServletRequest request) throws IllegalStateException, IOException {	
+		String resourcePath = FileUtils.resourcesPath(request);
 		List<MultipartFile> mainFiles = productForm.getMainFileUpload().getFiles();
 		List<MultipartFile> detailFiles = productForm.getDetailFileUpload().getFiles();
 		Product product = productForm.getProduct();
 		product.setCreateddate(new Date());
-		if (mainFiles != null && mainFiles.size() > 0) {
-			for (MultipartFile file : mainFiles) {
-				String fileName = file.getOriginalFilename();
-				if (!"".equalsIgnoreCase(fileName)) {
-					file.transferTo(new File(savedDirectory + fileName));
-					product.setImage(fileName);
-				}
-			}
+		if (mainFiles.get(0).getSize() > 0) {
+			MultipartFile file = mainFiles.get(0);
+			String fileName = file.getOriginalFilename();
+			// File convFile = new File(fileName);
+			// file.transferTo(convFile);
+			// file.transferTo(new File(savedDirectory + mainFileUploadName));
+			product.setImage(saveImage(file.getInputStream(), fileName, resourcePath, true));
 		}
-		if (null != detailFiles && detailFiles.size() > 0) {
-			String detailsImageName = "";
-			for (MultipartFile multipartFile : detailFiles) {
-				String fileName = multipartFile.getOriginalFilename();
-				if (!"".equalsIgnoreCase(fileName)) {
-					multipartFile.transferTo(new File(savedDirectory + fileName));
-					detailsImageName += fileName;
-					detailsImageName += ",";
-				}
+
+		if (null != detailFiles && detailFiles.get(0).getSize() > 0) {
+			String newImagesDetail = product.getZoomImage() + ",";
+			for (MultipartFile file : detailFiles) {
+				String imageDetailName = file.getOriginalFilename();
+				newImagesDetail += saveImage(file.getInputStream(), imageDetailName, resourcePath, false);
+				// file.transferTo(new File(savedDirectory + imageDetailName));
 			}
-			detailsImageName = FileUtils.removeLastCharacterIfComma(detailsImageName);
-			product.setZoomImage(detailsImageName);
+			newImagesDetail = FileUtils.removeLastCharacterIfComma(newImagesDetail);
+			product.setZoomImage(newImagesDetail);
 		}
 		productService.addNewProduct(product);
 		return "redirect:/products";
@@ -152,7 +156,7 @@ public class AdminProductController {
 	@RequestMapping(value = "/editProduct", method = RequestMethod.POST)
 	public String handleEditProduct(@ModelAttribute("productForm") ProductForm productForm, HttpServletRequest request)
 			throws IllegalStateException, IOException {
-		String savedDirectory = FileUtils.directoryImage(request);
+		String resourcePath = FileUtils.resourcesPath(request);
 		Product product = productForm.getProduct();
 		int idProduct = product.getId().intValue();
 		Product tempProduct = productService.getProductById(idProduct);
@@ -161,17 +165,19 @@ public class AdminProductController {
 		List<MultipartFile> detailFiles = productForm.getDetailFileUpload().getFiles();
 		if (mainFiles.get(0).getSize() > 0) {
 			MultipartFile file = mainFiles.get(0);
-			String mainFileUploadName = file.getOriginalFilename();
-			product.setImage(mainFileUploadName);
-			file.transferTo(new File(savedDirectory + mainFileUploadName));
+			String fileName = file.getOriginalFilename();
+			// File convFile = new File(fileName);
+			// file.transferTo(convFile);
+			// file.transferTo(new File(savedDirectory + mainFileUploadName));
+			product.setImage(saveImage(file.getInputStream(), fileName, resourcePath, true));
 		}
 
 		if (null != detailFiles && detailFiles.get(0).getSize() > 0) {
 			String newImagesDetail = product.getZoomImage() + ",";
 			for (MultipartFile file : detailFiles) {
 				String imageDetailName = file.getOriginalFilename();
-				newImagesDetail += imageDetailName;
-				file.transferTo(new File(savedDirectory + imageDetailName));
+				newImagesDetail += saveImage(file.getInputStream(), imageDetailName, resourcePath, false);
+				// file.transferTo(new File(savedDirectory + imageDetailName));
 			}
 			newImagesDetail = FileUtils.removeLastCharacterIfComma(newImagesDetail);
 			product.setZoomImage(newImagesDetail);
@@ -203,4 +209,85 @@ public class AdminProductController {
 		}
 	}
 
+	private String saveImage(InputStream img, String filename, String resourcesPath, boolean isCeateThumbnail) {
+		try {
+			BufferedImage image = ImageIO.read(img);
+			int originHeight = image.getHeight();
+			int originWidth = image.getWidth();
+			int maxSize = 1000;
+			int thumbnailSize = 300;
+			Mode scaleMode = Mode.AUTOMATIC;
+
+			if (originHeight > originWidth) {
+				// scale to width
+				scaleMode = Scalr.Mode.FIT_TO_WIDTH;
+			} else if (originWidth >= originHeight) {
+				scaleMode = Scalr.Mode.FIT_TO_HEIGHT;
+			}
+
+			BufferedImage outputImage = Scalr.resize(image, Scalr.Method.QUALITY, scaleMode, maxSize);
+			if (scaleMode.equals(Scalr.Mode.FIT_TO_WIDTH) && outputImage.getHeight() > maxSize) {
+				// the height is too large, resize again
+				outputImage = Scalr.resize(outputImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_TO_HEIGHT, maxSize);
+			} else if (scaleMode.equals(Scalr.Mode.FIT_TO_HEIGHT) && outputImage.getWidth() > maxSize) {
+				// the width is too large, resize again
+				outputImage = Scalr.resize(outputImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_TO_WIDTH, maxSize);
+			}
+			
+			int paddingSize = 0;
+			if (outputImage.getWidth() != maxSize) {
+				// we need padding on the width axis
+				paddingSize = (maxSize - outputImage.getWidth()) / 2;
+			} else if (outputImage.getHeight() != maxSize) {
+				// we need padding on the height axis
+				paddingSize = (maxSize - outputImage.getHeight()) / 2;
+			}
+
+			 // we need padding?
+		    if (paddingSize > 0) {
+		        // add the padding to the image
+		        outputImage = Scalr.pad(outputImage, paddingSize, Color.WHITE);
+		        // now we have to crop the image because the padding was added to all sides
+		        int x = 0, y = 0, width = 0, height = 0;
+		        if (outputImage.getWidth() > maxSize) {
+		            // set the correct range
+		            x = paddingSize;
+		            y = 0;
+		            width = outputImage.getWidth() - (2 * paddingSize);
+		            height = outputImage.getHeight();
+		        } else if (outputImage.getHeight() > maxSize) {
+		            // set the correct range
+		            x = 0;
+		            y = paddingSize;
+		            width = outputImage.getWidth();
+		            height = outputImage.getHeight() - (2 * paddingSize);
+		        }
+		        
+		        // Crop the image 
+		        if (width > 0 && height > 0) {
+		            outputImage = Scalr.crop(outputImage, x, y, width, height);
+		        }
+		    }
+		    
+		    String name = FilenameUtils.removeExtension(filename);
+			String extension = FilenameUtils.getExtension(filename);
+			String imageName = name + "_" + new Date().getTime() + "." + extension;
+
+			if (isCeateThumbnail) {
+				BufferedImage thumbImg = Scalr.resize(outputImage, Scalr.Method.QUALITY, scaleMode, thumbnailSize);
+				File thumnail = new File(resourcesPath + "thumbnail/" + imageName);
+				ImageIO.write(thumbImg, extension, thumnail);
+			}
+
+			File detail = new File(resourcesPath + "images/" + imageName);
+			ImageIO.write(outputImage, extension, detail);
+
+			return imageName;
+
+		} catch (Exception e) {
+			System.out.println("Can not create thumbnail :" + e.toString());
+			e.printStackTrace();
+		}
+		return "";
+	}
 }
